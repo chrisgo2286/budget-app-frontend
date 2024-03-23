@@ -1,0 +1,12 @@
+.ledger {
+    display: flex;
+    flex-direction: column;
+    max-width: 800px;
+    margin: 10px auto;
+}
+
+.ledger-header,
+.ledger-item {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+}
