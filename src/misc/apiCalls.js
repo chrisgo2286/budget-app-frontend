@@ -29,4 +29,5 @@ export const ledgerData = [
     }
 ]
 
-export const categoryData = [ 'Salary', 'Mortgage', 'Grocery', 'Insurance' ]
+export const categoryData = [ 'Category', 'Salary', 'Mortgage', 'Grocery', 
+    'Insurance' ]

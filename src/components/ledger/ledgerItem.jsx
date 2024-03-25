@@ -8,6 +8,7 @@ export default function LedgerItem ({ item }) {
             <div>{ category }</div>
             <div>{ type }</div>
             <div>{ amount }</div>
+            <div>x</div>
         </div>
     )
 }

@@ -9,7 +9,7 @@ export default function NewLedgerItem ({ categories }) {
     })
     
     return (
-        <section>
+        <section className='new-ledger-item'>
             <input type='date' />
             <select>
                 { categories.map((category) => (
@@ -17,10 +17,15 @@ export default function NewLedgerItem ({ categories }) {
                 ))}
             </select>
             <select>
+                <option value='Type'>Type</option>
                 <option value='Expense'>Expense</option>
                 <option value='Income'>Income</option>
             </select>
-            <input type='number' />
+            <input 
+                className='new-amount' 
+                type='number' 
+                placeholder='Amount' />
+            <button>Add</button>
         </section>
     )
 }

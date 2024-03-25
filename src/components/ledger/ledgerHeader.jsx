@@ -7,6 +7,7 @@ export default function LedgerHeader () {
             <div>Category</div>
             <div>Type</div>
             <div>Amount</div>
+            <div>Delete</div>
         </section>
     )
 }
