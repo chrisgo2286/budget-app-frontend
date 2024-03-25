@@ -5,6 +5,7 @@
     justify-content: center;
     max-width: 800px;
     margin: 20px auto;
+    padding: 20px 0px;
     border: 1px solid var(--siteBorderColor);
     border-radius: 10px;
 }
@@ -17,10 +18,12 @@
 .budget-item-header {
     display: flex;
     justify-content: space-between;
+    margin-bottom: 5px;
 }
 
 .outer-bar {
     border: 1px solid var(--siteBorderColor);
+    background-color: var(--firstColor);
     position: relative;
     height: 20px;
     border-radius: 20px;

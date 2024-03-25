@@ -45,7 +45,7 @@
 }
 
 .new-ledger-item > *:hover {
-    background-color: var(--firstColor);
+    background-color: var(--hoverBGColor);
     cursor: pointer;
 }
 .new-amount {
