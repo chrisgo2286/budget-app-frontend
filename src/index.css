@@ -1,6 +1,8 @@
 :root {
   --siteBorderColor: rgba(0, 0, 0, 0.1);
+  --siteFieldBorderColor:  rgba(0, 0, 0, 0.8);
   --siteFontColor: rgba(0, 0, 0, 0.5);
+  --hoverBGColor: rgba(0, 0, 0, 0.025);
   --firstColor: #ececec; 
   --secondColor: #9fd3c7;
   --thirdColor: #385170; 

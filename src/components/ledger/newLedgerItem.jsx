@@ -25,7 +25,7 @@ export default function NewLedgerItem ({ categories }) {
                 className='new-amount' 
                 type='number' 
                 placeholder='Amount' />
-            <button>Add</button>
+            <button className='add-btn'>Add</button>
         </section>
     )
 }
