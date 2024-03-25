@@ -1,0 +1,27 @@
+nav {
+    display: flex;
+    justify-content: space-between;
+    height: 50px;
+    background-color: var(--secondColor);
+}
+
+.site-links {
+    display: flex;
+    align-items: center;
+}
+
+.user-links {
+    display: flex;
+    align-items: center;
+}
+
+.site-links a,
+.user-links a {
+    margin: 0px 15px;
+    text-decoration: none;
+}
+
+.site-links a:hover,
+.user-links a:hover {
+    opacity: 50%;
+}
