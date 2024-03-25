@@ -31,3 +31,27 @@ export const ledgerData = [
 
 export const categoryData = [ 'Category', 'Salary', 'Mortgage', 'Grocery', 
     'Insurance' ]
+
+export const budgetData = [
+    {
+        id: 1,
+        category: 'Mortgage',
+        budget_amount: 1500.00,
+        actual_amount: 1500.00,
+        percent: '100%'
+    },
+    {
+        id: 2,
+        category: 'Grocery',
+        budget_amount: 400.00,
+        actual_amount: 80.00,
+        percent: '20%'
+    },
+    {
+        id: 3,
+        category: 'Insurance',
+        budget_amount: 150.00,
+        actual_amount: 100.00,
+        percent: '67%'
+    }
+]

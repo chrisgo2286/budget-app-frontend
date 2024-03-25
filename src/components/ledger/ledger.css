@@ -18,6 +18,12 @@
     background-color: var(--firstColor);
 }
 
+.ledger-item:hover {
+    background-color: var(--firstColor);
+    opacity: 40%;
+    cursor: pointer;
+}
+
 .new-ledger-item {
     margin: 40px 0px;
 }

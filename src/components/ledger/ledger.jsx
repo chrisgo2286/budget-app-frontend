@@ -16,7 +16,7 @@ export default function Ledger () {
         setLedger(ledger);
         const categories = categoryData;
         setCategories(categories);
-    })
+    }, [])
 
     return (
         <main className='ledger'>
