@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import LedgerHeader from "./ledgerHeader";
 import LedgerItem from "./ledgerItem";
 import NewLedgerItem from "./newLedgerItem";
-import { ledgerData } from "../../misc/apiCalls";
+import { getLedgerItems } from "../../misc/apiCalls";
 import { categoryData } from "../../misc/apiCalls";
 import './ledger.css';
 
@@ -12,8 +12,8 @@ export default function Ledger () {
     const [ categories, setCategories ] = useState([])
 
     useEffect(() => {
-        const ledger = ledgerData;
-        setLedger(ledger);
+        getLedgerItems().then((ledger) => setLedger(ledger));
+        
         const categories = categoryData;
         setCategories(categories);
     }, [])

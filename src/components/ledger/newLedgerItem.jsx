@@ -13,7 +13,7 @@ export default function NewLedgerItem ({ categories }) {
             <input type='date' />
             <select>
                 { categories.map((category) => (
-                    <option value={ category }>{ category }</option>
+                    <option key={ category } value={ category }>{ category }</option>
                 ))}
             </select>
             <select>

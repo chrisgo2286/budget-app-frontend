@@ -1,3 +1,10 @@
+import axios from 'axios';
+
+export async function getLedgerItems () {
+    const result = await axios.get('http://127.0.0.1:8000/api/ledger_items/');
+    return result.data;
+}
+
 export const ledgerData = [
     {
         id: 1,
