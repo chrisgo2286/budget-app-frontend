@@ -1,6 +1,7 @@
 import { useState } from "react";
+import { createLedgerItem } from "../../misc/apiCalls";
 
-export default function NewLedgerItem ({ categories }) {
+export default function NewLedgerItem ({ categories, setUpdateNeeded }) {
     const [ fields, setFields ] = useState({
         date: '',
         category: '',
@@ -16,7 +17,7 @@ export default function NewLedgerItem ({ categories }) {
     }
     
     function handleSubmit () {
-        console.log(fields);
+        createLedgerItem(fields).then(setUpdateNeeded(true));
         setFields({
             date: '',
             category: '',
@@ -39,7 +40,11 @@ export default function NewLedgerItem ({ categories }) {
                 name='date' 
                 value={fields.date}
                 onChange={ handleChange }/>
-            <select name='category' onChange={ handleChange }>
+            <select 
+                name='category' 
+                value={ fields.category } 
+                onChange={ handleChange }>
+                
                 <option value='Category'>Category</option>
                 { categories.map((category) => (
                     <option 

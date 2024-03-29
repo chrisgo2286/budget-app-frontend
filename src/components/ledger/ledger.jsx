@@ -9,16 +9,19 @@ export default function Ledger () {
 
     const [ ledger, setLedger ] = useState([])
     const [ categories, setCategories ] = useState([])
+    const [ updateNeeded, setUpdateNeeded ] = useState(false)
 
     useEffect(() => {
         getLedgerItems().then((ledger) => setLedger(ledger));
         getCategories().then((categories) => setCategories(categories));
-        
-    }, [])
+        setUpdateNeeded(false);    
+    }, [updateNeeded])
 
     return (
         <main className='ledger'>
-            <NewLedgerItem categories={ categories }/>
+            <NewLedgerItem 
+                categories={ categories }
+                setUpdateNeeded={ setUpdateNeeded }/>
             <LedgerHeader />
             <section className="ledger-items">
                 { ledger.map((item) => (

@@ -4,9 +4,15 @@ import Home from './components/home/home';
 import Navbar from './components/navbar/navbar';
 import Budget from './components/budget/budget';
 import Ledger from './components/ledger/ledger';
+import axios from 'axios';
 import './App.css';
 
 export default function App () {
+    
+    // axios.defaults.withCredentials = true
+    // axios.defaults.xsrfCookieName = 'csrftoken'
+    // axios.defaults.xsrfHeaderName = 'x-csrftoken'
+
     return (
         <React.Fragment>
             <Router>

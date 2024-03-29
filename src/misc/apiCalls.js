@@ -7,6 +7,12 @@ export async function getLedgerItems () {
     return result.data;
 }
 
+export async function createLedgerItem (fields) {
+    fields.owner = 1
+    const result = await axios.post(url + 'ledger_items/', fields)
+    return result.data;
+}
+
 export async function getCategories () {
     const result = await axios.get(url + 'categories/');
     return result.data;
