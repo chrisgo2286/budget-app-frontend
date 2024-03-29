@@ -27,7 +27,8 @@ export default function Ledger () {
                 { ledger.map((item) => (
                     <LedgerItem 
                         key={ item.id } 
-                        item={ item } />
+                        item={ item }
+                        setUpdateNeeded={ setUpdateNeeded } />
                 ))}
             </section>
         </main>

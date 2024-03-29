@@ -13,6 +13,11 @@ export async function createLedgerItem (fields) {
     return result.data;
 }
 
+export async function deleteLedgerItem (id) {
+    const result = await axios.delete(url + 'ledger_items/' + id + '/')
+    return result.data;
+}
+
 export async function getCategories () {
     const result = await axios.get(url + 'categories/');
     return result.data;
