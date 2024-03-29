@@ -7,22 +7,28 @@ export default function NewLedgerItem ({ categories, setUpdateNeeded }) {
         category: '',
         amount: ''
     })
+    const [ categoryChoice, setCategoryChoice ] = useState('Category')
 
     function handleChange (event) {
         let { name, value } = event.target;
+
         if(name === 'category') {
-            value = findCategoryID(value)
-        }
+            setCategoryChoice(value);
+            const id = findCategoryID(value)
+            setFields({ ...fields, 'category': id })
+        } else {
         setFields({ ...fields, [name]: value })
+        }
     }
     
     function handleSubmit () {
         createLedgerItem(fields).then(setUpdateNeeded(true));
+        setCategoryChoice('Category');
         setFields({
             date: '',
             category: '',
             amount: ''
-        })
+        });
     }
 
     function findCategoryID (category_name) {
@@ -42,7 +48,7 @@ export default function NewLedgerItem ({ categories, setUpdateNeeded }) {
                 onChange={ handleChange }/>
             <select 
                 name='category' 
-                value={ fields.category } 
+                value={ categoryChoice } 
                 onChange={ handleChange }>
                 
                 <option value='Category'>Category</option>
