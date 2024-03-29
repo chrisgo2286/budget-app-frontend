@@ -1,5 +1,7 @@
 import { useState } from "react";
 import { createLedgerItem } from "../../misc/apiCalls";
+import { findCategoryID } from "../../misc/miscFunctions";
+import Input from "../miscComponents/input/input";
 
 export default function NewLedgerItem ({ categories, setUpdateNeeded }) {
     const [ fields, setFields ] = useState({
@@ -14,7 +16,7 @@ export default function NewLedgerItem ({ categories, setUpdateNeeded }) {
 
         if(name === 'category') {
             setCategoryChoice(value);
-            const id = findCategoryID(value)
+            const id = findCategoryID(value, categories)
             setFields({ ...fields, 'category': id })
         } else {
         setFields({ ...fields, [name]: value })
@@ -31,21 +33,16 @@ export default function NewLedgerItem ({ categories, setUpdateNeeded }) {
         });
     }
 
-    function findCategoryID (category_name) {
-        for(let i=0;i < categories.length; i++) {
-            if(categories[i].name === category_name) {
-                return categories[i].id;
-            }
-        }
-    }
-
     return (
         <section className='new-ledger-item'>
-            <input 
-                type='date' 
-                name='date' 
-                value={fields.date}
-                onChange={ handleChange }/>
+            <Input
+                className='new-date'
+                type='date'
+                name='date'
+                value={ fields.date }
+                fields={ fields }
+                setFields={ setFields } />
+
             <select 
                 name='category' 
                 value={ categoryChoice } 
@@ -60,13 +57,13 @@ export default function NewLedgerItem ({ categories, setUpdateNeeded }) {
                     </option>
                 ))}
             </select>
-            <input 
-                className='new-amount' 
-                type='number' 
+            <Input
+                className='new-amount'
+                type='number'
                 name='amount'
-                value={fields.amount}
-                placeholder='Amount'
-                onChange={ handleChange} />
+                value={ fields.amount }
+                fields={ fields }
+                setFields={ setFields } />
             <button 
                 className='add-btn'
                 onClick={ handleSubmit }>Add</button>

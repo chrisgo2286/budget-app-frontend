@@ -23,9 +23,6 @@ export async function getCategories () {
     return result.data;
 }
 
-export const categoryData = [ 'Category', 'Salary', 'Mortgage', 'Grocery', 
-    'Insurance' ]
-
 export const budgetData = [
     {
         id: 1,
