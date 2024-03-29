@@ -1,40 +1,16 @@
 import axios from 'axios';
 
+const url = 'http://127.0.0.1:8000/api/'
+
 export async function getLedgerItems () {
-    const result = await axios.get('http://127.0.0.1:8000/api/ledger_items/');
+    const result = await axios.get(url + 'ledger/');
     return result.data;
 }
 
-export const ledgerData = [
-    {
-        id: 1,
-        date: '3/1/2024',
-        category: 'Salary',
-        type: 'Income',
-        amount: 2000.00
-    },
-    {
-        id: 2,
-        date: '3/15/2024',
-        category: 'Mortgage',
-        type: 'Expense',
-        amount: 1500.00
-    },
-    {
-        id: 3,
-        date: '3/25/2024',
-        category: 'Grocery',
-        type: 'Expense',
-        amount: 80.00
-    },
-    {
-        id: 4,
-        date: '3/30/2024',
-        category: 'Insurance',
-        type: 'Expense',
-        amount: 100.00
-    }
-]
+export async function getCategories () {
+    const result = await axios.get(url + 'categories/');
+    return result.data;
+}
 
 export const categoryData = [ 'Category', 'Salary', 'Mortgage', 'Grocery', 
     'Insurance' ]
