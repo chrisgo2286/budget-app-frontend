@@ -23,6 +23,11 @@ export async function getCategories () {
     return result.data;
 }
 
+export async function getBudgetItems () {
+    const result = await axios.get(url + 'budget/')
+    return result.data;
+}
+
 export const budgetData = [
     {
         id: 1,
