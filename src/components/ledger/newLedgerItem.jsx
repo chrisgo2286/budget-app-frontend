@@ -1,7 +1,8 @@
 import { useState } from "react";
 import { createLedgerItem } from "../../misc/apiCalls";
-import { findCategoryID } from "../../misc/miscFunctions";
+import { findCategoryID, compileCategoryNames, refreshPage } from "../../misc/miscFunctions";
 import Input from "../miscComponents/input/input";
+import Select from "../miscComponents/select/select";
 
 export default function NewLedgerItem ({ categories, setUpdateNeeded }) {
     const [ fields, setFields ] = useState({
@@ -9,28 +10,22 @@ export default function NewLedgerItem ({ categories, setUpdateNeeded }) {
         category: '',
         amount: ''
     })
-    const [ categoryChoice, setCategoryChoice ] = useState('Category')
 
-    function handleChange (event) {
-        let { name, value } = event.target;
-
-        if(name === 'category') {
-            setCategoryChoice(value);
-            const id = findCategoryID(value, categories)
-            setFields({ ...fields, 'category': id })
-        } else {
-        setFields({ ...fields, [name]: value })
-        }
-    }
-    
     function handleSubmit () {
-        createLedgerItem(fields).then(setUpdateNeeded(true));
-        setCategoryChoice('Category');
+        const category_id = findCategoryID(fields.category, categories);
+        const newFields = { ...fields, 'category': category_id }
+        createLedgerItem(newFields)
+        .then(setUpdateNeeded(true))
+        .then(refreshPage())
         setFields({
             date: '',
             category: '',
             amount: ''
         });
+    }
+
+    function compileOptions () {
+        return compileCategoryNames(categories);
     }
 
     return (
@@ -42,28 +37,21 @@ export default function NewLedgerItem ({ categories, setUpdateNeeded }) {
                 value={ fields.date }
                 fields={ fields }
                 setFields={ setFields } />
-
-            <select 
-                name='category' 
-                value={ categoryChoice } 
-                onChange={ handleChange }>
-                
-                <option value='Category'>Category</option>
-                { categories.map((category) => (
-                    <option 
-                        key={ category.id } 
-                        value={ category.name }>
-                        { category.name }
-                    </option>
-                ))}
-            </select>
+            <Select 
+                className='new-category'
+                name='category'
+                initial='Category'
+                options={ compileOptions() }
+                fields={ fields }
+                setFields={ setFields }/>
             <Input
                 className='new-amount'
                 type='number'
                 name='amount'
                 value={ fields.amount }
                 fields={ fields }
-                setFields={ setFields } />
+                setFields={ setFields } 
+                placeholder='Amount' />
             <button 
                 className='add-btn'
                 onClick={ handleSubmit }>Add</button>

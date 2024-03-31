@@ -5,3 +5,15 @@ export function findCategoryID (category_name, categories) {
         }
     }
 }
+
+export function compileCategoryNames (categories) {
+    let category_names = [];
+    for(let i=0;i < categories.length; i++) {
+        category_names.push(categories[i].name);
+    }
+    return category_names;
+}
+
+export function refreshPage () {
+    window.location.reload()
+}
