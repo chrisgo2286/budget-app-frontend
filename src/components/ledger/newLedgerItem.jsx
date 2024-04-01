@@ -24,10 +24,6 @@ export default function NewLedgerItem ({ categories, setUpdateNeeded }) {
         });
     }
 
-    function compileOptions () {
-        return compileCategoryNames(categories);
-    }
-
     return (
         <section className='new-ledger-item'>
             <Input
@@ -41,7 +37,7 @@ export default function NewLedgerItem ({ categories, setUpdateNeeded }) {
                 className='new-category'
                 name='category'
                 initial='Category'
-                options={ compileOptions() }
+                options={ compileCategoryNames(categories) }
                 fields={ fields }
                 setFields={ setFields }/>
             <Input

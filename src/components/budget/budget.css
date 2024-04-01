@@ -21,6 +21,25 @@
     margin-bottom: 5px;
 }
 
+.budget-item-category {
+    border: none;
+    background-color: white;
+    -moz-appearance: none;
+    text-indent: 0.01px;
+    text-overflow: '';
+}
+
+.budget-item-amount-budgeted {
+    width: 50px;
+    border: none;
+}
+
+.budget-item-category:hover,
+.budget-item-amount-budgeted:hover {
+    cursor: pointer;
+    font-weight: bolder;
+}
+
 .outer-bar {
     border: 1px solid var(--siteBorderColor);
     background-color: var(--firstColor);
