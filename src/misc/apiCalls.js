@@ -28,26 +28,7 @@ export async function getBudgetItems () {
     return result.data;
 }
 
-export const budgetData = [
-    {
-        id: 1,
-        category: 'Mortgage',
-        budget_amount: 1500.00,
-        actual_amount: 1500.00,
-        percent: '100%'
-    },
-    {
-        id: 2,
-        category: 'Grocery',
-        budget_amount: 400.00,
-        actual_amount: 80.00,
-        percent: '20%'
-    },
-    {
-        id: 3,
-        category: 'Insurance',
-        budget_amount: 150.00,
-        actual_amount: 100.00,
-        percent: '67%'
-    }
-]
+export async function patchBudgetItem (id, field) {
+    const result = await axios.patch(url + 'budget_items/' + id + '/', field)
+    return result.data;
+}
