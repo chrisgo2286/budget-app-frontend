@@ -1,4 +1,5 @@
 import { useState, useEffect } from 'react';
+import NewBudgetItem from './newBudgetItem';
 import BudgetItem from './budgetItem';
 import { getBudgetItems, getCategories } from '../../misc/apiCalls';
 import './budget.css';
@@ -16,6 +17,7 @@ export default function Budget () {
 
     return (
         <main className='budget'>
+            <NewBudgetItem setUpdateRequired={ setUpdateRequired }/>
             {budget.map((budgetItem) => (
                 <BudgetItem
                     key={ budgetItem.id }

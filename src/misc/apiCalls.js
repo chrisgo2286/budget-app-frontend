@@ -8,7 +8,7 @@ export async function getLedgerItems () {
 }
 
 export async function createLedgerItem (fields) {
-    fields.owner = 1
+    fields.owner = 1;
     const result = await axios.post(url + 'ledger_items/', fields)
     return result.data;
 }
@@ -25,6 +25,12 @@ export async function getCategories () {
 
 export async function getBudgetItems () {
     const result = await axios.get(url + 'budget/')
+    return result.data;
+}
+
+export async function createBudgetItem (fields) {
+    fields.owner = 1;
+    const result = await axios.post(url + 'budget_items/', fields)
     return result.data;
 }
 

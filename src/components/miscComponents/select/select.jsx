@@ -13,7 +13,6 @@ export default function Select ({
     const [ choice, setChoice ] = useState(initial);
 
     function handleChange (event) {
-        console.log('Select Changed!')
         const { name, value } = event.target;
         setChoice(value);
         setFields({ ...fields, [name]: value });
