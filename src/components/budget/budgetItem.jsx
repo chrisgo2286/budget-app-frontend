@@ -1,50 +1,26 @@
-import { useState, useEffect } from 'react';
-import Input from '../miscComponents/input/input';
-import Select from '../miscComponents/select/select';
-import { compileCategoryNames, findCategoryID, refreshPage } from '../../misc/miscFunctions';
-import { patchBudgetItem } from '../../misc/apiCalls';
+import SelectBudgetItem from './selectBudgetItem';
+import InputBudgetItem from './inputBudgetItem';
 
-export default function BudgetItem ({ budgetItem, categories }) {
-    const { id, category, budget_amount, actual_amount, percent } = budgetItem
-    const [ fields, setFields ] = useState({
-        category: category,
-        amount: budget_amount,
-    })
-
-    useEffect(() => {
-        console.log('Effect Ran!')
-        updateBudgetCategory();
-    }, [fields.category])
-
-    function updateBudgetCategory () {
-        const categoryId = findCategoryID(fields.category, categories);
-        patchBudgetItem(id, {'category': categoryId});
-    }
-
+export default function BudgetItem ({ budgetItem, categories, setUpdateRequired }) {
+    
     return (
         <div className="budget-item">
             <div className="budget-item-header">
-                <Select
-                    className='budget-item-category'
-                    name='category'
-                    initial={ fields.category }
-                    options={ compileCategoryNames(categories) }
-                    fields={ fields }
-                    setFields={ setFields }/>
-
+                <SelectBudgetItem 
+                    budgetItem={ budgetItem }
+                    categories={ categories }
+                    setUpdateRequired={ setUpdateRequired } />
                 <div className='budget-item-amounts'>
-                    <span className="budget-item-amount-actual">${ actual_amount} of $</span>
-                    <Input
-                        className='budget-item-amount-budgeted' 
-                        type='number'
-                        name='amount'
-                        value={ fields.amount }
-                        fields={ fields }
-                        setFields={ setFields } />
+                    <span className="budget-item-amount-actual">
+                        ${ budgetItem.actual_amount} of $
+                    </span>
+                    <InputBudgetItem
+                        budgetItem={ budgetItem }
+                        setUpdateRequired={ setUpdateRequired } />
                 </div>
             </div>
             <div className='outer-bar'>
-                <div className='inner-bar' style={{ width: percent }}></div>
+                <div className='inner-bar' style={{ width: budgetItem.percent }}></div>
             </div>
         </div>
     )
