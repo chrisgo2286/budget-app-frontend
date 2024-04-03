@@ -4,10 +4,35 @@
     align-items: center;
     justify-content: center;
     max-width: 800px;
-    margin: 20px auto;
-    padding: 20px 0px;
+    margin: 10px auto;
+    padding: 10px;
     border: 1px solid var(--siteBorderColor);
     border-radius: 10px;
+}
+
+.new-budget-item {
+    display: grid;
+    grid-template-columns: 3fr 3fr 3fr 3fr 1fr;
+    border: 1px solid var(--siteBorderColor);
+    height: 20px;
+    border-radius: 5px;
+    padding-left: 10px;
+    margin: 35px 0px 20px 0px;
+}
+
+.new-budget-item > * {
+    margin: 0px 10px;
+    border: 1px solid var(--siteFieldBorderColor);
+    border-radius: 5px;
+    text-indent: 5px;
+}
+
+.new-budget-item > *:hover {
+    background-color: var(--hoverBGColor);
+    cursor: pointer;
+}
+.new-amount {
+    text-indent: 5px;
 }
 
 .budget-item {

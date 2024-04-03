@@ -11,13 +11,13 @@ export default function NewBudgetItem ({ setUpdateRequired }) {
     })
 
     function handleSubmit () {
-        console.log(fields)
         createBudgetItem(fields);
         setFields({
             category: '',
             amount: '',
             type: 'Type'
         })
+        setUpdateRequired(true);
     }
 
     return (
