@@ -1,8 +1,8 @@
 .budget {
     display: flex;
     flex-direction: column;
-    align-items: center;
-    justify-content: center;
+    /* align-items: center;
+    justify-content: center; */
     max-width: 800px;
     margin: 10px auto;
     padding: 10px;
@@ -33,6 +33,15 @@
 }
 .new-amount {
     text-indent: 5px;
+}
+
+.income,
+.expense {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
 }
 
 .budget-item {
@@ -75,8 +84,15 @@
 
 .inner-bar {
     border: 1px solid var(--siteBorderColor);
-    background-color: var(--thirdColor);
     position: absolute;
     height: 100%;
     border-radius: 20px;
+}
+
+.income .inner-bar {
+    background-color: var(--secondColor);
+}
+
+.expense .inner-bar {
+    background-color: var(--thirdColor);
 }

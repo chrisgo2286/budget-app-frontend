@@ -11,8 +11,7 @@ export default function BudgetSection ({
     ))
 
     return (
-        <section className={ section_type }>
-            <h1>{ section_type }</h1>
+        <section className={ section_type.toLowerCase() }>
             { budgetItems.map((budgetItem) => (
                 <BudgetItem
                     key={ budgetItem.id }
