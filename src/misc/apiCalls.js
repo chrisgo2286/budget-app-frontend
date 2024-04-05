@@ -1,9 +1,16 @@
 import axios from 'axios';
 
 const url = 'http://127.0.0.1:8000/api/'
+const token = localStorage.getItem('token')
+const headers = {
+    headers: {
+        Authorization: 'Token ' + token
+    }
+}
 
 export async function getLedgerItems () {
-    const result = await axios.get(url + 'ledger/');
+    console.log(localStorage.getItem('token'))
+    const result = await axios.get(url + 'ledger/', headers);
     return result.data;
 }
 
@@ -19,7 +26,7 @@ export async function deleteLedgerItem (id) {
 }
 
 export async function getCategories () {
-    const result = await axios.get(url + 'categories/');
+    const result = await axios.get(url + 'categories/', headers);
     return result.data;
 }
 
