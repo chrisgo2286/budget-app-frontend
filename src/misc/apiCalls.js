@@ -9,19 +9,18 @@ const headers = {
 }
 
 export async function getLedgerItems () {
-    console.log(localStorage.getItem('token'))
     const result = await axios.get(url + 'ledger/', headers);
     return result.data;
 }
 
 export async function createLedgerItem (fields) {
     fields.owner = 1;
-    const result = await axios.post(url + 'ledger_items/', fields)
+    const result = await axios.post(url + 'ledger_items/', fields, headers)
     return result.data;
 }
 
 export async function deleteLedgerItem (id) {
-    const result = await axios.delete(url + 'ledger_items/' + id + '/')
+    const result = await axios.delete(url + 'ledger_items/' + id + '/', headers)
     return result.data;
 }
 
@@ -31,18 +30,18 @@ export async function getCategories () {
 }
 
 export async function getBudgetItems () {
-    const result = await axios.get(url + 'budget/')
+    const result = await axios.get(url + 'budget/', headers)
     return result.data;
 }
 
 export async function createBudgetItem (fields) {
     fields.owner = 1;
-    const result = await axios.post(url + 'budget_items/', fields)
+    const result = await axios.post(url + 'budget_items/', fields, headers)
     return result.data;
 }
 
-export async function patchBudgetItem (id, field) {
-    const result = await axios.patch(url + 'budget_items/' + id + '/', field)
+export async function patchBudgetItem (id, fields) {
+    const result = await axios.patch(url + 'budget_items/' + id + '/', fields, headers)
     return result.data;
 }
 
