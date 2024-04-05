@@ -38,3 +38,26 @@ export async function patchBudgetItem (id, field) {
     const result = await axios.patch(url + 'budget_items/' + id + '/', field)
     return result.data;
 }
+
+export async function registerNewUser (fields) {
+    const result = await axios.post(url + 'registration/', fields)
+    console.log(result)
+    return result;
+}
+
+export async function loginUser (credentials) {
+    try {
+        const result = await axios.post(url + 'login/', credentials)
+        console.log(result)
+        return result
+    } catch {
+        console.log('Invalid Credentials')
+        return 'Invalid Credentials';
+    }
+}
+
+export async function logoutUser () {
+    const result = await axios.post(url + 'logout/')
+    console.log(result)
+    return result
+}

@@ -1,18 +1,32 @@
-import { Link } from "react-router-dom";
+import React, { useContext} from 'react';
+import { UserContext } from '../../misc/context';
+import { 
+    userLinksLoggedIn, 
+    userLinksLoggedOut,
+    siteLinksLoggedIn,
+    siteLinksLoggedOut 
+} from './navbarFunctions';
 import './navbar.css';
 
 export default function Navbar () {
+    const user = useContext(UserContext)[0];
+    function handleSiteLinks () {
+
+        return (user.isLoggedIn) ? siteLinksLoggedIn(): siteLinksLoggedOut();
+    }
+
+    function handleUserLinks () {
+        return (user.isLoggedIn) ? userLinksLoggedIn(user.username): userLinksLoggedOut();
+    }
+
     return (
         <nav>
-            <section className='site-links'>
-                <Link to='/'>Home</Link>
-                <Link to='/budget'>Budget</Link>
-                <Link to='/ledger'>Ledger</Link>
-            </section>
-            <section className='user-links'>
-                <div className="greeting">Hello, Christian</div>
-                <a href='#'>Logout</a>
-            </section>
+            <div className='site-links'>
+                { handleSiteLinks() }
+            </div>
+            <div className='user-links'>
+                { handleUserLinks() }
+            </div>
         </nav>
     )
 }
