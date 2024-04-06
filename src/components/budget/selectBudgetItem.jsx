@@ -1,6 +1,6 @@
 import { useState } from 'react';
-import { patchBudgetItem } from '../../misc/apiCalls';
-import { compileCategoryNames, findCategoryID } from '../../misc/miscFunctions';
+import { patchBudgetItem, deleteCategory } from '../../misc/apiCalls';
+import { compileBudgetCategoryNames, findCategoryID } from '../../misc/miscFunctions';
 
 export default function SelectBudgetItem ({ 
     budgetItem,  
@@ -8,14 +8,25 @@ export default function SelectBudgetItem ({
     setUpdateRequired }) {
     
     const [ choice, setChoice ] = useState(budgetItem.category);
-    const options = compileCategoryNames(categories);
+    const options = compileBudgetCategoryNames(categories);
     
     function handleChange (event) {
         const { name, value } = event.target;
+        ( value === 'Delete') ? deleteBudgetCategory(): updateBudgetItem(value);
+        setUpdateRequired(true);
+    }    
+    
+    function deleteBudgetCategory () {
+        console.log('Delete entered')
+        const categoryId = findCategoryID(choice, categories)
+        deleteCategory(categoryId);
+    }
+
+    function updateBudgetItem (value) {
+        console.log('Update entered')
         setChoice(value);
         const categoryId = findCategoryID(value, categories);
         patchBudgetItem(budgetItem.id, {'category': categoryId});
-        setUpdateRequired(true);
     }
 
     return (
@@ -24,8 +35,8 @@ export default function SelectBudgetItem ({
             value={ choice }
             onChange={ handleChange }>
             {
-                options.map((option) => (
-                    <option key={ option } value={ option }>{ option }</option>
+                options.map((option, ndx) => (
+                    <option key={ ndx } value={ option }>{ option }</option>
                 ))
             }
         </select>

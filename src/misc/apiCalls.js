@@ -29,6 +29,11 @@ export async function getCategories () {
     return result.data;
 }
 
+export async function deleteCategory (id) {
+    const newUrl = url + 'categories/' + id + '/';
+    const result = await axios.delete(newUrl, headers);
+}
+
 export async function getBudgetItems () {
     const result = await axios.get(url + 'budget/', headers)
     return result.data;

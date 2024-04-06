@@ -17,7 +17,9 @@ export default function Budget () {
 
     return (
         <main className='budget'>
-            <NewBudgetItem setUpdateRequired={ setUpdateRequired }/>
+            <NewBudgetItem 
+                setUpdateRequired={ setUpdateRequired }
+                categories={ categories }/>
             <BudgetSection
                 section_type='Income'
                 budget={ budget }

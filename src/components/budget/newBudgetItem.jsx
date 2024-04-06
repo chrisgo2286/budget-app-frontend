@@ -2,8 +2,9 @@ import { useState } from "react";
 import Input from "../miscComponents/input/input";
 import Select from "../miscComponents/select/select";
 import { createBudgetItem } from "../../misc/apiCalls";
+import { categoryIsInCategories } from "../../misc/miscFunctions";
 
-export default function NewBudgetItem ({ setUpdateRequired }) {
+export default function NewBudgetItem ({ setUpdateRequired, categories }) {
     const [ fields, setFields ] = useState({
         category: '',
         amount: '',
@@ -11,13 +12,17 @@ export default function NewBudgetItem ({ setUpdateRequired }) {
     })
 
     function handleSubmit () {
-        createBudgetItem(fields);
-        setFields({
-            category: '',
-            amount: '',
-            type: 'Type'
-        })
-        setUpdateRequired(true);
+        if(categoryIsInCategories) {
+            console.log('Duplicate Category!')
+        } else {
+            createBudgetItem(fields);
+            setFields({
+                category: '',
+                amount: '',
+                type: 'Type'
+            })
+            setUpdateRequired(true);
+        }
     }
 
     return (
