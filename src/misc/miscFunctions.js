@@ -17,7 +17,7 @@ export function categoryIsInCategories (category, categories) {
 
 export function compileBudgetCategoryNames (categories) {
     let options = compileCategoryNames(categories);
-    options[4] = 'Delete';
+    options.push('Delete');
     return options;
 }
 

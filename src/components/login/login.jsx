@@ -2,6 +2,7 @@ import { useState, useContext } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { UserContext } from '../../misc/context';
 import { loginUser } from '../../misc/apiCalls';
+import { refreshPage } from '../../misc/miscFunctions';
 import { updateLocalStorage, updateUser } from '../../misc/userFunctions';
 import LoginFields from './loginFields';
 import './login.css';
@@ -22,6 +23,8 @@ export default function Login () {
             updateLocalStorage(token, credentials.username);
             updateUser(token, credentials.username, user, setUser);
             navigate('/');
+            refreshPage();
+            
         } else {
             console.log('You have entered invalid credentials!')
         }

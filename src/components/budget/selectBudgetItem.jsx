@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { patchBudgetItem, deleteCategory } from '../../misc/apiCalls';
-import { compileBudgetCategoryNames, findCategoryID } from '../../misc/miscFunctions';
+import { compileBudgetCategoryNames, findCategoryID, refreshPage } from '../../misc/miscFunctions';
 
 export default function SelectBudgetItem ({ 
     budgetItem,  
@@ -13,17 +13,16 @@ export default function SelectBudgetItem ({
     function handleChange (event) {
         const { name, value } = event.target;
         ( value === 'Delete') ? deleteBudgetCategory(): updateBudgetItem(value);
-        setUpdateRequired(true);
+        // setUpdateRequired(true);
+        refreshPage();
     }    
     
     function deleteBudgetCategory () {
-        console.log('Delete entered')
         const categoryId = findCategoryID(choice, categories)
         deleteCategory(categoryId);
     }
 
     function updateBudgetItem (value) {
-        console.log('Update entered')
         setChoice(value);
         const categoryId = findCategoryID(value, categories);
         patchBudgetItem(budgetItem.id, {'category': categoryId});
