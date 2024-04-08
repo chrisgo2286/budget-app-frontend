@@ -1,0 +1,62 @@
+.login {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-template-rows: repeat(3, 1fr);
+    grid-template-areas:
+        "username-label username username"
+        "password-label password password"
+        "login-btn login-btn login-btn";
+    width: 300px;
+    border: 1px solid var(--siteBorderColor);
+    border-radius: 10px;
+    margin: 20px auto;
+    padding: 20px;
+}
+
+.login > * {
+    margin-top: 10px;
+}
+
+.login-username-label {
+    grid-area: username-label;
+}
+
+.login-username {
+    grid-area: username;
+}
+
+.login-password-label {
+    grid-area: password-label;
+}
+
+.login-password {
+    grid-area: password;
+}
+
+.login-username,
+.login-password {
+    text-indent: 5px;
+    border-radius: 5px;
+}
+
+.login-username:hover,
+.login-password:hover {
+    background-color: var(--firstColor);
+    cursor: pointer;
+}
+
+.login-btn {
+    grid-area: login-btn;
+    color: white;
+    background-color: var(--thirdColor);
+    border: 1px solid var(--siteBorderColor);
+    border-radius: 5px;
+    max-width: 50px;
+    padding: 0px 5px;
+    justify-self: center;
+}
+
+.login-btn:hover {
+    background-color: var(--fourthColor);
+}
+

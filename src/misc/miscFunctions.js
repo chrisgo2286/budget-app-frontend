@@ -40,7 +40,7 @@ export const month_options = [
 
 export function getCurrentMonth () {
     const currentDate = new Date();
-    return currentDate.getMonth();
+    return currentDate.getMonth() + 1;
 }
 
 export function getCurentYear () {

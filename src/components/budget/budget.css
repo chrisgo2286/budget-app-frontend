@@ -1,8 +1,6 @@
 .budget {
     display: flex;
     flex-direction: column;
-    /* align-items: center;
-    justify-content: center; */
     max-width: 800px;
     margin: 10px auto;
     padding: 10px;
@@ -10,7 +8,8 @@
     border-radius: 10px;
 }
 
-.new-budget-item {
+.new-budget-item,
+.budget-filter {
     display: grid;
     grid-template-columns: 3fr 3fr 3fr 3fr 1fr;
     border: 1px solid var(--siteBorderColor);
@@ -20,19 +19,29 @@
     margin: 35px 0px 20px 0px;
 }
 
-.new-budget-item > * {
+.new-budget-item > *,
+.budget-filter > * {
     margin: 0px 10px;
     border: 1px solid var(--siteFieldBorderColor);
     border-radius: 5px;
     text-indent: 5px;
 }
 
-.new-budget-item > *:hover {
+.new-budget-item > *:hover,
+.budget-filter > *:hover {
     background-color: var(--hoverBGColor);
     cursor: pointer;
 }
-.new-amount {
+.new-amount,
+.budget-filter-year {
     text-indent: 5px;
+}
+
+.budget-filter-submit {
+    color: white;
+    background-color: var(--thirdColor);
+    border-radius: 5px;
+    max-width: 50px;
 }
 
 .income,

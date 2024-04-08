@@ -32,8 +32,10 @@ export default function Login () {
 
     return (
         <div className="login">
-            <LoginFields fields={ credentials } setFields={ setCredentials } />
-            <button onClick={ handleSubmit }>Login</button>
+            <LoginFields 
+                fields={ credentials } 
+                setFields={ setCredentials } 
+                handleSubmit={ handleSubmit }/>
         </div>
     )
 }
