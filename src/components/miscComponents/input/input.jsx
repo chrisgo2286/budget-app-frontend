@@ -12,7 +12,7 @@ export default function Input ({
     
     function handleChange (event) {
         const { name, value } = event.target;
-        setFields({ ...fields, [name]: value });
+        setFields({ ...fields, [name]: value })
     }
 
     return (

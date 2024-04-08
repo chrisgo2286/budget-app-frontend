@@ -34,8 +34,9 @@ export async function deleteCategory (id) {
     const result = await axios.delete(newUrl, headers);
 }
 
-export async function getBudgetItems () {
-    const result = await axios.get(url + 'budget/', headers)
+export async function getBudgetItems (filters) {
+    const newUrl = url + 'budget/?month=' + filters.month + '&year=' + filters.year;
+    const result = await axios.get(newUrl, headers)
     return result.data;
 }
 
