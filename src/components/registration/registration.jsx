@@ -8,7 +8,7 @@ import NewUserFields from './newUserFields';
 import { loginUser } from '../../misc/apiCalls';
 import './registration.css';
 
-export default function Register () {
+export default function Registration () {
     const [user, setUser] = useContext(UserContext);
     const navigate = useNavigate();
     const [credentials, setCredentials] = useState({
@@ -45,9 +45,11 @@ export default function Register () {
     }
 
     return (
-        <div className="register" data-cy='register-link'>
-            <NewUserFields fields={ credentials } setFields={ setCredentials }/>
-            <button onClick={ handleSubmit }>Register</button>
+        <div className="registration">
+            <NewUserFields 
+                fields={ credentials } 
+                setFields={ setCredentials }
+                handleSubmit={ handleSubmit }/>
         </div>
     )
 }

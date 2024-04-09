@@ -1,0 +1,73 @@
+.registration {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-template-rows: repeat(4, 1fr);
+    grid-template-areas:
+        "username-label username username"
+        "password1-label password1 password1"
+        "password2-label password2 password2"
+        "register-btn register-btn register-btn";
+    width: 300px;
+    border: 1px solid var(--siteBorderColor);
+    border-radius: 10px;
+    margin: 20px auto;
+    padding: 20px;
+}
+
+.registration > * {
+    margin-top: 10px;
+}
+
+.registration-username-label {
+    grid-area: username-label;
+}
+
+.registration-username {
+    grid-area: username;
+}
+
+.registration-password1-label {
+    grid-area: password1-label;
+}
+
+.registration-password1 {
+    grid-area: password1;
+}
+
+.registration-password2-label {
+    grid-area: password2-label;
+}
+
+.registration-password2 {
+    grid-area: password2;
+}
+
+.registration-username,
+.registration-password1,
+.registration-password2 {
+    text-indent: 5px;
+    border-radius: 5px;
+}
+
+.registration-username:hover,
+.registration-password1:hover,
+.registration-password2:hover {
+    background-color: var(--firstColor);
+    cursor: pointer;
+}
+
+.registration-btn {
+    grid-area: register-btn;
+    color: white;
+    background-color: var(--thirdColor);
+    border: 1px solid var(--siteBorderColor);
+    border-radius: 5px;
+    max-width: 100px;
+    padding: 0px 5px;
+    justify-self: center;
+}
+
+.registration-btn:hover {
+    background-color: var(--fourthColor);
+    cursor: pointer;
+}

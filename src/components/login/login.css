@@ -58,5 +58,6 @@
 
 .login-btn:hover {
     background-color: var(--fourthColor);
+    cursor: pointer;
 }
 
