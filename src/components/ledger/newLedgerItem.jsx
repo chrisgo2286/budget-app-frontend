@@ -4,18 +4,19 @@ import { findCategoryID, compileCategoryNames, refreshPage } from "../../misc/mi
 import Input from "../miscComponents/input/input";
 import Select from "../miscComponents/select/select";
 
-export default function NewLedgerItem ({ categories, setUpdateNeeded }) {
+export default function NewLedgerItem ({ categories, setUpdateRequired }) {
     const [ fields, setFields ] = useState({
         date: '',
         category: '',
         amount: ''
     })
+    const [ inputType, setInputType ] = useState('text');
 
     function handleSubmit () {
         const category_id = findCategoryID(fields.category, categories);
         const newFields = { ...fields, 'category': category_id }
         createLedgerItem(newFields)
-        .then(setUpdateNeeded(true))
+        .then(setUpdateRequired(true))
         .then(refreshPage())
         setFields({
             date: '',
@@ -24,15 +25,26 @@ export default function NewLedgerItem ({ categories, setUpdateNeeded }) {
         });
     }
 
+    function handleFocus () {
+        setInputType('date');
+    }
+
+    function handleBlur () {
+        setInputType('text');
+    }
+
     return (
         <section className='new-ledger-item'>
             <Input
                 className='new-date'
-                type='date'
+                type={ inputType }
                 name='date'
                 value={ fields.date }
                 fields={ fields }
-                setFields={ setFields } />
+                setFields={ setFields }
+                onFocus={ handleFocus }
+                onBlur={ handleBlur }
+                placeholder='Date' />
             <Select 
                 className='new-category'
                 name='category'

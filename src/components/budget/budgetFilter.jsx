@@ -13,7 +13,6 @@ export default function BudgetFilter ({ filters, setFilters, setUpdateRequired }
     }
 
     function handleSubmit () {
-        console.log(filters);
         setUpdateRequired(true);
     }
 

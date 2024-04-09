@@ -10,7 +10,8 @@
 
 .ledger-header,
 .ledger-item,
-.new-ledger-item {
+.new-ledger-item,
+.ledger-filter {
     display: grid;
     grid-template-columns: 3fr 3fr 3fr 3fr 1fr;
     border: 1px solid var(--siteBorderColor);
@@ -24,8 +25,8 @@
 }
 
 .ledger-item:hover {
-    background-color: var(--firstColor);
-    background-color: var(--hoverBGColor);
+    background-color: var(--secondColor);
+    opacity: 50%;
     cursor: pointer;
 }
 
@@ -38,17 +39,21 @@
     margin: 40px 0px;
 }
 
+.ledger-filter > *,
 .new-ledger-item > * {
     margin: 0px 10px;
     border: 1px solid var(--siteFieldBorderColor);
     border-radius: 5px;
+    width: 90%;
 }
 
 .new-ledger-item > *:hover {
-    background-color: var(--hoverBGColor);
+    background-color: var(--firstColor);
     cursor: pointer;
 }
-.new-amount {
+
+.ledger-filter input,
+.new-ledger-item input {
     text-indent: 5px;
 }
 

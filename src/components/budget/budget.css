@@ -25,13 +25,19 @@
     border: 1px solid var(--siteFieldBorderColor);
     border-radius: 5px;
     text-indent: 5px;
+    width: 90%;
 }
 
 .new-budget-item > *:hover,
 .budget-filter > *:hover {
-    background-color: var(--hoverBGColor);
+    background-color: var(--firstColor);
     cursor: pointer;
 }
+
+.budget-filter-submit:hover {
+    background-color: var(--fourthColor);
+}
+
 .new-amount,
 .budget-filter-year {
     text-indent: 5px;

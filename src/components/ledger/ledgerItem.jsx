@@ -1,12 +1,12 @@
 import { deleteLedgerItem } from "../../misc/apiCalls";
 
-export default function LedgerItem ({ item, setUpdateNeeded }) {
+export default function LedgerItem ({ item, setUpdateRequired }) {
     
     const { date, id, category__name, category__type, amount } = item;
 
     function handleDelete () {
         deleteLedgerItem(id);
-        setUpdateNeeded(true);
+        setUpdateRequired(true);
     }
 
     return (

@@ -8,8 +8,13 @@ const headers = {
     }
 }
 
-export async function getLedgerItems () {
-    const result = await axios.get(url + 'ledger/', headers);
+export async function getLedgerItems (filters) {
+    const newUrl = (
+        url + 'ledger/?startDate=' + filters.startDate + '&endDate=' +
+        filters.endDate + '&category=' + filters.category + '&type=' +
+        filters.type
+    )
+    const result = await axios.get(newUrl, headers);
     return result.data;
 }
 
