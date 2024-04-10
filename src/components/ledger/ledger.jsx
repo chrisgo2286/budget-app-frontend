@@ -12,15 +12,15 @@ export default function Ledger () {
     const [ categories, setCategories ] = useState([])
     const [ UpdateRequired, setUpdateRequired ] = useState(false)
     const [ filters, setFilters ] = useState({
-        startDate: '', //Initial should be 1st of current month
-        endDate: '', //Initial should be last day of current month
+        startDate: '',
+        endDate: '', 
         category: '',
         type: '',
     })
 
     useEffect(() => {
-        getLedgerItems(filters).then((ledger) => setLedger(ledger));
         getCategories().then((categories) => setCategories(categories));
+        getLedgerItems(filters, categories).then((ledger) => setLedger(ledger));
         setUpdateRequired(false);    
     }, [UpdateRequired])
 

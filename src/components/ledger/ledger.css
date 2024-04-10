@@ -47,6 +47,7 @@
     width: 90%;
 }
 
+.ledger-filter > *:hover,
 .new-ledger-item > *:hover {
     background-color: var(--firstColor);
     cursor: pointer;
@@ -57,6 +58,7 @@
     text-indent: 5px;
 }
 
+.ledger-filter-btn,
 .add-btn {
     color: white;
     background-color: var(--thirdColor);
@@ -64,6 +66,7 @@
     max-width: 50px;
 }
 
+.ledger-filter-btn:hover,
 .add-btn:hover {
     background-color: var(--fourthColor);
 }

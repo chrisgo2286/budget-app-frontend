@@ -1,4 +1,5 @@
 import axios from 'axios';
+import { findCategoryID } from './miscFunctions';
 
 const url = 'http://127.0.0.1:8000/api/'
 const token = localStorage.getItem('token')
@@ -8,7 +9,12 @@ const headers = {
     }
 }
 
-export async function getLedgerItems (filters) {
+export async function getLedgerItems (filters, categories) {
+    console.log(filters)
+    if(filters.category) {
+        const categoryId = findCategoryID(filters.category, categories)
+        filters = { ...filters, 'category': categoryId }
+    }
     const newUrl = (
         url + 'ledger/?startDate=' + filters.startDate + '&endDate=' +
         filters.endDate + '&category=' + filters.category + '&type=' +
