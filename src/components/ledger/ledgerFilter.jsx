@@ -28,6 +28,16 @@ export default function LedgerFilter ({ categories, filters, setFilters, setUpda
         setEndDateType('text');
     }
 
+    function handleClear () {
+        setFilters({
+            startDate: '',
+            endDate: '', 
+            category: '',
+            type: '',
+        })
+        setUpdateRequired(true);
+    }
+
     return (
         <section className="ledger-filter">
             <Input
@@ -65,9 +75,14 @@ export default function LedgerFilter ({ categories, filters, setFilters, setUpda
                 fields={ filters }
                 setFields={ setFilters } />
             <button 
-                className="ledger-filter-btn"
+                className='ledger-filter-btn'
                 onClick={ handleSubmit }>
                 Filter
+            </button>
+            <button
+                className='ledger-clear-btn'
+                onClick={ handleClear }>
+                Clear
             </button>
         </section>
     )
