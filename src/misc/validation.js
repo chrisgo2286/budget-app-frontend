@@ -42,7 +42,7 @@ export function isValidFilterDates (startDate, endDate) {
     console.log(startDate)
 }
 
-function isEmptyString(value) {
+export function isEmptyString(value) {
     return value === '';
 }
 
