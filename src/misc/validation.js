@@ -38,8 +38,14 @@ export function validateAmount (amount) {
     }
 }
 
-export function isValidFilterDates (startDate, endDate) {
-    console.log(startDate)
+export function validateFilterDates (startDate, endDate) {
+    if(startDate && endDate) {    
+        const startDateObj = new Date(startDate);
+        const endDateObj = new Date(endDate);   
+        if(isValidFilterDates(startDateObj, endDateObj) === 'false') {
+            return 'Start Date must come before End Date!'
+        }
+    }
 }
 
 function isEmptyString(value) {
@@ -68,4 +74,8 @@ function isNotValidType(type) {
 function isValidAmount(amount) {
     const regex = /^\d+(\.\d{1,2})?$/
     return regex.test(amount);
+}
+
+function isValidFilterDates(startDateObj, endDateObj) {
+    return (endDateObj < startDateObj);
 }
