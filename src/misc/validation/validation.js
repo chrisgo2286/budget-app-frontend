@@ -1,3 +1,13 @@
+import {
+    isEmptyString,
+    isValidYear,
+    isWithinValidRange,
+    isNotValidCategory,
+    isNotValidType,
+    isValidAmount,
+    isValidFilterDates    
+    } from './validationHelperFuncs';
+
 export function validateYear (year) {
     if(isEmptyString(year)) {
         return 'Please enter a year!'
@@ -39,43 +49,11 @@ export function validateAmount (amount) {
 }
 
 export function validateFilterDates (startDate, endDate) {
-    if(startDate && endDate) {    
+    if(startDate && endDate) {
         const startDateObj = new Date(startDate);
-        const endDateObj = new Date(endDate);   
+        const endDateObj = new Date(endDate);
         if(isValidFilterDates(startDateObj, endDateObj) === 'false') {
             return 'Start Date must come before End Date!'
         }
     }
-}
-
-export function isEmptyString(value) {
-    return value === '';
-}
-
-function isValidYear(year) {
-    const regex = /^\d\d\d\d$/
-    return regex.test(year);
-}
-
-function isWithinValidRange(year) {
-    const lower_bound = 2000;
-    const upper_bound = 2030;
-    return parseInt(year) >= lower_bound && parseInt(year) <= upper_bound; 
-}
-
-function isNotValidCategory(category) {
-    return category === 'Category';
-}
-
-function isNotValidType(type) {
-    return type === 'Type';
-}
-
-function isValidAmount(amount) {
-    const regex = /^\d+(\.\d{1,2})?$/
-    return regex.test(amount);
-}
-
-function isValidFilterDates(startDateObj, endDateObj) {
-    return (endDateObj < startDateObj);
 }
