@@ -31,20 +31,26 @@ describe('validateYear', () => {
 })
 
 describe('validateCategory', () => {
+    const categories = [
+        {name: 'Grocery'},
+        {name: 'Mortgage'},
+        {name: 'Entertainment'}
+    ]
     const validCategories = [
         ['Salary', 'Valid'],
-        ['Grocery', 'Valid']
+        ['Clothing', 'Valid']
     ]
     const invalidCategories = [
         ['', 'Please enter a category!'],
-        ['Category', 'Please choose a valid category!']
+        ['Category', 'Please choose a valid category!'],
+        ['Grocery', 'This is a duplicate category!']
     ]
     it.each(validCategories)('Valid categories return as valid', (string, result) => {
-        expect(validateCategory(string)).toBe(result);
+        expect(validateCategory(string, categories)).toBe(result);
     })
 
     it.each(invalidCategories)('Invalid categories return error statement', (string, result) => {
-        expect(validateCategory(string)).toBe(result);
+        expect(validateCategory(string, categories)).toBe(result);
     });
 })
 

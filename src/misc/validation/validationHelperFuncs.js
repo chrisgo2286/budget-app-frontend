@@ -1,3 +1,5 @@
+import { categoryIsInCategories } from "../miscFunctions";
+
 export function isEmptyString(value) {
     return value === '';
 }
@@ -15,6 +17,10 @@ export function isWithinValidRange(year) {
 
 export function isNotValidCategory(category) {
     return category === 'Category';
+}
+
+export function isDuplicateCategory(category, categories) {
+    return categoryIsInCategories(category, categories)
 }
 
 export function isNotValidType(type) {

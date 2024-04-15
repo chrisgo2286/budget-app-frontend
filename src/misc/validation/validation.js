@@ -5,7 +5,8 @@ import {
     isNotValidCategory,
     isNotValidType,
     isValidAmount,
-    isValidFilterDates    
+    isValidFilterDates,
+    isDuplicateCategory    
     } from './validationHelperFuncs';
 
 export function validateYear (year) {
@@ -24,13 +25,17 @@ export function validateYear (year) {
     return 'Valid';
 }
 
-export function validateCategory (category) {
+export function validateCategory (category, categories) {
     if(isEmptyString(category)) {
         return 'Please enter a category!';
     }
 
     if(isNotValidCategory(category)) {
         return 'Please choose a valid category!'
+    }
+
+    if(isDuplicateCategory(category, categories)) {
+        return 'This is a duplicate category!'
     }
 
     return 'Valid';

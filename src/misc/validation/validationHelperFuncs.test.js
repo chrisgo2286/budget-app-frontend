@@ -5,7 +5,8 @@ import {
     isNotValidCategory, 
     isNotValidType, 
     isValidAmount, 
-    isValidFilterDates, 
+    isValidFilterDates,
+    isDuplicateCategory, 
     } from './validationHelperFuncs';
 
 describe('isEmptyString', () => {
@@ -66,6 +67,22 @@ describe('isNotValidCategory', () => {
 
     it('Valid category returns false', () => {
         expect(isNotValidCategory('Salary')).toBe(false)
+    })
+})
+
+describe('isDuplicateCategory', () => {
+    const categories = [
+        {name: 'Grocery'},
+        {name: 'Mortgage'},
+        {name: 'Entertainment'}
+    ]
+
+    it('Duplicate category returns true', () => {
+        expect(isDuplicateCategory('Grocery', categories)).toBe(true);
+    })
+
+    it('Distinct category returns false', () => {
+        expect(isDuplicateCategory('Clothing', categories)).toBe(false);
     })
 })
 
