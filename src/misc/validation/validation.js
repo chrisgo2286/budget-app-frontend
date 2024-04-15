@@ -13,13 +13,15 @@ export function validateYear (year) {
         return 'Please enter a year!'
     }
     
-    if(isValidYear(year) === 'false'){
+    if(isValidYear(year) === false){
         return 'Please enter a four digit year!'    
     }
     
-    if(isWithinValidRange(year) === 'false') {
+    if(isWithinValidRange(year) === false) {
         return 'Please enter a year between 2000 and 2030!';
     }
+
+    return 'Valid';
 }
 
 export function validateCategory (category) {
@@ -30,12 +32,16 @@ export function validateCategory (category) {
     if(isNotValidCategory(category)) {
         return 'Please choose a valid category!'
     }
+
+    return 'Valid';
 }
 
 export function validateType (type) {
     if(isNotValidType(type)) {
         return 'Please enter a valid type!'
     };
+
+    return 'Valid';
 }
 
 export function validateAmount (amount) {
@@ -43,9 +49,11 @@ export function validateAmount (amount) {
         return 'Please enter an amount!';
     } 
 
-    if(isValidAmount(amount) === 'false') {
+    if(isValidAmount(amount) === false) {
         return 'Please enter a valid amount!';
     }
+
+    return 'Valid';
 }
 
 export function validateFilterDates (startDate, endDate) {
@@ -56,4 +64,6 @@ export function validateFilterDates (startDate, endDate) {
             return 'Start Date must come before End Date!'
         }
     }
+
+    return 'Valid';
 }
