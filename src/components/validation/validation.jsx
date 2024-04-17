@@ -1,3 +1,5 @@
+import './validation.css';
+
 export default function Validation ({ errors }) {
     function displayErrors () {
         return errors.map((error, ndx) => (

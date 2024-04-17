@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import BudgetFilter from './budgetFilter';
+import BudgetFilter from '../budgetFilter/budgetFilter';
 import NewBudgetItem from '../newBudgetItem/newBudgetItem';
 import BudgetSection from './budgetSection';
 import { getBudgetItems, getCategories } from '../../misc/apiCalls';

@@ -3,6 +3,7 @@
   --siteFieldBorderColor:  rgba(0, 0, 0, 0.8);
   --siteFontColor: rgba(0, 0, 0, 0.5);
   --hoverBGColor: rgba(0, 0, 0, 0.025);
+  --validationColor: red; 
   --firstColor: #ececec; 
   --secondColor: #9fd3c7;
   --thirdColor: rgba(80, 124, 213, 0.507); 
