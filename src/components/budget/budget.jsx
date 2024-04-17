@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 import BudgetFilter from './budgetFilter';
-import NewBudgetItem from './newBudgetItem';
+import NewBudgetItem from '../newBudgetItem/newBudgetItem';
 import BudgetSection from './budgetSection';
 import { getBudgetItems, getCategories } from '../../misc/apiCalls';
 import { getCurrentMonth, getCurentYear, cleanFilters } from '../../misc/miscFunctions';
@@ -30,7 +30,6 @@ export default function Budget () {
                 setFilters={ setFilters } 
                 setUpdateRequired={ setUpdateRequired }/>
             <NewBudgetItem 
-                setUpdateRequired={ setUpdateRequired }
                 categories={ categories }/>
             <BudgetSection
                 section_type='Income'

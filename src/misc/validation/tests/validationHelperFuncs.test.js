@@ -7,7 +7,7 @@ import {
     isValidAmount, 
     isValidFilterDates,
     isDuplicateCategory, 
-    } from './validationHelperFuncs';
+    } from '../validationHelperFuncs';
 
 describe('isEmptyString', () => {
     it('Returns true with empty string', () => {

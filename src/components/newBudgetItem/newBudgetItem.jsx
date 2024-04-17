@@ -3,20 +3,20 @@ import Input from "../miscComponents/input/input";
 import Select from "../miscComponents/select/select";
 import Validation from "../validation/validation";
 import { createBudgetItem } from "../../misc/apiCalls";
-import { categoryIsInCategories, refreshPage } from "../../misc/miscFunctions";
+import { refreshPage } from "../../misc/miscFunctions";
+import { validateNewBudgetItem } from "../../misc/validation/validateNewBudgetItem";
 
-export default function NewBudgetItem ({ setUpdateRequired, categories }) {
+export default function NewBudgetItem ({ categories }) {
     const [ fields, setFields ] = useState({
         category: '',
         amount: '',
         type: 'Type'
     })
-    const [ errors, setErrors ] = useState([])
+    const [ errors, setErrors ] = useState([]);
 
     function handleSubmit () {
-        if(categoryIsInCategories(fields.category, categories)) {
-            console.log('Duplicate Category!')
-        } else {
+        const result = validateNewBudgetItem(fields, categories);
+        if(result === 'Valid') {            
             createBudgetItem(fields);
             setFields({
                 category: '',
@@ -24,6 +24,8 @@ export default function NewBudgetItem ({ setUpdateRequired, categories }) {
                 type: 'Type'
             })
             refreshPage();
+        } else {
+            setErrors(result);
         }
     }
 
@@ -57,7 +59,7 @@ export default function NewBudgetItem ({ setUpdateRequired, categories }) {
                     className='add-btn'
                     onClick={ handleSubmit }>Add</button>
             </section>
-            <Validation />
+            <Validation errors={ errors } />
         </React.Fragment>
     )
 }

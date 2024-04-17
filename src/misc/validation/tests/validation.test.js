@@ -4,7 +4,7 @@ import {
     validateType,
     validateAmount,
     validateFilterDates
-} from './validation';
+} from '../validation';
 
 describe('validateYear', () => {
     const validYears = [

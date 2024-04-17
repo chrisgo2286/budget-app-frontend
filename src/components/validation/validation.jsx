@@ -1,16 +1,13 @@
 export default function Validation ({ errors }) {
-    
     function displayErrors () {
-        errors.map((error) => {
-            <div className="validation-error">
-                {error}
-            </div>
-        })
+        return errors.map((error, ndx) => (
+            <div key={ ndx } className="validation-error">{ error }</div>
+        ));
     }
-    
+
     return (
         <section className="validation">
-            { (errors) ? displayErrors(): null }
+            {( errors.length > 0) ? displayErrors(): null }
         </section>
     )
 }
