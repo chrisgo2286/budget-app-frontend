@@ -2,7 +2,6 @@ import React, { useState } from "react";
 import Input from "../miscComponents/input/input";
 import Select from "../miscComponents/select/select";
 import { createBudgetItem } from "../../misc/apiCalls";
-import { refreshPage } from "../../misc/miscFunctions";
 import { validateNewBudgetItem } from "../../misc/validation/validateNewBudgetItem";
 
 export default function NewBudgetItem ({ categories, setErrors, setUpdateRequired }) {
@@ -12,16 +11,15 @@ export default function NewBudgetItem ({ categories, setErrors, setUpdateRequire
         type: 'Type'
     })
 
-    function handleSubmit () {
+    async function handleSubmit () {
         const result = validateNewBudgetItem(fields, categories);
         if(result === 'Valid') {            
-            createBudgetItem(fields);
+            await createBudgetItem(fields);
             setFields({
                 category: '',
                 amount: '',
                 type: 'Type'
             })
-            // refreshPage();
             setUpdateRequired(true);
         } else {
             setErrors(result);

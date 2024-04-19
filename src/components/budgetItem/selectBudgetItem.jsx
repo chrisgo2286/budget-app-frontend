@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { patchBudgetItem, deleteCategory } from '../../misc/apiCalls';
-import { compileBudgetCategoryNames, findCategoryID, refreshPage } from '../../misc/miscFunctions';
+import { compileBudgetCategoryNames, findCategoryID } from '../../misc/miscFunctions';
 
 export default function SelectBudgetItem ({ budgetItem, categories, setUpdateRequired }) {
     
@@ -8,22 +8,29 @@ export default function SelectBudgetItem ({ budgetItem, categories, setUpdateReq
     const options = compileBudgetCategoryNames(categories);
     
     function handleChange (event) {
-        console.log(event);
         const { name, value } = event.target;
-        ( value === 'Delete') ? deleteBudgetCategory(): updateBudgetItem(value);
-        // refreshPage();
-        setUpdateRequired(true);
+        if(value) {
+            console.log(value)
+            if(value === 'Delete') {
+                deleteBudgetCategory();
+            }
+            else if(options.include(value)) {
+                updateBudgetItem();
+            }
+            setUpdateRequired(true);
+        }
     }    
     
-    function deleteBudgetCategory () {
+    async function deleteBudgetCategory () {
+        console.log('Deleting Category: ' + choice)
         const categoryId = findCategoryID(choice, categories)
-        deleteCategory(categoryId);
+        await deleteCategory(categoryId);
     }
 
-    function updateBudgetItem (value) {
+    async function updateBudgetItem (value) {
         setChoice(value);
         const categoryId = findCategoryID(value, categories);
-        patchBudgetItem(budgetItem.id, {'category': categoryId});
+        await patchBudgetItem(budgetItem.id, {'category': categoryId});
     }
 
     return (
@@ -33,8 +40,8 @@ export default function SelectBudgetItem ({ budgetItem, categories, setUpdateReq
             name='category'
             onChange={ handleChange }>
             {
-                options.map((option) => (
-                    <option key={ option } value={ option }>{ option }</option>
+                options.map((option, ndx) => (
+                    <option key={ ndx } value={ option }>{ option }</option>
                 ))
             }
         </select>

@@ -41,9 +41,9 @@ export async function getCategories () {
 }
 
 export async function deleteCategory (id) {
+    console.log('Requesting API...')
     const newUrl = url + 'categories/' + id + '/';
-    const result = await axios.delete(newUrl, headers);
-    console.log(result)
+    await axios.delete(newUrl, headers);
 }
 
 export async function getBudgetItems (filters) {

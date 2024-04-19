@@ -10,12 +10,12 @@ export default function InputBudgetItem ({ budgetItem, setUpdateRequired, setErr
         setAmount(value);
     }
 
-    function handleBlur () {
+    async function handleBlur () {
         const result = validateBudgetItem(amount);
         if(result !== 'Valid') {
             setErrors(result);
         }
-        patchBudgetItem(budgetItem.id, {'amount': amount});
+        await patchBudgetItem(budgetItem.id, {'amount': amount});
         setUpdateRequired(true);
     }
 
