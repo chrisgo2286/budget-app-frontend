@@ -1,7 +1,8 @@
 import { useState } from 'react';
 import { patchBudgetItem } from '../../misc/apiCalls';
+import { validateBudgetItem } from '../../misc/validation/validateBudgetItem';
 
-export default function InputBudgetItem ({ budgetItem, setUpdateRequired }) {
+export default function InputBudgetItem ({ budgetItem, setUpdateRequired, setErrors }) {
     const [ amount, setAmount ] = useState(budgetItem.budget_amount);
 
     function handleChange (event) {
@@ -10,6 +11,10 @@ export default function InputBudgetItem ({ budgetItem, setUpdateRequired }) {
     }
 
     function handleBlur () {
+        const result = validateBudgetItem(amount);
+        if(result !== 'Valid') {
+            setErrors(result);
+        }
         patchBudgetItem(budgetItem.id, {'amount': amount});
         setUpdateRequired(true);
     }

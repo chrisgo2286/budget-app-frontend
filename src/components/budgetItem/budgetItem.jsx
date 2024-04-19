@@ -1,7 +1,12 @@
 import SelectBudgetItem from './selectBudgetItem';
 import InputBudgetItem from './inputBudgetItem';
 
-export default function BudgetItem ({ budgetItem, categories, setUpdateRequired }) {
+export default function BudgetItem ({ 
+    budgetItem, 
+    categories, 
+    setUpdateRequired,
+    setErrors
+}) {
     
     return (
         <div className="budget-item">
@@ -16,7 +21,8 @@ export default function BudgetItem ({ budgetItem, categories, setUpdateRequired 
                     </span>
                     <InputBudgetItem
                         budgetItem={ budgetItem }
-                        setUpdateRequired={ setUpdateRequired } />
+                        setUpdateRequired={ setUpdateRequired }
+                        setErrors={ setErrors } />
                 </div>
             </div>
             <div className='outer-bar'>

@@ -1,10 +1,12 @@
-import BudgetItem from "./budgetItem";
+import BudgetItem from "../budgetItem/budgetItem";
 
 export default function BudgetSection ({ 
     section_type, 
     budget, 
     categories, 
-    setUpdateRequired }) {
+    setUpdateRequired,
+    setErrors
+ }) {
 
     const budgetItems = budget.filter((budgetItem) => (
         budgetItem.type === section_type
@@ -17,7 +19,8 @@ export default function BudgetSection ({
                     key={ budgetItem.id }
                     budgetItem={ budgetItem }
                     categories={ categories } 
-                    setUpdateRequired={ setUpdateRequired }/>
+                    setUpdateRequired={ setUpdateRequired }
+                    setErrors={ setErrors }/>
             ))}
         </section>
     )

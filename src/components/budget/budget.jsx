@@ -2,6 +2,7 @@ import { useState, useEffect } from 'react';
 import BudgetFilter from '../budgetFilter/budgetFilter';
 import NewBudgetItem from '../newBudgetItem/newBudgetItem';
 import BudgetSection from './budgetSection';
+import Validation from '../validation/validation';
 import { getBudgetItems, getCategories } from '../../misc/apiCalls';
 import { getCurrentMonth, getCurentYear, cleanFilters } from '../../misc/miscFunctions';
 import './budget.css';
@@ -14,6 +15,7 @@ export default function Budget () {
         month: getCurrentMonth(),
         year: getCurentYear(),
     })
+    const [ errors, setErrors ] = useState([])
 
 
     useEffect(() => {
@@ -21,26 +23,32 @@ export default function Budget () {
         getBudgetItems(newFilters).then((budget) => setBudget(budget))
         getCategories().then((categories) => setCategories(categories))
         setUpdateRequired(false)
-    }, [updateRequired])
+    }, [updateRequired, filters])
 
     return (
         <main className='budget'>
+            <Validation errors={ errors } />
             <BudgetFilter
                 filters={ filters }
                 setFilters={ setFilters } 
-                setUpdateRequired={ setUpdateRequired }/>
+                setUpdateRequired={ setUpdateRequired }
+                setErrors={ setErrors }/>
             <NewBudgetItem 
-                categories={ categories }/>
+                categories={ categories }
+                setUpdateRequired={ setUpdateRequired }
+                setErrors={ setErrors } />
             <BudgetSection
                 section_type='Income'
                 budget={ budget }
                 categories={ categories }
-                setUpdateRequired={ setUpdateRequired } />
+                setUpdateRequired={ setUpdateRequired }
+                setErrors={ setErrors } />
             <BudgetSection
                 section_type='Expense'
                 budget={ budget }
                 categories={ categories }
-                setUpdateRequired={ setUpdateRequired } />
+                setUpdateRequired={ setUpdateRequired }
+                setErrors={ setErrors } />
         </main>
     )
 }

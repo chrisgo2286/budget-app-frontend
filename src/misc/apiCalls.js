@@ -43,6 +43,7 @@ export async function getCategories () {
 export async function deleteCategory (id) {
     const newUrl = url + 'categories/' + id + '/';
     const result = await axios.delete(newUrl, headers);
+    console.log(result)
 }
 
 export async function getBudgetItems (filters) {

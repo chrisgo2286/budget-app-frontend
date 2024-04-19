@@ -1,18 +1,16 @@
 import React, { useState } from "react";
 import Input from "../miscComponents/input/input";
 import Select from "../miscComponents/select/select";
-import Validation from "../validation/validation";
 import { createBudgetItem } from "../../misc/apiCalls";
 import { refreshPage } from "../../misc/miscFunctions";
 import { validateNewBudgetItem } from "../../misc/validation/validateNewBudgetItem";
 
-export default function NewBudgetItem ({ categories }) {
+export default function NewBudgetItem ({ categories, setErrors, setUpdateRequired }) {
     const [ fields, setFields ] = useState({
         category: '',
         amount: '',
         type: 'Type'
     })
-    const [ errors, setErrors ] = useState([]);
 
     function handleSubmit () {
         const result = validateNewBudgetItem(fields, categories);
@@ -23,7 +21,8 @@ export default function NewBudgetItem ({ categories }) {
                 amount: '',
                 type: 'Type'
             })
-            refreshPage();
+            // refreshPage();
+            setUpdateRequired(true);
         } else {
             setErrors(result);
         }
@@ -59,7 +58,6 @@ export default function NewBudgetItem ({ categories }) {
                     className='add-btn'
                     onClick={ handleSubmit }>Add</button>
             </section>
-            <Validation errors={ errors } />
         </React.Fragment>
     )
 }
