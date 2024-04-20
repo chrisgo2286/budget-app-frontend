@@ -6,7 +6,7 @@ export default function InputBudgetItem ({ budgetItem, setUpdateRequired, setErr
     const [ amount, setAmount ] = useState(budgetItem.budget_amount);
 
     function handleChange (event) {
-        const { name, value } = event.target;
+        const { value } = event.target;
         setAmount(value);
     }
 
@@ -28,7 +28,6 @@ export default function InputBudgetItem ({ budgetItem, setUpdateRequired, setErr
             name='amount'
             value={ amount }
             onChange={ handleChange }
-            onBlur={ handleBlur }>
-        </input>
+            onBlur={ handleBlur } />
     )
 }

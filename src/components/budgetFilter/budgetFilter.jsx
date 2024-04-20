@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import Select from "../miscComponents/select/select";
-import Input from "../miscComponents/input/input";
+import InputBudgetFilter from "./inputBudgetFilter";
 import { month_options } from "../../misc/miscFunctions";
 import { validateBudgetFilter } from "../../misc/validation/validateBudgetFilter";
 
@@ -37,16 +37,10 @@ export default function BudgetFilter ({
                 options={ month_options }
                 fields={ filters }
                 setFields={ setFilters } />
-            <Input 
-                className='budget-filter-year' 
-                type='number'
-                name='year'
-                value={ filters.year }
-                fields={ filters }
-                setFields={ setFilters } />
-            <button 
-                className='budget-filter-submit'
-                onClick={ handleSubmit }>Filter</button>
+            <InputBudgetFilter 
+                filters={ filters }
+                setFilters={ setFilters } 
+                setErrors={ setErrors }/>
         </section>
     )
 }
