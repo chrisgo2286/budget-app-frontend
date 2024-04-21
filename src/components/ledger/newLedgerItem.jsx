@@ -1,10 +1,11 @@
 import { useState } from "react";
 import { createLedgerItem } from "../../misc/apiCalls";
-import { findCategoryID, compileCategoryNames, refreshPage } from "../../misc/miscFunctions";
 import Input from "../miscComponents/input/input";
 import Select from "../miscComponents/select/select";
+import { validateNewLedgerItem } from "../../misc/validation/validateNewLedgerItem";
+import { findCategoryID, compileCategoryNames, refreshPage } from "../../misc/miscFunctions";
 
-export default function NewLedgerItem ({ categories, setUpdateRequired }) {
+export default function NewLedgerItem ({ categories, setUpdateRequired, setErrors }) {
     const [ fields, setFields ] = useState({
         date: '',
         category: '',
@@ -12,12 +13,20 @@ export default function NewLedgerItem ({ categories, setUpdateRequired }) {
     })
     const [ inputType, setInputType ] = useState('text');
 
-    function handleSubmit () {
-        const category_id = findCategoryID(fields.category, categories);
-        const newFields = { ...fields, 'category': category_id }
-        createLedgerItem(newFields)
-        .then(setUpdateRequired(true))
-        .then(refreshPage())
+    async function handleSubmit () {
+        const result = validateNewLedgerItem(fields);
+        if(result === 'Valid') {
+            const category_id = findCategoryID(fields.category, categories);
+            const newFields = { ...fields, 'category': category_id }
+            await createLedgerItem(newFields);
+            setUpdateRequired(true);
+            resetFields();
+        } else {
+            setErrors(result);
+        }
+    }
+
+    function resetFields () {
         setFields({
             date: '',
             category: '',

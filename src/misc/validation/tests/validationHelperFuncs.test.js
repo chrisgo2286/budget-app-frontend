@@ -6,7 +6,8 @@ import {
     isNotValidType, 
     isValidAmount, 
     isValidFilterDates,
-    isDuplicateCategory, 
+    isDuplicateCategory,
+    isValidDate 
     } from '../validationHelperFuncs';
 
 describe('isEmptyString', () => {
@@ -134,5 +135,24 @@ describe('isValidFilterDates', () => {
 
     it.each(invalidFilterDates)('Invalid dates return false', (dates, result) => {
         expect(isValidFilterDates(dates)).toBe(result);
+    })
+})
+
+describe('isValidDate', () => {
+    const validDates = [
+        [new Date('1/1/2024'), true],
+        [new Date('4/30/2024'), true]
+    ]
+    const invalidDates = [
+        [new Date('1/1/1999'), false],
+        [new Date('1/1/2031'), false]
+    ]
+
+    it.each(validDates)('Valid dates return true', (date, result) => {
+        expect(isValidDate(date)).toBe(result);
+    })
+
+    it.each(invalidDates)('Invalid dates return false', (date, result) => {
+        expect(isValidDate(date)).toBe(result);
     })
 })

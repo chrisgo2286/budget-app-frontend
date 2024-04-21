@@ -6,7 +6,8 @@ import {
     isNotValidType,
     isValidAmount,
     isValidFilterDates,
-    isDuplicateCategory    
+    isDuplicateCategory,
+    isValidDate
     } from './validationHelperFuncs';
 
 export function validateYear (year) {
@@ -69,6 +70,19 @@ export function validateFilterDates (startDate, endDate) {
             return 'Start Date must come before End Date!'
         }
     }
+    return 'Valid';
+}
 
+export function validateDate (date) {
+    if(isValidDate(date) === false) {
+        return 'Please enter a date between 2000 and 2030!'
+    }
+    return 'Valid';
+}
+
+export function validateCategorySelect (category) {
+    if(isNotValidCategory(category)) {
+        return 'Please choose a valid category!'
+    }
     return 'Valid';
 }

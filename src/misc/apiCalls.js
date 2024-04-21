@@ -10,7 +10,6 @@ const headers = {
 }
 
 export async function getLedgerItems (filters, categories) {
-    console.log(filters)
     if(filters.category) {
         const categoryId = findCategoryID(filters.category, categories)
         filters = { ...filters, 'category': categoryId }

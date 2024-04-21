@@ -14,6 +14,7 @@ export default function InputBudgetFilter ({ filters, setFilters, setErrors }) {
         const newFilters = { ...filters, 'year': year }
         const result = validateBudgetFilter(newFilters);
         if(result === 'Valid') {
+            setErrors([]);
             setFilters(newFilters);
         } else {
             setYear(filters.year);

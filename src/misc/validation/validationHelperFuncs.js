@@ -10,9 +10,9 @@ export function isValidYear(year) {
 }
 
 export function isWithinValidRange(year) {
-    const lower_bound = 2000;
-    const upper_bound = 2030;
-    return parseInt(year) >= lower_bound && parseInt(year) <= upper_bound; 
+    const lowerBound = 2000;
+    const upperBound = 2030;
+    return parseInt(year) >= lowerBound && parseInt(year) <= upperBound; 
 }
 
 export function isNotValidCategory(category) {
@@ -34,4 +34,11 @@ export function isValidAmount(amount) {
 
 export function isValidFilterDates(startDateObj, endDateObj) {
     return endDateObj > startDateObj;
+}
+
+export function isValidDate(date) {
+    const dateObj = new Date(date);
+    const lowerBound = new Date('1/1/2000')
+    const upperBound = new Date('12/31/2030')
+    return dateObj >= lowerBound && dateObj <= upperBound;
 }

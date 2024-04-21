@@ -3,6 +3,7 @@ import LedgerHeader from "./ledgerHeader";
 import LedgerItem from "./ledgerItem";
 import NewLedgerItem from "./newLedgerItem";
 import LedgerFilter from "./ledgerFilter";
+import Validation from "../validation/validation";
 import { getLedgerItems, getCategories } from "../../misc/apiCalls";
 import './ledger.css';
 
@@ -17,6 +18,7 @@ export default function Ledger () {
         category: '',
         type: '',
     })
+    const [ errors, setErrors ] = useState([]);
 
     useEffect(() => {
         getCategories().then((categories) => setCategories(categories));
@@ -26,6 +28,7 @@ export default function Ledger () {
 
     return (
         <main className='ledger'>
+            <Validation errors={ errors } />
             <LedgerFilter
                 categories={ categories }
                 filters={ filters }
@@ -33,7 +36,8 @@ export default function Ledger () {
                 setUpdateRequired={ setUpdateRequired } />
             <NewLedgerItem 
                 categories={ categories }
-                setUpdateRequired={ setUpdateRequired }/>
+                setUpdateRequired={ setUpdateRequired }
+                setErrors={ setErrors }/>
             <LedgerHeader />
             <section className="ledger-items">
                 { ledger.map((item) => (

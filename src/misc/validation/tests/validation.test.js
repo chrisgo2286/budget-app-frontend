@@ -3,7 +3,9 @@ import {
     validateCategory,
     validateType,
     validateAmount,
-    validateFilterDates
+    validateFilterDates,
+    validateDate,
+    validateCategorySelect
 } from '../validation';
 
 describe('validateYear', () => {
@@ -103,5 +105,34 @@ describe('validateFilterDates', () => {
     });
     it.each(invalidFilterDates, (strings, result) => {
         expect(validateFilterDates())
+    })
+})
+
+describe('validateDate', () => {
+    const validDates = [
+        [new Date('1/1/2024'), 'Valid'],
+        [new Date('4/30/2024'), 'Valid']
+    ]
+    const invalidDates = [
+        [new Date('1/1/1999'), 'Please enter a date between 2000 and 2030!'],
+        [new Date('1/1/2031'), 'Please enter a date between 2000 and 2030!']
+    ]
+    it.each(validDates)('Valid dates return as valid', (date, result) => {
+        expect(validateDate(date)).toBe(result);
+    })
+
+    it.each(invalidDates)('Invalid dates return error messages', (date, result) => {
+        expect(validateDate(date)).toBe(result);
+    })
+})
+
+describe('validateCategorySelect', () => {
+    const validCategory = 'Grocery';
+    const invalidCategory = 'Category';
+    it('Valid category returns as valid', () => {
+        expect(validateCategorySelect(validCategory)).toBe('Valid')
+    })
+    it('Invalid category returns error msg', () => {
+        expect(validateCategorySelect(invalidCategory)).toBe('Please choose a valid category!');
     })
 })
