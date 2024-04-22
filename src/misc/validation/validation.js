@@ -66,7 +66,9 @@ export function validateFilterDates (startDate, endDate) {
     if(startDate && endDate) {
         const startDateObj = new Date(startDate);
         const endDateObj = new Date(endDate);
-        if(isValidFilterDates(startDateObj, endDateObj) === 'false') {
+        console.log(startDateObj, endDateObj)
+        console.log(isValidFilterDates(startDateObj, endDateObj))
+        if(isValidFilterDates(startDateObj, endDateObj) === false) {
             return 'Start Date must come before End Date!'
         }
     }
