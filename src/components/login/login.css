@@ -1,8 +1,9 @@
 .login {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
-    grid-template-rows: repeat(3, 1fr);
+    grid-template-rows: repeat(4, 1fr);
     grid-template-areas:
+        "validation validation validation"
         "username-label username username"
         "password-label password password"
         "login-btn login-btn login-btn";
@@ -15,6 +16,10 @@
 
 .login > * {
     margin-top: 10px;
+}
+
+.login .validation {
+    grid-area: validation;
 }
 
 .login-username-label {

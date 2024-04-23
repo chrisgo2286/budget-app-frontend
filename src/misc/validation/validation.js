@@ -88,3 +88,15 @@ export function validateCategorySelect (category) {
     }
     return 'Valid';
 }
+
+export function validateUsername (username) {
+    if(isEmptyString(username)) {
+        return 'Please enter your username!'
+    }
+}
+
+export function validatePassword (password) {
+    if(isEmptyString(password)) {
+        return 'Please enter your password!'
+    }
+}
