@@ -66,8 +66,6 @@ export function validateFilterDates (startDate, endDate) {
     if(startDate && endDate) {
         const startDateObj = new Date(startDate);
         const endDateObj = new Date(endDate);
-        console.log(startDateObj, endDateObj)
-        console.log(isValidFilterDates(startDateObj, endDateObj))
         if(isValidFilterDates(startDateObj, endDateObj) === false) {
             return 'Start Date must come before End Date!'
         }
@@ -93,10 +91,19 @@ export function validateUsername (username) {
     if(isEmptyString(username)) {
         return 'Please enter your username!'
     }
+    return 'Valid';
 }
 
 export function validatePassword (password) {
     if(isEmptyString(password)) {
         return 'Please enter your password!'
     }
+    return 'Valid';
+}
+
+export function validatePasswordMatch (password1, password2) {
+    if(password1 !== password2) {
+        return 'Passwords need to match!'
+    }
+    return 'Valid';
 }

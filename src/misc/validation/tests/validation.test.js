@@ -5,7 +5,9 @@ import {
     validateAmount,
     validateFilterDates,
     validateDate,
-    validateCategorySelect
+    validateCategorySelect,
+    validateUsername,
+    validatePassword
 } from '../validation';
 
 describe('validateYear', () => {
@@ -130,9 +132,31 @@ describe('validateCategorySelect', () => {
     const validCategory = 'Grocery';
     const invalidCategory = 'Category';
     it('Valid category returns as valid', () => {
-        expect(validateCategorySelect(validCategory)).toBe('Valid')
+        expect(validateCategorySelect(validCategory)).toBe('Valid');
     })
     it('Invalid category returns error msg', () => {
         expect(validateCategorySelect(invalidCategory)).toBe('Please choose a valid category!');
+    })
+})
+
+describe('validateUsername', () => {
+    const validUsername = 'tester';
+    const invalidUsername = '';
+    it('Valid username returns as valid', () => {
+        expect(validateUsername(validUsername)).toBe('Valid');
+    })
+    it('Invalid username returns error msg', () => {
+        expect(validateUsername(invalidUsername)).toBe('Please enter your username!')
+    })
+})
+
+describe('validatePassword', () => {
+    const validPassword = 'cypress';
+    const invalidPassword = '';
+    it('Valid password returns as valid', () => {
+        expect(validatePassword(validPassword)).toBe('Valid');
+    })
+    it('Invalid password returns error msg', () => {
+        expect(validatePassword(invalidPassword)).toBe('Please enter your password!')
     })
 })
