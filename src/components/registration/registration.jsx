@@ -45,7 +45,7 @@ export default function Registration () {
     }
 
     return (
-        <div className="registration">
+        <div className="registration" data-cy='registration'>
             <NewUserFields 
                 fields={ credentials } 
                 setFields={ setCredentials }

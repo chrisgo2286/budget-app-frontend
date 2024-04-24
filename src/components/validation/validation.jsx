@@ -8,7 +8,7 @@ export default function Validation ({ errors }) {
     }
 
     return (
-        <section className="validation">
+        <section className="validation" data-cy='validation'>
             {( errors.length > 0) ? displayErrors(): null }
         </section>
     )

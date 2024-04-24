@@ -4,7 +4,11 @@ import Input from "../miscComponents/input/input";
 export default function NewUserFields ({ fields, setFields, handleSubmit }) {
     return (
         <React.Fragment>
-            <div className="registration-username-label">Username</div>
+            <div 
+                className="registration-username-label"
+                data-cy="registration-username-label">
+                Username
+            </div>
             <Input
                 className='registration-username' 
                 type='text'
@@ -12,7 +16,11 @@ export default function NewUserFields ({ fields, setFields, handleSubmit }) {
                 value={ fields.username }
                 fields={ fields }
                 setFields={ setFields } />
-            <div className="registration-password1-label">Password</div>
+            <div 
+                className="registration-password1-label"
+                data-cy="registration-password1-label">
+                Password
+            </div>
             <Input
                 className='registration-password1'
                 type='password'
@@ -20,7 +28,11 @@ export default function NewUserFields ({ fields, setFields, handleSubmit }) {
                 value={ fields.password1 }
                 fields={ fields }
                 setFields={ setFields } />
-            <div className="registration-password2-label">Reenter PW</div>
+            <div 
+                className="registration-password2-label"
+                data-cy="registration-password2-label">
+                Reenter PW
+            </div>
             <Input
                 className='registration-password2'
                 type='password'
@@ -30,7 +42,8 @@ export default function NewUserFields ({ fields, setFields, handleSubmit }) {
                 setFields={ setFields } />
             <button 
                 className='registration-btn' 
-                onClick={ handleSubmit }>
+                onClick={ handleSubmit }
+                data-cy='registration-btn'>
                 Register
             </button>
         </React.Fragment>

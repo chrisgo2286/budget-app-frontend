@@ -4,6 +4,7 @@ import { UserContext } from '../../misc/context';
 import { loginUser } from '../../misc/apiCalls';
 import { refreshPage } from '../../misc/miscFunctions';
 import { updateLocalStorage, updateUser } from '../../misc/userFunctions';
+import { validateLogin } from '../../misc/validation/validateLogin';
 import Validation from '../validation/validation';
 import LoginFields from './loginFields';
 import './login.css';
@@ -18,17 +19,23 @@ export default function Login () {
     const [ errors, setErrors ] = useState([])
 
     async function handleSubmit () {
-        const response = await loginUser(credentials);
+        const result = validateLogin(credentials);
 
-        if(response.status && response.status === 200) {
-            const token = response.data.key;
-            updateLocalStorage(token, credentials.username);
-            updateUser(token, credentials.username, user, setUser);
-            navigate('/');
-            refreshPage();
-            
+        if(result === 'Valid') {
+            const response = await loginUser(credentials);
+
+            if(response.status && response.status === 200) {
+                const token = response.data.key;
+                updateLocalStorage(token, credentials.username);
+                updateUser(token, credentials.username, user, setUser);
+                navigate('/');
+                refreshPage();
+                
+            } else {
+                setErrors(['You have entered invalid credentials!']);
+            }
         } else {
-            setErrors(['You have entered invalid credentials!'])
+            setErrors(result);
         }
     }
 

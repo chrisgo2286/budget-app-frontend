@@ -23,6 +23,7 @@ export default function Input ({
             value={ value }
             id={ name }
             onChange={ handleChange }
+            data-cy={ className }
             { ...other }>
         </input>
     )
