@@ -1,8 +1,9 @@
 .registration {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
-    grid-template-rows: repeat(4, 1fr);
+    grid-template-rows: repeat(5, 1fr);
     grid-template-areas:
+        "validation validation validation"
         "username-label username username"
         "password1-label password1 password1"
         "password2-label password2 password2"
@@ -12,6 +13,10 @@
     border-radius: 10px;
     margin: 20px auto;
     padding: 20px;
+}
+
+.validation {
+    grid-area: validation;
 }
 
 .registration > * {
