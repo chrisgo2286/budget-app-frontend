@@ -40,7 +40,7 @@ export default function Login () {
     }
 
     return (
-        <div className="login">
+        <div className="login" data-cy='login'>
             <Validation errors={ errors } />
             <LoginFields 
                 fields={ credentials } 

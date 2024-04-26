@@ -24,7 +24,8 @@ export default function Logout () {
 
             <div
                 className='logout'
-                onClick={ handleLogout } >
+                onClick={ handleLogout } 
+                data-cy='logout'>
                 Logout
             </div>
 

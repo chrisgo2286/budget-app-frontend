@@ -18,8 +18,8 @@ export function userLinksLoggedIn (username) {
 export function userLinksLoggedOut () {
     return (
         <React.Fragment>
-            <Link to='/login' >Login</Link>
-            <Link to='/registration' >Register</Link>
+            <Link to='/login' data-cy='login-link'>Login</Link>
+            <Link to='/registration' data-cy='registration-link'>Register</Link>
         </React.Fragment>
     )
 }
@@ -27,9 +27,9 @@ export function userLinksLoggedOut () {
 export function siteLinksLoggedIn () {
     return (
         <React.Fragment>
-            <Link to='/'>Home</Link>
-            <Link to='/budget' >Budget</Link>
-            <Link to='/ledger' >Ledger</Link>
+            <Link to='/' data-cy='home-link'>Home</Link>
+            <Link to='/budget' data-cy='budget-link'>Budget</Link>
+            <Link to='/ledger' data-cy='ledger-link'>Ledger</Link>
         </React.Fragment>
     )
 }
