@@ -5,7 +5,11 @@ import { Link } from 'react-router-dom';
 export function userLinksLoggedIn (username) {
     return (
         <React.Fragment>
-            <div className='greeting' >Hi { username }!</div>
+            <div 
+                className='greeting' 
+                data-cy='greeting' >
+                Hi { username } !
+            </div>
             <Logout />
         </React.Fragment>
     )

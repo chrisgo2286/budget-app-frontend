@@ -21,8 +21,12 @@ export default function Logout () {
     }
     
     return (
-        <React.Fragment>
-            <div onClick={ handleLogout } >Logout</div>
-        </React.Fragment>
+
+            <div
+                className='logout'
+                onClick={ handleLogout } >
+                Logout
+            </div>
+
     )
 }

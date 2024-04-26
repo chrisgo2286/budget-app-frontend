@@ -22,6 +22,17 @@ nav {
 }
 
 .site-links a:hover,
-.user-links a:hover {
+.user-links a:hover,
+.logout:hover {
     opacity: 50%;
+}
+
+.greeting {
+    text-transform: capitalize;
+    margin-right:15px;
+}
+
+.logout {
+    cursor: pointer;
+    margin-right:30px;
 }
