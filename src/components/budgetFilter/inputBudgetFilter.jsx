@@ -2,7 +2,6 @@ import { useState } from 'react';
 import { validateBudgetFilter } from '../../misc/validation/validateBudgetFilter';
 
 export default function InputBudgetFilter ({ filters, setFilters, setErrors }) {
-    console.log(filters)
     const [ year, setYear ] = useState(filters?.year);
 
     function handleChange(event) {
@@ -21,6 +20,7 @@ export default function InputBudgetFilter ({ filters, setFilters, setErrors }) {
             setErrors(result);
         }
     }
+    
     return (
         <input
             className='budget-filter-year'
@@ -28,6 +28,7 @@ export default function InputBudgetFilter ({ filters, setFilters, setErrors }) {
             name='year'
             value={ year }
             onChange={ handleChange }
-            onBlur={ handleBlur } />
+            onBlur={ handleBlur } 
+            data-cy='budget-filter-year'/>
     )
 }
