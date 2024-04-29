@@ -26,7 +26,11 @@ export default function BudgetItem ({
                 </div>
             </div>
             <div className='outer-bar'>
-                <div className='inner-bar' style={{ width: budgetItem.percent }}></div>
+                <div 
+                    className='inner-bar' 
+                    data-cy='inner-bar' 
+                    style={{ width: budgetItem.percent }}>
+                </div>
             </div>
         </div>
     )

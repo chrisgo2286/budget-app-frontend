@@ -28,19 +28,19 @@ export default function Budget () {
     return (
         <main className='budget'>
             <Validation errors={ errors } />
-            <h1>FILTERS</h1>
+            <h1>Filters</h1>
             <BudgetFilter
                 filters={ filters }
                 setFilters={ setFilters } 
                 setUpdateRequired={ setUpdateRequired }
                 setErrors={ setErrors }/>
-            <h1>NEW BUDGET ITEM</h1>
+            <h1>New Budget Item</h1>
             <NewBudgetItem 
                 categories={ categories }
                 setUpdateRequired={ setUpdateRequired }
                 setErrors={ setErrors } />
 
-            <h1>LEDGER</h1>
+            <h1>Budget</h1>
             <BudgetSection
                 section_type='Income'
                 budget={ budget }
@@ -52,7 +52,7 @@ export default function Budget () {
                 budget={ budget }
                 categories={ categories }
                 setUpdateRequired={ setUpdateRequired }
-                setErrors={ setErrors } />
+                setErrors={ setErrors }/>
         </main>
     )
 }
