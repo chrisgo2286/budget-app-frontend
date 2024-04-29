@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { patchBudgetItem, deleteCategory } from '../../misc/apiCalls';
+import { createBudgetItem, deleteCategory } from '../../misc/apiCalls';
 import { compileBudgetCategoryNames, findCategoryID } from '../../misc/miscFunctions';
 
 export default function SelectBudgetItem ({ budgetItem, categories, setUpdateRequired }) {
@@ -8,14 +8,14 @@ export default function SelectBudgetItem ({ budgetItem, categories, setUpdateReq
     const options = compileBudgetCategoryNames(categories);
     
     function handleChange (event) {
-        const { name, value } = event.target;
+        const { value } = event.target;
         if(value) {
-            console.log(value)
             if(value === 'Delete') {
                 deleteBudgetCategory();
             }
-            else if(options.include(value)) {
-                updateBudgetItem();
+            else if(options.includes(value)) {
+                createNewBudgetItem(value);
+                deleteBudgetCategory()
             }
             setUpdateRequired(true);
         }
@@ -27,10 +27,11 @@ export default function SelectBudgetItem ({ budgetItem, categories, setUpdateReq
         await deleteCategory(categoryId);
     }
 
-    async function updateBudgetItem (value) {
+    async function createNewBudgetItem (value) {
         setChoice(value);
         const categoryId = findCategoryID(value, categories);
-        await patchBudgetItem(budgetItem.id, {'category': categoryId});
+        console.log(budgetItem)
+        await createBudgetItem({ 'category': categoryId, 'amount': budgetItem.budget_amount });
     }
 
     return (

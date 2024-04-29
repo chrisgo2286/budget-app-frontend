@@ -40,7 +40,8 @@ export async function getCategories () {
 }
 
 export async function createCategory (fields) {
-    const result = await axios.post(url + 'categories/', fields, headers)
+    fields.owner = 1;
+    const result = await axios.post(url + 'categories/', fields, headers);
     return result.data;
 }
 

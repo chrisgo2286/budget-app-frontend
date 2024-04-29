@@ -12,6 +12,7 @@ export default function NewCategory ({ categories, setErrors, setUpdateRequired 
     function handleSubmit () {
         //VALIDATION
         const result = createCategory(fields)
+        setFields({ name: '', type: '' })
         setUpdateRequired(true);
     }
 
@@ -29,6 +30,7 @@ export default function NewCategory ({ categories, setErrors, setUpdateRequired 
                 className='new-category-type'
                 name='type'
                 initial='Type'
+                value={(fields.type) ?  fields.type: ''}
                 options={ [ 'Expense', 'Income' ] }
                 fields={ fields }
                 setFields={ setFields } />

@@ -29,6 +29,8 @@ export function compileCategoryNames (categories) {
     return category_names;
 }
 
+export function compileBudgetedCategories
+
 export function refreshPage () {
     window.location.reload()
 }

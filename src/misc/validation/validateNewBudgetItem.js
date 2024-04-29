@@ -1,8 +1,8 @@
-import { validateCategory, validateType, validateAmount } from "./validation";
+import { validateCategorySelect, validateAmount } from "./validation";
 
-export function validateNewBudgetItem (fields, categories) {
+export function validateNewBudgetItem (fields) {
     let errors = [];
-    const categoryResult = validateCategory(fields.category, categories);
+    const categoryResult = validateCategorySelect(fields.category);
     const amountResult = validateAmount(fields.amount);
 
     if(categoryResult !== 'Valid') {

@@ -3,7 +3,7 @@ import Input from "../miscComponents/input/input";
 import Select from "../miscComponents/select/select";
 import { createBudgetItem } from "../../misc/apiCalls";
 import { validateNewBudgetItem } from "../../misc/validation/validateNewBudgetItem";
-import { compileCategoryNames } from "../../misc/miscFunctions";
+import { compileCategoryNames, findCategoryID } from "../../misc/miscFunctions";
 
 export default function NewBudgetItem ({ categories, setErrors, setUpdateRequired }) {
     const [ fields, setFields ] = useState({
@@ -12,9 +12,10 @@ export default function NewBudgetItem ({ categories, setErrors, setUpdateRequire
     })
 
     async function handleSubmit () {
-        const result = validateNewBudgetItem(fields, categories);
+        const result = validateNewBudgetItem(fields);
         if(result === 'Valid') {            
-            await createBudgetItem(fields);
+            const categoryId = findCategoryID(fields.category, categories);
+            await createBudgetItem({ ...fields, category: categoryId });
             setFields({
                 category: '',
                 amount: '',
