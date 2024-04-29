@@ -38,7 +38,8 @@ export default function SelectBudgetItem ({ budgetItem, categories, setUpdateReq
             className='budget-item-category'
             value={ choice }
             name='category'
-            onChange={ handleChange }>
+            onChange={ handleChange }
+            data-cy='budget-item-category'>
             {
                 options.map((option, ndx) => (
                     <option key={ ndx } value={ option }>{ option }</option>

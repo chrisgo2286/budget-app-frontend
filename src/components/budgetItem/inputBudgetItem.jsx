@@ -28,6 +28,7 @@ export default function InputBudgetItem ({ budgetItem, setUpdateRequired, setErr
             name='amount'
             value={ amount }
             onChange={ handleChange }
-            onBlur={ handleBlur } />
+            onBlur={ handleBlur }
+            data-cy='budget-item-amount-budgeted' />
     )
 }
