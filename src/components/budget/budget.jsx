@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react';
 import BudgetFilter from '../budgetFilter/budgetFilter';
+import NewCategory from '../newCategory/newCategory';
 import NewBudgetItem from '../newBudgetItem/newBudgetItem';
 import BudgetSection from './budgetSection';
 import Validation from '../validation/validation';
@@ -34,6 +35,11 @@ export default function Budget () {
                 setFilters={ setFilters } 
                 setUpdateRequired={ setUpdateRequired }
                 setErrors={ setErrors }/>
+            <h1>New Category</h1>
+            <NewCategory
+                categories={ categories }
+                setErrors={ setErrors }
+                setUpdateRequired={ setUpdateRequired } />
             <h1>New Budget Item</h1>
             <NewBudgetItem 
                 categories={ categories }

@@ -3,12 +3,10 @@ import { validateNewBudgetItem } from "../validateNewBudgetItem";
 describe('validateNewBudgetItem', () => {
     const validFields = {
         category: 'Clothing',
-        type: 'Expense',
         amount: '100.00'
     }
     const invalidFields = {
         category: 'Grocery',
-        type: 'Type',
         amount: '$100.00'
     }
     const categories = [
@@ -18,7 +16,6 @@ describe('validateNewBudgetItem', () => {
     ]
     const errors = [
         'This is a duplicate category!',
-        'Please enter a valid type!',
         'Please enter a valid amount!'
     ]
     it('Valid fields return as valid', () => {

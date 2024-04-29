@@ -3,12 +3,12 @@ import Input from "../miscComponents/input/input";
 import Select from "../miscComponents/select/select";
 import { createBudgetItem } from "../../misc/apiCalls";
 import { validateNewBudgetItem } from "../../misc/validation/validateNewBudgetItem";
+import { compileCategoryNames } from "../../misc/miscFunctions";
 
 export default function NewBudgetItem ({ categories, setErrors, setUpdateRequired }) {
     const [ fields, setFields ] = useState({
         category: '',
         amount: '',
-        type: 'Type'
     })
 
     async function handleSubmit () {
@@ -18,7 +18,6 @@ export default function NewBudgetItem ({ categories, setErrors, setUpdateRequire
             setFields({
                 category: '',
                 amount: '',
-                type: 'Type'
             })
             setUpdateRequired(true);
         } else {
@@ -27,35 +26,28 @@ export default function NewBudgetItem ({ categories, setErrors, setUpdateRequire
     }
 
     return (
-        <React.Fragment>
-            <section className="new-budget-item">
-                <Input
-                    className='new-budget-category'
-                    type='text'
-                    name='category'
-                    value={ fields.category }
-                    fields={ fields }
-                    setFields={ setFields } 
-                    placeholder='Category' />
-                <Select 
-                    className='new-budget-category-type'
-                    name='type'
-                    initial={ fields.type }
-                    options={ [ 'Expense', 'Income' ] }
-                    fields={ fields }
-                    setFields={ setFields }/>
-                <Input
-                    className='new-budget-amount'
-                    type='number'
-                    name='amount'
-                    value={ fields.amount }
-                    fields={ fields }
-                    setFields={ setFields } 
-                    placeholder='Amount' />    
-                <button 
-                    className='add-btn'
-                    onClick={ handleSubmit }>Add</button>
-            </section>
-        </React.Fragment>
+        <section className="new-budget-item">
+            <Select
+                className='new-budget-category'
+                name='category'
+                initial='Category'
+                options={ compileCategoryNames(categories) }
+                value={ fields.category }
+                fields={ fields }
+                setFields={ setFields } />
+            <Input
+                className='new-budget-amount'
+                type='number'
+                name='amount'
+                value={ fields.amount }
+                fields={ fields }
+                setFields={ setFields } 
+                placeholder='Amount' />    
+            <button 
+                className='add-btn'
+                onClick={ handleSubmit }>
+                Add
+            </button>
+        </section>
     )
 }

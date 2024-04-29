@@ -39,6 +39,11 @@ export async function getCategories () {
     return result.data;
 }
 
+export async function createCategory (fields) {
+    const result = await axios.post(url + 'categories/', fields, headers)
+    return result.data;
+}
+
 export async function deleteCategory (id) {
     console.log('Requesting API...')
     const newUrl = url + 'categories/' + id + '/';
