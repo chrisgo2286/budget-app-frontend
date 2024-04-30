@@ -43,7 +43,7 @@ export function validateCategory (category, categories) {
 }
 
 export function validateType (type) {
-    if(isNotValidType(type)) {
+    if(isNotValidType(type) || isEmptyString(type)) {
         return 'Please enter a valid type!'
     };
 

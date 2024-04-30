@@ -2,6 +2,7 @@ import { useState } from 'react';
 import Input from '../miscComponents/input/input';
 import Select from '../miscComponents/select/select';
 import { createCategory } from '../../misc/apiCalls';
+import { validateNewCategory } from '../../misc/validation/validateNewCategory';
 
 export default function NewCategory ({ categories, setErrors, setUpdateRequired }) {
     const [ fields, setFields ] = useState({
@@ -10,8 +11,16 @@ export default function NewCategory ({ categories, setErrors, setUpdateRequired 
     })
 
     function handleSubmit () {
-        //VALIDATION
-        const result = createCategory(fields)
+        const result = validateNewCategory(fields, categories)
+        if(result === 'Valid') {
+            createNewCategory();
+        } else {
+            setErrors(result);
+        }
+    }
+
+    async function createNewCategory () {
+        await createCategory(fields)
         setFields({ name: '', type: '' })
         setUpdateRequired(true);
     }

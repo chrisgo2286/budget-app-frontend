@@ -2,7 +2,7 @@ import { validateCategory, validateType } from "./validation";
 
 export function validateNewCategory (fields, categories) {
     let errors = [];
-    const categoryResult = validateCategory(fields.category, categories);
+    const categoryResult = validateCategory(fields.name, categories);
     const typeResult = validateType(fields.type);
     
     if(categoryResult !== 'Valid') {

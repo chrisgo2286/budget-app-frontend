@@ -2,20 +2,20 @@ import { validateNewCategory } from "../validateNewCategory";
 
 describe('ValidateNewCategory', () => {
     const categories = [
-        { name: 'Grocery'}, 
+        {name: 'Grocery'}, 
         {name: 'Mortgage'}, 
         {name: 'Clothing'}
     ]
     const validFields = { 
-        category: 'Entertainment',
+        name: 'Entertainment',
         type: 'Expense'
     }
     const invalidFields1 = {
-        category: '',
+        name: '',
         type: 'Type'
     }
     const invalidFields2 = {
-        category: 'Grocery',
+        name: 'Grocery',
         type: 'Expense'
     }
     const errors1 = [
