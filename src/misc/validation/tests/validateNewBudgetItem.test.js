@@ -6,7 +6,7 @@ describe('validateNewBudgetItem', () => {
         amount: '100.00'
     }
     const invalidFields = {
-        category: 'Grocery',
+        category: 'Category',
         amount: '$100.00'
     }
     const categories = [
@@ -15,7 +15,7 @@ describe('validateNewBudgetItem', () => {
         {name: 'Entertainment'}
     ]
     const errors = [
-        'This is a duplicate category!',
+        'Please choose a valid category!',
         'Please enter a valid amount!'
     ]
     it('Valid fields return as valid', () => {

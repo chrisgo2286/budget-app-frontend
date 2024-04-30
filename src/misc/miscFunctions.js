@@ -22,14 +22,13 @@ export function compileBudgetCategoryNames (categories) {
 }
 
 export function compileCategoryNames (categories) {
-    let category_names = [];
-    for(let i=0;i < categories.length; i++) {
-        category_names.push(categories[i].name);
-    }
-    return category_names;
+    // let category_names = [];
+    // for(let i=0;i < categories.length; i++) {
+    //     category_names.push(categories[i].name);
+    // }
+    // return category_names;
+    return categories.map((category) => category.name)
 }
-
-export function compileBudgetedCategories
 
 export function refreshPage () {
     window.location.reload()
