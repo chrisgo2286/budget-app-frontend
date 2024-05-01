@@ -36,6 +36,7 @@ export async function deleteLedgerItem (id) {
 
 export async function getCategories () {
     const result = await axios.get(url + 'categories/', headers);
+    console.log(result.data)
     return result.data;
 }
 
@@ -70,23 +71,19 @@ export async function patchBudgetItem (id, fields) {
 
 export async function registerNewUser (fields) {
     const result = await axios.post(url + 'registration/', fields)
-    console.log(result)
     return result;
 }
 
 export async function loginUser (credentials) {
     try {
         const result = await axios.post(url + 'login/', credentials)
-        console.log(result)
         return result
     } catch {
-        console.log('Invalid Credentials')
         return 'Invalid Credentials';
     }
 }
 
 export async function logoutUser () {
     const result = await axios.post(url + 'logout/')
-    console.log(result)
     return result
 }
