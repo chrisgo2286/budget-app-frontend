@@ -81,7 +81,7 @@ export function validateDate (date) {
 }
 
 export function validateCategorySelect (category) {
-    if(isNotValidCategory(category)) {
+    if(isEmptyString(category) || isNotValidCategory(category)) {
         return 'Please choose a valid category!'
     }
     return 'Valid';

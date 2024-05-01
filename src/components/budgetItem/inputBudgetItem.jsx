@@ -29,6 +29,6 @@ export default function InputBudgetItem ({ budgetItem, setUpdateRequired, setErr
             value={ amount }
             onChange={ handleChange }
             onBlur={ handleBlur }
-            data-cy='budget-item-amount-budgeted' />
+            data-cy={ `budget-item-amount-budgeted-${budgetItem.category.toLowerCase()}` }/>
     )
 }

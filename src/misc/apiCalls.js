@@ -36,7 +36,6 @@ export async function deleteLedgerItem (id) {
 
 export async function getCategories () {
     const result = await axios.get(url + 'categories/', headers);
-    console.log(result.data)
     return result.data;
 }
 
