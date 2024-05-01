@@ -46,7 +46,8 @@ export default function NewBudgetItem ({ categories, setErrors, setUpdateRequire
                 placeholder='Amount' />    
             <button 
                 className='add-btn'
-                onClick={ handleSubmit }>
+                onClick={ handleSubmit }
+                data-cy='new-budget-btn'>
                 Add
             </button>
         </section>
