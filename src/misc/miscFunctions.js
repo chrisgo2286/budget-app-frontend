@@ -1,18 +1,11 @@
-export function findCategoryID (category_name, categories) {
-    for(let i=0;i < categories.length; i++) {
-        if(categories[i].name === category_name) {
-            return categories[i].id;
-        }
-    }
+export function findCategoryID (categoryName, categories) {
+    const category = categories.find((category) => category.name == categoryName)
+    return category.id;
 }
 
-export function categoryIsInCategories (category, categories) {
-    for(let i=0;i < categories.length; i++) {
-        if(category === categories[i].name) {
-            return true;
-        }
-    }
-    return false;
+export function categoryIsInCategories (categoryName, categories) {
+    const array = categories.filter((category) => category.name == categoryName)
+    return array.length > 0;    
 }
 
 export function compileBudgetCategoryNames (categories) {
@@ -22,11 +15,6 @@ export function compileBudgetCategoryNames (categories) {
 }
 
 export function compileCategoryNames (categories) {
-    // let category_names = [];
-    // for(let i=0;i < categories.length; i++) {
-    //     category_names.push(categories[i].name);
-    // }
-    // return category_names;
     return categories.map((category) => category.name)
 }
 
