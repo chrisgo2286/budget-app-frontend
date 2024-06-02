@@ -1,4 +1,4 @@
-import { validateLogin } from "../validateLogin";
+import { validateLogin } from "../../validation/validateLogin";
 
 describe('validateLogin', () => {
     const validFields = {

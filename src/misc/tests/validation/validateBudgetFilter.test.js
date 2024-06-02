@@ -1,4 +1,4 @@
-import { validateBudgetFilter } from "../validateBudgetFilter";
+import { validateBudgetFilter } from "../../validation/validateBudgetFilter";
 
 describe('validateBudgetFilter', () => {
     const validYears = [

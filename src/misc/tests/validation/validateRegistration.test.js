@@ -1,4 +1,4 @@
-import { validateRegistration } from "../validateRegistration";
+import { validateRegistration } from "../../validation/validateRegistration";
 
 describe('validateRegistration', () => {
     const validFields = {

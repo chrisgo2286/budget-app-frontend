@@ -1,6 +1,6 @@
 export function findCategoryID (categoryName, categories) {
     const category = categories.find((category) => category.name == categoryName)
-    return category.id;
+    return category?.id;
 }
 
 export function categoryIsInCategories (categoryName, categories) {

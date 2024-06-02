@@ -1,4 +1,4 @@
-import { validateNewCategory } from "../validateNewCategory";
+import { validateNewCategory } from "../../validation/validateNewCategory";
 
 describe('ValidateNewCategory', () => {
     const categories = [

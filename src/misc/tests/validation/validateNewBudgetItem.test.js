@@ -1,4 +1,4 @@
-import { validateNewBudgetItem } from "../validateNewBudgetItem";
+import { validateNewBudgetItem } from "../../validation/validateNewBudgetItem";
 
 describe('validateNewBudgetItem', () => {
     const validFields = {

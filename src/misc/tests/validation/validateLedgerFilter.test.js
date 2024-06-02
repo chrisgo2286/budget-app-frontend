@@ -1,4 +1,4 @@
-import { validateLedgerFilter } from "../validateLedgerFilter";
+import { validateLedgerFilter } from "../../validation/validateLedgerFilter";
 
 describe('validateLedgerFilter', () => {
     const validFields = {

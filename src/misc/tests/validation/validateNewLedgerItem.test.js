@@ -1,4 +1,4 @@
-import { validateNewLedgerItem } from "../validateNewLedgerItem";
+import { validateNewLedgerItem } from "../../validation/validateNewLedgerItem";
 
 describe('validateNewBudgetItem', () => {
     const validFields = {

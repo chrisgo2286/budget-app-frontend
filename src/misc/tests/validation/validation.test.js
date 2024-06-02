@@ -8,7 +8,7 @@ import {
     validateCategorySelect,
     validateUsername,
     validatePassword
-} from '../validation';
+} from '../../validation/validation';
 
 describe('validateYear', () => {
     const validYears = [
