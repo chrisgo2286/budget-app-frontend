@@ -1,5 +1,8 @@
 import {
     findCategoryID,
+    categoryIsInCategories,
+    compileBudgetCategoryNames,
+    compileCategoryNames,
 } from '../miscFunctions';
 
 const categories = [
@@ -16,5 +19,30 @@ describe('findCategoryID', () => {
     ]
     it.each(categoryNames)('Category names return correct id or null', (string, result) => {
         expect(findCategoryID(string, categories)).toBe(result);
+    })
+})
+
+describe('categoryIsInCategories', () => {
+    const categoryNames = [
+        ['Grocery', true],
+        ['', false],
+        ['Entertainment', false]
+    ]
+    it.each(categoryNames)('Category names return correct bool', (string, result) => {
+        expect(categoryIsInCategories(string, categories)).toBe(result);
+    })
+})
+
+describe('compileBudgetCategoryNames', () => {
+    const result = ['Grocery', 'Mortgage', 'Clothing', 'Delete']
+    it('Func returns correct names for given categories plus Delete', () => {
+        expect(compileBudgetCategoryNames(categories)).toEqual(result);
+    })
+})
+
+describe('compileCategoryNames', () => {
+    const result = ['Grocery', 'Mortgage', 'Clothing']
+    it('Func returns crrect names for given categories', () => {
+        expect(compileCategoryNames(categories)).toEqual(result);
     })
 })
