@@ -63,6 +63,11 @@ export async function createBudgetItem (fields) {
     return result.data;
 }
 
+export async function deleteBudgetItem (id) {
+    const newUrl = url + 'budget_items/' + id + '/';
+    await axios.delete(newUrl, headers);
+}
+
 export async function patchBudgetItem (id, fields) {
     const result = await axios.patch(url + 'budget_items/' + id + '/', fields, headers)
     return result.data;

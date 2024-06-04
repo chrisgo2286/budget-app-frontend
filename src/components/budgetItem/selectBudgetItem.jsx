@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { createBudgetItem, deleteCategory } from '../../misc/apiCalls';
+import { createBudgetItem, deleteBudgetItem } from '../../misc/apiCalls';
 import { compileBudgetCategoryNames, findCategoryID } from '../../misc/miscFunctions';
 
 export default function SelectBudgetItem ({ budgetItem, categories, setUpdateRequired }) {
@@ -11,19 +11,17 @@ export default function SelectBudgetItem ({ budgetItem, categories, setUpdateReq
         const { value } = event.target;
         if(value) {
             if(value === 'Delete') {
-                deleteBudgetCategory();
+                deleteSelectedBudgetItem();
             }
             else if(options.includes(value)) {
                 createNewBudgetItem(value);
-                deleteBudgetCategory()
             }
             setUpdateRequired(true);
         }
     }    
     
-    async function deleteBudgetCategory () {
-        const categoryId = findCategoryID(choice, categories)
-        await deleteCategory(categoryId);
+    async function deleteSelectedBudgetItem () {
+        await deleteBudgetItem(budgetItem.id);
     }
 
     async function createNewBudgetItem (value) {
