@@ -18,6 +18,11 @@ export function compileCategoryNames (categories) {
     return categories.map((category) => category.name)
 }
 
+export function categoryIsInBudget (categoryName, budget) {
+    const array = budget.filter((item) => item.category === categoryName);
+    return array.length > 0;
+}
+
 export function refreshPage () {
     window.location.reload()
 }

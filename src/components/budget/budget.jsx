@@ -42,6 +42,7 @@ export default function Budget () {
                 setUpdateRequired={ setUpdateRequired } />
             <h1>New Budget Item</h1>
             <NewBudgetItem 
+                budget={ budget }
                 categories={ categories }
                 setUpdateRequired={ setUpdateRequired }
                 setErrors={ setErrors } />

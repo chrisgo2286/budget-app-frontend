@@ -1,4 +1,4 @@
-import { categoryIsInCategories } from "../miscFunctions";
+import { categoryIsInBudget, categoryIsInCategories } from "../miscFunctions";
 
 export function isEmptyString(value) {
     return value === '';
@@ -21,6 +21,10 @@ export function isNotValidCategory(category) {
 
 export function isDuplicateCategory(category, categories) {
     return categoryIsInCategories(category, categories)
+}
+
+export function isDuplicateBudgetItem(category, budget) {
+    return categoryIsInBudget(category, budget);
 }
 
 export function isNotValidType(type) {

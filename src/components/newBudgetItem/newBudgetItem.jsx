@@ -5,14 +5,20 @@ import { createBudgetItem } from "../../misc/apiCalls";
 import { validateNewBudgetItem } from "../../misc/validation/validateNewBudgetItem";
 import { compileCategoryNames, findCategoryID } from "../../misc/miscFunctions";
 
-export default function NewBudgetItem ({ categories, setErrors, setUpdateRequired }) {
+export default function NewBudgetItem ({ 
+    budget, 
+    categories, 
+    setErrors, 
+    setUpdateRequired 
+    }) {
+    
     const [ fields, setFields ] = useState({
         category: '',
         amount: '',
     })
 
     async function handleSubmit () {
-        const result = validateNewBudgetItem(fields);
+        const result = validateNewBudgetItem(fields, budget);
         if(result === 'Valid') {            
             const categoryId = findCategoryID(fields.category, categories);
             await createBudgetItem({ ...fields, category: categoryId });

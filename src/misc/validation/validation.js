@@ -7,6 +7,7 @@ import {
     isValidAmount,
     isValidFilterDates,
     isDuplicateCategory,
+    isDuplicateBudgetItem,
     isValidDate
     } from './validationHelperFuncs';
 
@@ -86,6 +87,14 @@ export function validateCategorySelect (category) {
     }
     return 'Valid';
 }
+
+export function validateDuplicateBudgetItem (category, budget) {
+    if(isDuplicateBudgetItem(category, budget)) {
+        return 'This is a duplicate budget item!'
+    }
+    return 'Valid';
+}
+
 
 export function validateUsername (username) {
     if(isEmptyString(username)) {
