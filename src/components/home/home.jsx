@@ -1,8 +1,13 @@
-import React from "react";
+import Hero from "./hero";
+import Services from "./services";
+import './home.css';
 
 export default function Home () {
 
     return (
-        <main>Home Page</main>    
+        <div className="home">
+            <Hero />
+            <Services />
+        </div>  
     )
 }

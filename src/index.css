@@ -8,6 +8,7 @@
   --secondColor: #9fd3c7;
   --thirdColor: rgba(80, 124, 213, 0.507); 
   --fourthColor: #142d4c;
+  --navBGColor: #25b4b977;
 }
 
 * {
@@ -17,3 +18,4 @@
   font-size: 14px;
   color: var(--siteFontColor);
 }
+

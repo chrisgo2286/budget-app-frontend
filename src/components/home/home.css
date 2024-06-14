@@ -1,0 +1,48 @@
+.home {
+    background-color: var(--secondColor);
+    height: 100%;
+}
+
+.hero {
+    background-repeat: no-repeat;
+    height: 500px;
+    background-size: cover;
+    display: flex;    
+}
+
+.hero-empty {
+    width: 50%;
+}
+
+.hero-content {
+    align-self: center;
+    margin-left: 5%;
+}
+
+.headline {
+    font-size: 40px;
+    font-weight: bold;
+}
+
+.headline-detail {
+    font-size: 18px;
+    margin-top: 10px;
+}
+
+.cta {
+    margin: 20px 0px 0px 25%;
+    color: var(--siteFontColor);
+    background-color: var(--thirdColor);
+    border-radius: 5px;
+    width: 120px;
+    height: 30px;
+}
+
+.cta:hover {
+    background-color: var(--secondColor);
+    cursor: pointer;
+}
+
+.budget-filter-submit:hover {
+    background-color: var(--fourthColor);
+}

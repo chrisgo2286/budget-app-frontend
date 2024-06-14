@@ -2,7 +2,7 @@ nav {
     display: flex;
     justify-content: space-between;
     height: 50px;
-    background-color: var(--secondColor);
+    background-color: var(--navBGColor);
 }
 
 .site-links {
