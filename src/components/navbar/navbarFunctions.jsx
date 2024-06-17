@@ -37,7 +37,7 @@ export function siteLinksLoggedIn () {
 export function siteLinksLoggedOut () {
     return (
         <React.Fragment>
-            <Link to='/login'>Home</Link>
+            <Link to='/'>Home</Link>
             <Link to='/login'>Budget</Link>
             <Link to='/login'>Ledger</Link>
         </React.Fragment>

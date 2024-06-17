@@ -54,12 +54,15 @@ export default function Registration () {
     }
 
     return (
-        <div className="registration" data-cy='registration'>
-            <Validation errors={ errors } />
-            <NewUserFields 
-                fields={ credentials } 
-                setFields={ setCredentials }
-                handleSubmit={ handleSubmit }/>
-        </div>
+        <main>
+            <div className="registration" data-cy='registration'>
+                <Validation errors={ errors } />
+                <NewUserFields 
+                    fields={ credentials } 
+                    setFields={ setCredentials }
+                    handleSubmit={ handleSubmit }/>
+            </div>
+        </main>
+        
     )
 }

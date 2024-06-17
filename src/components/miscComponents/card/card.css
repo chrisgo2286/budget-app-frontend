@@ -1,5 +1,6 @@
 .card {
     border: 3px solid var(--siteBorderColor);
+    box-shadow: 10px 10px;
     display: flex;
     flex-direction: column;
     height: 300px;
@@ -13,7 +14,7 @@
     display: flex;
     text-align: center;
     align-items: center;
-    font-size: 22px;
+    font-size: 18px;
     padding: 0px 35px;
     font-weight: bold;
     height: 40%;

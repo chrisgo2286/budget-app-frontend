@@ -1,3 +1,7 @@
+main {
+    background-color: var(--siteBGColor);
+}
+
 .registration {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
@@ -61,7 +65,7 @@
     cursor: pointer;
 }
 
-.registration-btn {
+/* .registration-btn {
     grid-area: register-btn;
     color: white;
     background-color: var(--thirdColor);
@@ -74,5 +78,21 @@
 
 .registration-btn:hover {
     background-color: var(--fourthColor);
+    cursor: pointer;
+} */
+
+.registration-btn {
+    grid-area: register-btn;
+    margin: 20px 0px 0px 25%;
+    color: var(--siteFontColor);
+    background-color: var(--thirdColor);
+    border-radius: 5px;
+    width: 120px;
+    height: 30px;
+    box-shadow: 5px 5px;
+}
+
+.registration-btn:hover {
+    background-color: var(--secondColor);
     cursor: pointer;
 }
