@@ -1,0 +1,35 @@
+.card {
+    border: 3px solid var(--siteBorderColor);
+    display: flex;
+    flex-direction: column;
+    height: 300px;
+    max-width: 250px;
+    border-radius: 25px;
+    background-color: white;
+    margin: 0px 20px;
+}
+
+.card-headline {
+    display: flex;
+    text-align: center;
+    align-items: center;
+    font-size: 22px;
+    padding: 0px 35px;
+    font-weight: bold;
+    height: 40%;
+    border-radius: 25px 25px 0px 0px;
+}
+
+.card-detail {
+    display: flex;
+    padding: 20px;
+    border-top: 1px solid var(--siteBorderColor);
+    height: 40%;
+}
+
+.card-footer {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 20%;
+}

@@ -1,3 +1,5 @@
+import './card.css';
+
 export default function Card ({ headlineText, detailText, link }) {
     return (
         <div className="card">
@@ -8,7 +10,6 @@ export default function Card ({ headlineText, detailText, link }) {
             <CardFooter
                 link={ link } />    
         </div>
-
     )
 }
 

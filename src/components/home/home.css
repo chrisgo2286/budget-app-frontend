@@ -1,9 +1,10 @@
 .home {
-    background-color: var(--secondColor);
     height: 100%;
+    background-color: rgba(127, 255, 212, 0.137);
 }
 
 .hero {
+    margin: 10px 0px 50px 0px;
     background-repeat: no-repeat;
     height: 500px;
     background-size: cover;

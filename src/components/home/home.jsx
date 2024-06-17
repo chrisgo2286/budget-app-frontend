@@ -1,5 +1,6 @@
 import Hero from "./hero";
 import Services from "./services";
+import Footer from "./footer";
 import './home.css';
 
 export default function Home () {
@@ -8,6 +9,7 @@ export default function Home () {
         <div className="home">
             <Hero />
             <Services />
+            <Footer />
         </div>  
     )
 }

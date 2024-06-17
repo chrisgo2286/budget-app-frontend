@@ -1,8 +1,8 @@
 nav {
     display: flex;
     justify-content: space-between;
-    height: 50px;
-    background-color: var(--navBGColor);
+    height: 60px;
+    background-color: rgba(127, 255, 212, 0.137);
 }
 
 .site-links {
