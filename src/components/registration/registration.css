@@ -1,12 +1,14 @@
 main {
     background-color: var(--siteBGColor);
+    height: 1000px;
 }
 
 .registration {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
-    grid-template-rows: repeat(5, 1fr);
+    grid-template-rows: repeat(6, 1fr);
     grid-template-areas:
+        ". header ."
         "validation validation validation"
         "username-label username username"
         "password1-label password1 password1"
@@ -15,12 +17,22 @@ main {
     width: 300px;
     border: 1px solid var(--siteBorderColor);
     border-radius: 10px;
-    margin: 20px auto;
+    margin: 0px auto;
     padding: 20px;
+    height: 300px;
+    background-color: white;
+}
+
+.registration-header {
+    grid-area: header;
+    font-size: 20px;
+    font-weight: bold;
 }
 
 .validation {
     grid-area: validation;
+    border-bottom: 1px solid var(--siteBorderColor);
+    margin-bottom: 20px;
 }
 
 .registration > * {
@@ -65,25 +77,9 @@ main {
     cursor: pointer;
 }
 
-/* .registration-btn {
-    grid-area: register-btn;
-    color: white;
-    background-color: var(--thirdColor);
-    border: 1px solid var(--siteBorderColor);
-    border-radius: 5px;
-    max-width: 100px;
-    padding: 0px 5px;
-    justify-self: center;
-}
-
-.registration-btn:hover {
-    background-color: var(--fourthColor);
-    cursor: pointer;
-} */
-
 .registration-btn {
     grid-area: register-btn;
-    margin: 20px 0px 0px 25%;
+    margin: 30px 0px 0px 25%;
     color: var(--siteFontColor);
     background-color: var(--thirdColor);
     border-radius: 5px;

@@ -56,6 +56,7 @@ export default function Registration () {
     return (
         <main>
             <div className="registration" data-cy='registration'>
+                <div className="registration-header">Registration</div>
                 <Validation errors={ errors } />
                 <NewUserFields 
                     fields={ credentials } 
