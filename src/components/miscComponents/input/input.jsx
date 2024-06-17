@@ -1,4 +1,3 @@
-import { useState } from 'react';
 import './input.css';
 
 export default function Input ({ 
