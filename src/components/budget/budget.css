@@ -15,6 +15,28 @@
     box-shadow: 5px 5px rgb(0 0 0 / .2);
 }
 
+.expand-icon {
+    text-align: right;
+    padding: 10px 10px 0px 0px;
+}
+
+.expand-icon i:hover {
+    cursor: pointer;
+    font-weight: bold;
+}
+
+.filter-container {
+    height: 250px;
+    transition: height .2s ease;
+    padding-left: 40px;
+}
+
+.collapsed {
+    height: 0px;
+    overflow: hidden;
+    transition: height .2s ease;
+}
+
 .new-budget-item,
 .budget-filter {
     display: grid;
@@ -113,7 +135,6 @@
 }
 
 .inner-bar {
-    border: 1px solid var(--siteBorderColor);
     position: absolute;
     height: 100%;
     border-radius: 20px;

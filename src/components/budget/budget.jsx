@@ -16,6 +16,7 @@ export default function Budget () {
         month: getCurrentMonth(),
         year: getCurentYear(),
     })
+    const [ filtersVisible, setFiltersVisible ] = useState(false);
     const [ errors, setErrors ] = useState([])
 
 
@@ -30,8 +31,14 @@ export default function Budget () {
         <main className="budget-page">
             <div className='budget'>
                 <Validation errors={ errors } />
-                
-                <div className="container-collapse">
+                <div className="expand-icon">
+                    <i 
+                        className="material-icons"
+                        onClick={() => setFiltersVisible(!filtersVisible)}>
+                        { filtersVisible ? "expand_less" : "expand_more" }
+                    </i>
+                </div>
+                <div className={ (!filtersVisible) ? "filter-container collapsed":"filter-container" }>
                     <div className="filters-header">Filters</div>
                     <BudgetFilter
                         filters={ filters }
@@ -50,6 +57,8 @@ export default function Budget () {
                         setUpdateRequired={ setUpdateRequired }
                         setErrors={ setErrors } />
                 </div>
+
+                
                     
                 <div className="budget-header">Budget</div>
                 <BudgetSection

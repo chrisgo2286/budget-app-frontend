@@ -18,7 +18,7 @@ export default function InputWithIcon ({
 
     return (
         <div className={ "input-icon-pair " + className }>
-            <i className="material-icons">{ icon }</i>
+            <i className="material-icons icon">{ icon }</i>
             <input
                 className="input" 
                 type={ type }
