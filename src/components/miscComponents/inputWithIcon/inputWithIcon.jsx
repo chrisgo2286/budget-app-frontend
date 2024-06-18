@@ -1,6 +1,7 @@
 import './inputWithIcon.css';
 
 export default function InputWithIcon ({ 
+    className,
     type, 
     name,
     placeholder, 
@@ -16,7 +17,7 @@ export default function InputWithIcon ({
     }
 
     return (
-        <div className="input-icon-pair">
+        <div className={ "input-icon-pair " + className }>
             <i className="material-icons">{ icon }</i>
             <input
                 className="input" 

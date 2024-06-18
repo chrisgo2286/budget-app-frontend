@@ -4,7 +4,7 @@ main {
 }
 
 .registration {
-    display: grid;
+    /* display: grid;
     grid-template-columns: repeat(3, 1fr);
     grid-template-rows: repeat(6, 1fr);
     grid-template-areas:
@@ -13,55 +13,31 @@ main {
         "username-label username username"
         "password1-label password1 password1"
         "password2-label password2 password2"
-        "register-btn register-btn register-btn";
+        "register-btn register-btn register-btn"; */
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
     width: 300px;
-    border: 1px solid var(--siteBorderColor);
     border-radius: 10px;
     margin: 0px auto;
-    padding: 20px;
     height: 300px;
     background-color: white;
     box-shadow: 10px 10px;
+    padding: 40px 0px;
 }
 
 .registration-header {
-    grid-area: header;
     font-size: 20px;
     font-weight: bold;
 }
 
 .validation {
-    grid-area: validation;
     border-bottom: 1px solid var(--siteBorderColor);
-    margin-bottom: 20px;
 }
 
 .registration > * {
     margin-top: 10px;
-}
-
-.registration-username-label {
-    grid-area: username-label;
-}
-
-.registration-username {
-    grid-area: username;
-}
-
-.registration-password1-label {
-    grid-area: password1-label;
-}
-
-.registration-password1 {
-    grid-area: password1;
-}
-
-.registration-password2-label {
-    grid-area: password2-label;
-}
-
-.registration-password2 {
-    grid-area: password2;
 }
 
 .registration-username,
@@ -79,8 +55,6 @@ main {
 }
 
 .registration-btn {
-    grid-area: register-btn;
-    margin: 30px 0px 0px 25%;
     color: var(--siteFontColor);
     background-color: var(--thirdColor);
     border-radius: 5px;

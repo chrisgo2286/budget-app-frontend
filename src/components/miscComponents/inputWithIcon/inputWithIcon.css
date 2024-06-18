@@ -7,7 +7,7 @@
 }
 
 .material-icons {
-    border: 1px solid var(--siteBorderColor);
+    border: 1px solid black;
     background-color: var(--thirdColor);
     text-align: center;
     font-size: 30px;
@@ -15,6 +15,7 @@
 }
 
 .input {
+    border: 1px solid black;
     border-radius: 0px 5px 5px 0px;
     padding-left: 10%;
     width: 150px;

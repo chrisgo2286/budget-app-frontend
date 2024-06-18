@@ -7,7 +7,6 @@ import { updateUser } from '../../misc/userFunctions';
 import { loginUser } from '../../misc/apiCalls';
 import { validateRegistration } from '../../misc/validation/validateRegistration';
 import NewUserFields from './newUserFields';
-import InputWithIcon from '../miscComponents/inputWithIcon/inputWithIcon';
 import Validation from '../validation/validation';
 import './registration.css';
 
@@ -64,15 +63,6 @@ export default function Registration () {
                     setFields={ setCredentials }
                     handleSubmit={ handleSubmit }/>
             </div>
-            <InputWithIcon
-                type="text"
-                name="username"
-                placeholder="Username"
-                value={ credentials.username }
-                fields={ credentials }
-                setFields={ setCredentials }
-                icon="person"
-            />
         </main>
         
     )
