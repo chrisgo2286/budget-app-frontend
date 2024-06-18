@@ -4,16 +4,6 @@ main {
 }
 
 .registration {
-    /* display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    grid-template-rows: repeat(6, 1fr);
-    grid-template-areas:
-        ". header ."
-        "validation validation validation"
-        "username-label username username"
-        "password1-label password1 password1"
-        "password2-label password2 password2"
-        "register-btn register-btn register-btn"; */
     display: flex;
     flex-direction: column;
     justify-content: space-between;

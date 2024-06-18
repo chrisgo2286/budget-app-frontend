@@ -1,5 +1,4 @@
 import React from "react";
-import Input from "../miscComponents/input/input";
 import InputWithIcon from "../miscComponents/inputWithIcon/inputWithIcon";
 
 export default function NewUserFields ({ fields, setFields, handleSubmit }) {
@@ -13,7 +12,8 @@ export default function NewUserFields ({ fields, setFields, handleSubmit }) {
                 value={ fields.username }
                 fields={ fields }
                 setFields={ setFields }
-                icon="person" />
+                icon="person"
+                data-cy="registration-username" />
             <InputWithIcon
                 className='registration-password1'
                 type='password'
@@ -22,7 +22,8 @@ export default function NewUserFields ({ fields, setFields, handleSubmit }) {
                 value={ fields.password1 }
                 fields={ fields }
                 setFields={ setFields } 
-                icon="vpn_key"/>
+                icon="vpn_key"
+                data-cy="registration-password1" />
             <InputWithIcon
                 className='registration-password2'
                 type='password'
@@ -31,7 +32,8 @@ export default function NewUserFields ({ fields, setFields, handleSubmit }) {
                 value={ fields.password2 }
                 fields={ fields }
                 setFields={ setFields } 
-                icon="vpn_key"/>
+                icon="vpn_key"
+                data-cy="registration-password2" />
             <button 
                 className='registration-btn' 
                 onClick={ handleSubmit }

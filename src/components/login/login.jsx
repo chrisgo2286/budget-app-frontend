@@ -40,12 +40,16 @@ export default function Login () {
     }
 
     return (
-        <div className="login" data-cy='login'>
+        <main>
+            <div className="login" data-cy='login'>
+            <div className="login-header">Login</div>
             <Validation errors={ errors } />
             <LoginFields 
                 fields={ credentials } 
                 setFields={ setCredentials } 
                 handleSubmit={ handleSubmit }/>
-        </div>
+            </div>
+        </main>
+        
     )
 }
