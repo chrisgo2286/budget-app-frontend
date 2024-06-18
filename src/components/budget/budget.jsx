@@ -58,8 +58,6 @@ export default function Budget () {
                         setErrors={ setErrors } />
                 </div>
 
-                
-                    
                 <div className="budget-header">Budget</div>
                 <BudgetSection
                     section_type='Income'

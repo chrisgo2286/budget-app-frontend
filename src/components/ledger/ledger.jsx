@@ -18,6 +18,7 @@ export default function Ledger () {
         category: '',
         type: '',
     })
+    const [ filtersVisible, setFiltersVisible ] = useState(false);
     const [ errors, setErrors ] = useState([]);
 
     useEffect(() => {
@@ -27,26 +28,42 @@ export default function Ledger () {
     }, [UpdateRequired])
 
     return (
-        <main className='ledger'>
-            <Validation errors={ errors } />
-            <LedgerFilter
-                categories={ categories }
-                filters={ filters }
-                setFilters={ setFilters }
-                setUpdateRequired={ setUpdateRequired } />
-            <NewLedgerItem 
-                categories={ categories }
-                setUpdateRequired={ setUpdateRequired }
-                setErrors={ setErrors }/>
-            <LedgerHeader />
-            <section className="ledger-items">
-                { ledger.map((item) => (
-                    <LedgerItem 
-                        key={ item.id } 
-                        item={ item }
+        <main className='ledger-page'>
+            <div className="ledger">
+                <Validation errors={ errors } />
+                <div className="expand-icon">
+                    <i 
+                        className="material-icons"
+                        onClick={() => setFiltersVisible(!filtersVisible)}>
+                        { filtersVisible ? "expand_less" : "expand_more" }
+                    </i>
+                </div>
+
+                <div className={ (!filtersVisible) ? "filter-container collapsed":"filter-container" }>
+                    <div className="filters-header">Filters</div>
+                    <LedgerFilter
+                        categories={ categories }
+                        filters={ filters }
+                        setFilters={ setFilters }
                         setUpdateRequired={ setUpdateRequired } />
-                ))}
-            </section>
+                    <div className="new-ledger-header">New Item</div>
+                    <NewLedgerItem 
+                        categories={ categories }
+                        setUpdateRequired={ setUpdateRequired }
+                        setErrors={ setErrors }/>
+                </div>
+
+                <div className="ledger-title">Ledger</div>
+                <LedgerHeader />
+                <section className="ledger-items">
+                    { ledger.map((item) => (
+                        <LedgerItem 
+                            key={ item.id } 
+                            item={ item }
+                            setUpdateRequired={ setUpdateRequired } />
+                    ))}
+                </section>
+            </div>
         </main>
     )
 }
