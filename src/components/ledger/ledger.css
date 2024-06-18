@@ -61,16 +61,20 @@
 .ledger-filter-btn,
 .ledger-clear-btn,
 .add-btn {
-    color: white;
+    color: var(--siteFontColor);
     background-color: var(--thirdColor);
     border-radius: 5px;
-    max-width: 50px;
+    width: 80px;
+    height: 20px;
+    box-shadow: 5px 5px rgb(0 0 0 / .2);
+    
 }
 
 .ledger-filter-btn:hover,
 .ledger-clear-btn:hover,
 .add-btn:hover {
-    background-color: var(--fourthColor);
+    background-color: var(--secondColor);
+    cursor: pointer;
 }
 
 

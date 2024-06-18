@@ -6,10 +6,10 @@ import './home.css';
 export default function Home () {
 
     return (
-        <div className="home">
+        <main className="home">
             <Hero />
             <Services />
             <Footer />
-        </div>  
+        </main>  
     )
 }

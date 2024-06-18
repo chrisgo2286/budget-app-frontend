@@ -27,39 +27,44 @@ export default function Budget () {
     }, [updateRequired, filters])
 
     return (
-        <main className='budget'>
-            <Validation errors={ errors } />
-            <h1>Filters</h1>
-            <BudgetFilter
-                filters={ filters }
-                setFilters={ setFilters } 
-                setUpdateRequired={ setUpdateRequired }
-                setErrors={ setErrors }/>
-            <h1>New Category</h1>
-            <NewCategory
-                categories={ categories }
-                setErrors={ setErrors }
-                setUpdateRequired={ setUpdateRequired } />
-            <h1>New Budget Item</h1>
-            <NewBudgetItem 
-                budget={ budget }
-                categories={ categories }
-                setUpdateRequired={ setUpdateRequired }
-                setErrors={ setErrors } />
-
-            <h1>Budget</h1>
-            <BudgetSection
-                section_type='Income'
-                budget={ budget }
-                categories={ categories }
-                setUpdateRequired={ setUpdateRequired }
-                setErrors={ setErrors } />
-            <BudgetSection
-                section_type='Expense'
-                budget={ budget }
-                categories={ categories }
-                setUpdateRequired={ setUpdateRequired }
-                setErrors={ setErrors }/>
+        <main className="budget-page">
+            <div className='budget'>
+                <Validation errors={ errors } />
+                
+                <div className="container-collapse">
+                    <div className="filters-header">Filters</div>
+                    <BudgetFilter
+                        filters={ filters }
+                        setFilters={ setFilters } 
+                        setUpdateRequired={ setUpdateRequired }
+                        setErrors={ setErrors }/>
+                    <div className="new-category-header">New Category</div>
+                    <NewCategory
+                        categories={ categories }
+                        setErrors={ setErrors }
+                        setUpdateRequired={ setUpdateRequired } />
+                    <div className="new-budget-item-header">New Budget Item</div>
+                    <NewBudgetItem 
+                        budget={ budget }
+                        categories={ categories }
+                        setUpdateRequired={ setUpdateRequired }
+                        setErrors={ setErrors } />
+                </div>
+                    
+                <div className="budget-header">Budget</div>
+                <BudgetSection
+                    section_type='Income'
+                    budget={ budget }
+                    categories={ categories }
+                    setUpdateRequired={ setUpdateRequired }
+                    setErrors={ setErrors } />
+                <BudgetSection
+                    section_type='Expense'
+                    budget={ budget }
+                    categories={ categories }
+                    setUpdateRequired={ setUpdateRequired }
+                    setErrors={ setErrors }/>
+            </div>
         </main>
     )
 }

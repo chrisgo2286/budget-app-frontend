@@ -1,22 +1,28 @@
+.budget-page {
+    background-color: var(--siteBGColor);
+    min-height: 1000px;
+}
+
 .budget {
     display: flex;
     flex-direction: column;
     max-width: 800px;
-    margin: 10px auto;
+    margin: 0px auto;
     padding: 10px;
     border: 1px solid var(--siteBorderColor);
     border-radius: 10px;
+    background-color: white;
+    box-shadow: 5px 5px rgb(0 0 0 / .2);
 }
 
 .new-budget-item,
 .budget-filter {
     display: grid;
     grid-template-columns: 3fr 3fr 3fr 3fr 1fr;
-    border: 1px solid var(--siteBorderColor);
-    height: 20px;
+    height: 30px;
     border-radius: 5px;
     padding-left: 10px;
-    margin: 35px 0px 20px 0px;
+    margin: 20px 0px 20px 0px;
 }
 
 .new-budget-item > *,
@@ -48,6 +54,15 @@
     background-color: var(--thirdColor);
     border-radius: 5px;
     max-width: 50px;
+}
+
+.budget-header {
+    font-size: 18px;
+    font-weight: bold;
+    text-align: center;
+    margin: 20px 0px;
+    padding-top: 20px;
+    border-top: 1px solid var(--siteBorderColor);
 }
 
 .income,
