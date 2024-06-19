@@ -1,0 +1,26 @@
+.reports-page {
+    background-color: var(--siteBGColor);
+    min-height: 1000px;
+}
+
+.reports {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    gap: 20px;
+    max-width: 800px;
+    margin: 0px auto;
+    padding: 10px;
+    border: 1px solid var(--siteBorderColor);
+    border-radius: 10px;
+    background-color: white;
+    box-shadow: 5px 5px rgb(0 0 0 / .2);
+}
+
+.reports > * {
+    width: 45%;
+    border: 1px solid var(--siteBorderColor);
+    padding: 10px;
+    border-radius: 10px;
+}
+

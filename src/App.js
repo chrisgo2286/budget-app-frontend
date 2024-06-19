@@ -4,6 +4,7 @@ import Home from './components/home/home';
 import Navbar from './components/navbar/navbar';
 import Budget from './components/budget/budget';
 import Ledger from './components/ledger/ledger';
+import Reports from './components/reports/reports';
 import Registration from './components/registration/registration';
 import Login from './components/login/login';
 import { UserContext } from './misc/context';
@@ -34,6 +35,7 @@ export default function App () {
                     <Route path='/' element={ <Home /> } />
                     <Route path='/budget' element={ <Budget /> } />
                     <Route path='/ledger' element={ <Ledger /> } />
+                    <Route path='/reports' element={ <Reports /> } />
                     <Route path='/registration' element={ <Registration /> } />
                     <Route path='/login' element={ <Login /> } />
                 </Routes>
