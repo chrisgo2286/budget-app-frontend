@@ -91,3 +91,8 @@ export async function logoutUser () {
     const result = await axios.post(url + 'logout/')
     return result
 }
+
+export async function getReports () {
+    const result = await axios.get(url + 'reports/', headers)
+    return result.data;
+}

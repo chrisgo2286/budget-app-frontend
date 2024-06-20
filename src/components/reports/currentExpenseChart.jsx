@@ -1,12 +1,12 @@
-import { Pie } from "react-chartjs-2";
+import { Doughnut } from "react-chartjs-2";
 
-export default function PieChart ({ budget }) {
+export default function CurrentExpenseChart ({ budget }) {
 
     const data = {
         labels: validCategories().map((item) => item.category),
         datasets: [
             {
-                label: "Monthly Expenditure",
+                label: "Expense",
                 data: validCategories().map((item) => item.actual_amount),
                 backgroundColor: ["blue", "red", "orange"],
                 borderColor: "black",
@@ -20,14 +20,14 @@ export default function PieChart ({ budget }) {
     }
 
     return (
-        <div className="pie-chart">
-            <Pie
+        <div className="doughnut-chart">
+            <Doughnut
                 data={ data }
                 options={{
                     plugins: {
                         title: {
                             display: true,
-                            text: "Monthly Expenditure"
+                            text: "Current Monthly Expense"
                         }
                     }
                 }} />
