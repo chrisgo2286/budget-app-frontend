@@ -34,6 +34,7 @@ export default function Budget () {
                 <div className="expand-icon">
                     <i 
                         className="material-icons"
+                        data-cy="expand-icon"
                         onClick={() => setFiltersVisible(!filtersVisible)}>
                         { filtersVisible ? "expand_less" : "expand_more" }
                     </i>
