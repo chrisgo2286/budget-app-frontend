@@ -3,7 +3,7 @@ import { createLedgerItem } from "../../misc/apiCalls";
 import Input from "../miscComponents/input/input";
 import Select from "../miscComponents/select/select";
 import { validateNewLedgerItem } from "../../misc/validation/validateNewLedgerItem";
-import { findCategoryID, compileCategoryNames, refreshPage } from "../../misc/miscFunctions";
+import { findCategoryID, compileCategoryNames } from "../../misc/miscFunctions";
 
 export default function NewLedgerItem ({ categories, setUpdateRequired, setErrors }) {
     const [ fields, setFields ] = useState({
@@ -70,7 +70,8 @@ export default function NewLedgerItem ({ categories, setUpdateRequired, setError
                 setFields={ setFields } 
                 placeholder='Amount' />
             <button 
-                className='add-btn'
+                className="add-btn"
+                data-cy="add-btn"
                 onClick={ handleSubmit }>Add</button>
         </section>
     )

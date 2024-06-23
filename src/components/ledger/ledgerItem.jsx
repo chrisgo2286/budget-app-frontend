@@ -11,10 +11,10 @@ export default function LedgerItem ({ item, setUpdateRequired }) {
 
     return (
         <div className='ledger-item'>
-            <div>{ date }</div>
-            <div>{ category__name }</div>
-            <div>{ category__type }</div>
-            <div>{ amount }</div>
+            <div data-cy="ledger-item-date">{ date }</div>
+            <div data-cy="ledger-item-category">{ category__name }</div>
+            <div data-cy="ledger-item-type">{ category__type }</div>
+            <div data-cy="ledger-item-amount">{ amount }</div>
             <div 
                 className='ledger-item-delete'
                 onClick={ handleDelete }>x</div>

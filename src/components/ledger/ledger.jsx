@@ -34,19 +34,20 @@ export default function Ledger () {
                 <div className="expand-icon">
                     <i 
                         className="material-icons"
+                        data-cy="expand-icon"
                         onClick={() => setFiltersVisible(!filtersVisible)}>
                         { filtersVisible ? "expand_less" : "expand_more" }
                     </i>
                 </div>
 
                 <div className={ (!filtersVisible) ? "filter-container collapsed":"filter-container" }>
-                    <div className="filters-header">Filters</div>
+                    <div className="filters-header" data-cy="filters-header">Filters</div>
                     <LedgerFilter
                         categories={ categories }
                         filters={ filters }
                         setFilters={ setFilters }
                         setUpdateRequired={ setUpdateRequired } />
-                    <div className="new-ledger-header">New Item</div>
+                    <div className="new-ledger-header" data-cy="new-ledger-header">New Item</div>
                     <NewLedgerItem 
                         categories={ categories }
                         setUpdateRequired={ setUpdateRequired }
@@ -55,7 +56,7 @@ export default function Ledger () {
 
                 <div className="ledger-title">Ledger</div>
                 <LedgerHeader />
-                <section className="ledger-items">
+                <section className="ledger-items" data-cy="ledger-items">
                     { ledger.map((item) => (
                         <LedgerItem 
                             key={ item.id } 

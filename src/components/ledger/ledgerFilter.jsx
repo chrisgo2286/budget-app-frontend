@@ -76,12 +76,14 @@ export default function LedgerFilter ({ categories, filters, setFilters, setUpda
                 setFields={ setFilters } />
             <button 
                 className='ledger-filter-btn'
-                onClick={ handleSubmit }>
+                onClick={ handleSubmit }
+                data-cy="ledger-filter-btn">
                 Filter
             </button>
             <button
                 className='ledger-clear-btn'
-                onClick={ handleClear }>
+                onClick={ handleClear }
+                data-cy="ledger-clear-btn">
                 Clear
             </button>
         </section>

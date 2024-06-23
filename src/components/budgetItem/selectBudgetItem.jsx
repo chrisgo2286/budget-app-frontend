@@ -15,6 +15,7 @@ export default function SelectBudgetItem ({ budgetItem, categories, setUpdateReq
             }
             else if(options.includes(value)) {
                 createNewBudgetItem(value);
+                deleteSelectedBudgetItem();
             }
             setUpdateRequired(true);
         }
