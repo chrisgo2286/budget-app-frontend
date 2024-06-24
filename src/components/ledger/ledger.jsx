@@ -54,7 +54,7 @@ export default function Ledger () {
                         setErrors={ setErrors }/>
                 </div>
 
-                <div className="ledger-title">Ledger</div>
+                <div className="ledger-title" data-cy="ledger-title">Ledger</div>
                 <LedgerHeader />
                 <section className="ledger-items" data-cy="ledger-items">
                     { ledger.map((item) => (
