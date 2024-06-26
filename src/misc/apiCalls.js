@@ -1,7 +1,7 @@
 import axios from 'axios';
 import { findCategoryID } from './miscFunctions';
 
-const url = 'http://127.0.0.1:8000/api/'
+const url = 'https://budgetapp-1jmx.onrender.com/api/'
 const token = localStorage.getItem('token')
 const headers = {
     headers: {
