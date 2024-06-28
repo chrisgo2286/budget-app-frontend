@@ -32,7 +32,7 @@ export default function App () {
             <Router>
                 <Navbar />
                 <Routes>
-                    <Route path='/home' element={ <Home /> } />
+                    <Route path='/budget-app-frontend' element={ <Home /> } />
                     <Route path='/budget' element={ <Budget /> } />
                     <Route path='/ledger' element={ <Ledger /> } />
                     <Route path='/reports' element={ <Reports /> } />

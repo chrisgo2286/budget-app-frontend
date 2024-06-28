@@ -2,7 +2,7 @@
   "name": "frontend",
   "version": "0.1.0",
   "private": true,
-  "homepage": "https://chrisgo2286.github.io/budget-app-frontend/home",
+  "homepage": "https://chrisgo2286.github.io/budget-app-frontend",
   "dependencies": {
     "@testing-library/jest-dom": "^5.17.0",
     "@testing-library/react": "^13.4.0",
