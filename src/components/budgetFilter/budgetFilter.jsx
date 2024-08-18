@@ -1,7 +1,7 @@
 import React from "react";
 import Select from "../miscComponents/select/select";
 import InputBudgetFilter from "./inputBudgetFilter";
-import { month_options } from "../../misc/miscFunctions";
+import { MONTH_OPTIONS } from "../../misc/miscFunctions";
 
 export default function BudgetFilter ({ 
     filters, 
@@ -10,8 +10,8 @@ export default function BudgetFilter ({
 }) {
 
     function createInitialMonth () {
-        const isCorrectFormat = month_options.includes(filters.month)
-        const formattedMonth =  month_options[filters.month -1]
+        const isCorrectFormat = MONTH_OPTIONS.includes(filters.month)
+        const formattedMonth =  MONTH_OPTIONS[filters.month -1]
         return (isCorrectFormat) ? filters.month: formattedMonth;
     }
 
@@ -21,7 +21,7 @@ export default function BudgetFilter ({
                 className='budget-filter-month' 
                 name='month'
                 initial={ createInitialMonth() }
-                options={ month_options }
+                options={ MONTH_OPTIONS }
                 fields={ filters }
                 setFields={ setFilters }/>
             <InputBudgetFilter 

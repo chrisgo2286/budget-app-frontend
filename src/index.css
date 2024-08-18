@@ -1,3 +1,7 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
 :root {
   --siteBorderColor: rgba(0, 0, 0, 0.1);
   --siteFieldBorderColor:  rgba(0, 0, 0, 0.8);

@@ -1,3 +1,8 @@
+export const MONTH_OPTIONS = [
+    'January', 'February', 'March', 'April', 'May', 'June', 'July', 
+    'August', 'September', 'October', 'November', 'December'
+]
+
 export function findCategoryID (categoryName, categories) {
     const category = categories.find((category) => category.name == categoryName)
     return category?.id;
@@ -27,11 +32,6 @@ export function refreshPage () {
     window.location.reload()
 }
 
-export const month_options = [
-    'January', 'February', 'March', 'April', 'May', 'June', 'July', 
-    'August', 'September', 'October', 'November', 'December'
-]
-
 export function getCurrentMonth () {
     const currentDate = new Date();
     return currentDate.getMonth() + 1;
@@ -43,13 +43,16 @@ export function getCurentYear () {
 }
 
 export function cleanFilters (filters) {
-    if(month_options.includes(filters.month)) {
+    if(MONTH_OPTIONS.includes(filters.month)) {
         return { ...filters, 'month': convertMonthToDigit(filters.month)};
     } else {
         return filters;
     }
 }
 export function convertMonthToDigit (month) {
-    return month_options.indexOf(month) + 1;
+    return MONTH_OPTIONS.indexOf(month) + 1;
 }
 
+export function monthNumToName (monthNum) {
+    return MONTH_OPTIONS[monthNum - 1];
+}
