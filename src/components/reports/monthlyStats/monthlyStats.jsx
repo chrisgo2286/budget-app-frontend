@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import MonthlyStatsHeader from "./monthlyStatsHeader";
 import MonthlyStatsBody from "./monthlyStatsBody";
 import { monthNumToName } from "../../../misc/miscFunctions";
+import { getMonthlyStats } from "../../../misc/apiCalls";
 
 export default function MonthlyStats () {
     const curDate = new Date()
@@ -12,7 +13,7 @@ export default function MonthlyStats () {
     })
 
     useEffect(() => {
-        setData(dummyData)
+        getMonthlyStats(period).then((data) => setData(data))
     }, [period])
 
     return (

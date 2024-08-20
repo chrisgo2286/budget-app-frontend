@@ -92,7 +92,28 @@ export async function logoutUser () {
     return result
 }
 
-export async function getReports () {
-    const result = await axios.get(url + 'reports/', headers)
+export async function getMonthlyStats (period) {
+    const newUrl = url + 'reports/monthly_stats/?month=' + period.month + '&year=' + period.year;
+    const result = await axios.get(newUrl, headers)
+    return result.data;
+}
+
+export async function getYearlyStats () {
+    const result = await axios.get(url + 'reports/yearly_stats/', headers)
+    return result.data;
+}
+
+export async function getCurrentExpenseChart () {
+    const result = await axios.get(url + 'reports/current_expense_chart/', headers)
+    return result.data;
+}
+
+export async function getMonthlyExpenseChart () {
+    const result = await axios.get(url + 'reports/monthly_expense_chart/', headers)
+    return result.data;
+}
+
+export async function getMonthlySavingsChart () {
+    const result = await axios.get(url + 'reports/monthly_savings_chart/', headers)
     return result.data;
 }
