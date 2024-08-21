@@ -56,3 +56,19 @@ export function convertMonthToDigit (month) {
 export function monthNumToName (monthNum) {
     return MONTH_OPTIONS[monthNum - 1];
 }
+
+export function getPreviousPeriod (period) {
+    if (period.month === 1) {
+        return {month: 12, year: period.year}
+    } else {
+        return {month: period.month - 1, year: period.year}
+    }
+}
+
+export function getNextPeriod (period) {
+    if (period.month === 12) {
+        return {month: 1, year: period.year}
+    } else {
+        return {month: period.month + 1, year: period.year}
+    }
+}

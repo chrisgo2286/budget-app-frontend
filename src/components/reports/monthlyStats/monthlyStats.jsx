@@ -19,7 +19,7 @@ export default function MonthlyStats () {
     return (
         <div className="report">
             <MonthlyStatsHeader 
-                monthName={ monthNumToName(period.month) }
+                period={ period }
                 setPeriod={ setPeriod } />
             <MonthlyStatsBody data={ data }/>
         </div>
