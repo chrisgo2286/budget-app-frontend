@@ -98,18 +98,21 @@ export async function getMonthlyStats (period) {
     return result.data;
 }
 
-export async function getYearlyStats () {
-    const result = await axios.get(url + 'reports/yearly_stats/', headers)
+export async function getYearlyStats (year) {
+    const newUrl = url + 'reports/yearly_stats/?year=' + year
+    const result = await axios.get(newUrl, headers)
     return result.data;
 }
 
-export async function getCurrentExpenseChart () {
-    const result = await axios.get(url + 'reports/current_expense_chart/', headers)
+export async function getCurrentExpenseChart (period) {
+    const newUrl = url + 'reports/current_expense_chart/?month=' + period.month + '&year=' + period.year;
+    const result = await axios.get(newUrl, headers)
     return result.data;
 }
 
-export async function getMonthlyExpenseChart () {
-    const result = await axios.get(url + 'reports/monthly_expense_chart/', headers)
+export async function getMonthlyExpenseChart (period) {
+    const newUrl = url + 'reports/monthly_expense_chart/?month=' + period.month + '&year=' + period.year;
+    const result = await axios.get(newUrl, headers)
     return result.data;
 }
 

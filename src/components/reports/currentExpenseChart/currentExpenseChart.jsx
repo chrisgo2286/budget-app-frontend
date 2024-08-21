@@ -2,6 +2,7 @@ import { useState, useEffect } from "react";
 import CurrentExpenseChartBody from "./currentExpenseChartBody";
 import CurrentExpenseChartHeader from "./currentExpenseChartHeader";
 import { monthNumToName } from "../../../misc/miscFunctions";
+import { getCurrentExpenseChart } from "../../../misc/apiCalls";
 
 export default function CurrentExpenseChart () {
     const curDate = new Date()
@@ -12,7 +13,7 @@ export default function CurrentExpenseChart () {
     })
 
     useEffect(() => {
-        setData(dummyData)
+        getCurrentExpenseChart(period).then((data) => setData(data))
     }, [period])
     
     return (

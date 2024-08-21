@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import YearlyStatsBody from "./yearlyStatsBody";
 import YearlyStatsHeader from "./yearlyStatsHeader";
+import { getYearlyStats } from "../../../misc/apiCalls";
 
 export default function YearlyStats () {
     const curDate = new Date()
@@ -8,7 +9,7 @@ export default function YearlyStats () {
     const [ year, setYear ] = useState(curDate.getFullYear())
 
     useEffect(() => {
-        setData(dummyData)
+        getYearlyStats(year).then((data) => setData(data))
     }, [year])
 
     return (
