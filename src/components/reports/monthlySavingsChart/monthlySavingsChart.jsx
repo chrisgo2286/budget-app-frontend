@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import MonthlySavingsChartHeader from "./monthlySavingsChartHeader";
 import MonthlySavingsChartBody from "./monthlySavingsChartBody";
+import { getMonthlySavingsChart } from "../../../misc/apiCalls";
 
 export default function MonthlySavingsChart () {
     const curDate = new Date()
@@ -11,7 +12,7 @@ export default function MonthlySavingsChart () {
     })
 
     useEffect(() => {
-        setData(dummyData)
+        getMonthlySavingsChart(period).then((data) => setData(data))
     }, [period])
 
     return (

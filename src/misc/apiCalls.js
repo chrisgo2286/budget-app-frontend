@@ -116,7 +116,8 @@ export async function getMonthlyExpenseChart (period) {
     return result.data;
 }
 
-export async function getMonthlySavingsChart () {
-    const result = await axios.get(url + 'reports/monthly_savings_chart/', headers)
+export async function getMonthlySavingsChart (period) {
+    const newUrl = url + 'reports/monthly_savings_chart/?month=' + period.month + '&year=' + period.year;
+    const result = await axios.get(newUrl, headers)
     return result.data;
 }
