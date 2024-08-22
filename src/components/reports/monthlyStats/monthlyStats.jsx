@@ -1,26 +1,26 @@
 import { useEffect, useState } from "react";
 import MonthlyStatsHeader from "./monthlyStatsHeader";
 import MonthlyStatsBody from "./monthlyStatsBody";
-import { monthNumToName } from "../../../misc/miscFunctions";
+import { getNewPeriod, monthNumToName, getCurrentPeriod } from "../../../misc/miscFunctions";
 import { getMonthlyStats } from "../../../misc/apiCalls";
 
 export default function MonthlyStats () {
-    const curDate = new Date()
     const [ data, setData ] = useState()
-    const [ period, setPeriod ] = useState({
-        month: curDate.getMonth() + 1,
-        year: curDate.getFullYear(),
-    })
+    const [ period, setPeriod ] = useState(getCurrentPeriod())
 
     useEffect(() => {
         getMonthlyStats(period).then((data) => setData(data))
     }, [period])
 
+    function handlePeriodChange (direction) {
+        setPeriod(getNewPeriod(period, direction))
+    }
+    
     return (
         <div className="report">
             <MonthlyStatsHeader 
-                period={ period }
-                setPeriod={ setPeriod } />
+                monthName={ monthNumToName(period.month) }
+                handlePeriodChange={ handlePeriodChange } />
             <MonthlyStatsBody data={ data }/>
         </div>
     )

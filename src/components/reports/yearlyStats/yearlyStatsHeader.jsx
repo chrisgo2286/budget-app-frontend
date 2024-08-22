@@ -1,14 +1,11 @@
-export default function YearlyStatsHeader ({ year, setYear }) {
-    
+import { PrevArrow, NextArrow, ReportHeader } from "../miscReportComponents"
+
+export default function YearlyStatsHeader ({ year, handleYearChange }) {
     return (
         <div className="my-4 flex justify-between">
-            <span 
-                className="hover:cursor-pointer material-icons"
-                onClick={ () => setYear(year - 1)}>navigate_before</span>
-            <span className="text-3xl font-bold">{ year } Stats</span>
-            <span 
-                className="hover:cursor-pointer material-icons"
-                onClick={ () => setYear(year + 1)}>navigate_next</span>
+            <PrevArrow handleClick={ () => handleYearChange("prev")} />    
+            <ReportHeader label={ year } Stats />
+            <NextArrow handleClick={ () => handleYearChange("next")} />
         </div>
     )
 }

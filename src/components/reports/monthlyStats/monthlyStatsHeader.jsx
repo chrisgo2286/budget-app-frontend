@@ -1,28 +1,11 @@
-import { getNextPeriod, getPreviousPeriod, monthNumToName } from "../../../misc/miscFunctions"
+import { PrevArrow, NextArrow, ReportHeader } from "../miscReportComponents"
 
-export default function MonthlyStatsHeader ({ period, setPeriod }) {
-
-    function handleClickPrevious () {
-        setPeriod(getPreviousPeriod(period))
-    }
-
-    function handleClickNext () {
-        setPeriod(getNextPeriod(period))
-    }
-
+export default function MonthlyStatsHeader ({ monthName, handlePeriodChange }) {
     return (
         <div className="my-4 flex justify-between">
-            <span 
-                className="hover:cursor-pointer material-icons"
-                onClick={ () => setPeriod(getPreviousPeriod(period)) }>
-                navigate_before
-            </span>
-            <span className="text-3xl font-bold">{ monthNumToName(period.month) } Stats</span>
-            <span 
-                className="hover:cursor-pointer material-icons"
-                onClick={ handleClickNext }>
-                navigate_next
-            </span>
+            <PrevArrow handleClick={ () => handlePeriodChange("prev")} />
+            <ReportHeader label={ `${monthName} Stats`} />
+            <NextArrow handleClick={ () => handlePeriodChange("next")}/>
         </div>
     )
 }

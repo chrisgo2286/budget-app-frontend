@@ -1,9 +1,11 @@
-export default function MonthlySavingsChartHeader ({ setPeriod }) {
+import { PrevArrow, NextArrow, ReportHeader } from "../miscReportComponents";
+
+export default function MonthlySavingsChartHeader ({ handlePeriodChange }) {
     return (
         <div className="mt-4 flex justify-between">
-            <span className="material-icons">navigate_before</span>
-            <span className="text-xl">Monthly Savings</span>
-            <span className="material-icons">navigate_next</span>
+            <PrevArrow handleClick={ () => handlePeriodChange("prev")} />
+            <ReportHeader label="Monthly Savings" />
+            <NextArrow handleClick={ () => handlePeriodChange("next")} />
         </div>
     )
 }

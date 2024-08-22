@@ -2,22 +2,23 @@ import { useState, useEffect } from "react";
 import MonthlySavingsChartHeader from "./monthlySavingsChartHeader";
 import MonthlySavingsChartBody from "./monthlySavingsChartBody";
 import { getMonthlySavingsChart } from "../../../misc/apiCalls";
+import { getCurrentPeriod, getNewPeriod } from "../../../misc/miscFunctions";
 
 export default function MonthlySavingsChart () {
-    const curDate = new Date()
     const [ data, setData ] = useState([])
-    const [ period, setPeriod ] = useState({
-        month: curDate.getMonth() + 1,
-        year: curDate.getFullYear(),
-    })
+    const [ period, setPeriod ] = useState(getCurrentPeriod())
 
     useEffect(() => {
         getMonthlySavingsChart(period).then((data) => setData(data))
     }, [period])
 
+    function handlePeriodChange (direction) {
+        setPeriod(getNewPeriod(period, direction))
+    }
+
     return (
         <div className="report">
-            <MonthlySavingsChartHeader setPeriod={ setPeriod } />
+            <MonthlySavingsChartHeader handlePeriodChange={ handlePeriodChange } />
             <MonthlySavingsChartBody data={ data }/>
         </div>
     )

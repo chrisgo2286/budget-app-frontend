@@ -1,26 +1,26 @@
 import { useState, useEffect } from "react";
 import CurrentExpenseChartBody from "./currentExpenseChartBody";
 import CurrentExpenseChartHeader from "./currentExpenseChartHeader";
-import { monthNumToName } from "../../../misc/miscFunctions";
+import { monthNumToName, getCurrentPeriod, getNewPeriod } from "../../../misc/miscFunctions";
 import { getCurrentExpenseChart } from "../../../misc/apiCalls";
 
 export default function CurrentExpenseChart () {
-    const curDate = new Date()
     const [ data, setData ] = useState([])
-    const [ period, setPeriod ] = useState({
-        month: curDate.getMonth() + 1,
-        year: curDate.getFullYear(),
-    })
+    const [ period, setPeriod ] = useState(getCurrentPeriod())
 
     useEffect(() => {
         getCurrentExpenseChart(period).then((data) => setData(data))
     }, [period])
     
+    function handlePeriodChange (direction) {
+        setPeriod(getNewPeriod(period, direction))
+    }
+
     return (
         <div className="report">
             <CurrentExpenseChartHeader 
                 monthName={ monthNumToName(period.month)}
-                setPeriod={ setPeriod } />
+                handlePeriodChange={ handlePeriodChange } />
             <CurrentExpenseChartBody data={ data }/>
         </div>
     )

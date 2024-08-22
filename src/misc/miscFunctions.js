@@ -32,6 +32,10 @@ export function refreshPage () {
     window.location.reload()
 }
 
+export function getCurrentPeriod () {
+    return { month: getCurrentMonth(), year: getCurentYear() }
+}
+
 export function getCurrentMonth () {
     const currentDate = new Date();
     return currentDate.getMonth() + 1;
@@ -57,6 +61,13 @@ export function monthNumToName (monthNum) {
     return MONTH_OPTIONS[monthNum - 1];
 }
 
+export function getNewPeriod (period, direction) {
+    if (direction === "next") {
+        return getNextPeriod(period)
+    } else if (direction === "prev") {
+        return getPreviousPeriod(period)
+    }
+}
 export function getPreviousPeriod (period) {
     if (period.month === 1) {
         return {month: 12, year: period.year}
