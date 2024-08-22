@@ -14,7 +14,7 @@ export default function MonthlyStatsHeader ({ period, setPeriod }) {
         <div className="my-4 flex justify-between">
             <span 
                 className="hover:cursor-pointer material-icons"
-                onClick={ handleClickPrevious }>
+                onClick={ () => setPeriod(getPreviousPeriod(period)) }>
                 navigate_before
             </span>
             <span className="text-3xl font-bold">{ monthNumToName(period.month) } Stats</span>
