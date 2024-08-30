@@ -5,7 +5,7 @@ import MonthlyStats from "./monthlyStats/monthlyStats";
 import YearlyStats from "./yearlyStats/yearlyStats";
 import "./reports.css";
 
-export default function Reports () {
+export default function Reports (): JSX.Element {
 
     return (
         <main className="reports-page">

@@ -1,74 +1,79 @@
+import { BudgetFilterTypes, BudgetItemTypes } from "../components/budget/budgetTypes";
+import { FilterTypes } from "../components/ledger/ledgerTypes";
+import { NewCategoryTypes } from "../components/newCategory/newCategoryTypes";
+import { PeriodTypes } from "../components/reports/reportTypes";
+
 export const MONTH_OPTIONS = [
     'January', 'February', 'March', 'April', 'May', 'June', 'July', 
     'August', 'September', 'October', 'November', 'December'
 ]
 
-export function findCategoryID (categoryName, categories) {
+export function findCategoryID (categoryName: string, categories: NewCategoryTypes[]): string | undefined{
     const category = categories.find((category) => category.name == categoryName)
-    return category?.id;
+    return category?.id
 }
 
-export function categoryIsInCategories (categoryName, categories) {
+export function categoryIsInCategories (categoryName: string, categories: NewCategoryTypes[]): boolean {
     const array = categories.filter((category) => category.name == categoryName)
     return array.length > 0;    
 }
 
-export function compileBudgetCategoryNames (categories) {
+export function compileBudgetCategoryNames (categories: NewCategoryTypes[]): string[] {
     let options = compileCategoryNames(categories);
     options.push('Delete');
     return options;
 }
 
-export function compileCategoryNames (categories) {
+export function compileCategoryNames (categories: NewCategoryTypes[]): string[] {
     return categories.map((category) => category.name)
 }
 
-export function categoryIsInBudget (categoryName, budget) {
+export function categoryIsInBudget (categoryName: string, budget: BudgetItemTypes[]): boolean {
     const array = budget.filter((item) => item.category === categoryName);
     return array.length > 0;
 }
 
-export function refreshPage () {
+export function refreshPage (): void {
     window.location.reload()
 }
 
-export function getCurrentPeriod () {
+export function getCurrentPeriod (): PeriodTypes {
     return { month: getCurrentMonth(), year: getCurentYear() }
 }
 
-export function getCurrentMonth () {
+export function getCurrentMonth (): number {
     const currentDate = new Date();
     return currentDate.getMonth() + 1;
 }
 
-export function getCurentYear () {
+export function getCurentYear (): number {
     const currentDate = new Date();
     return currentDate.getFullYear();
 }
 
-export function cleanFilters (filters) {
-    if(MONTH_OPTIONS.includes(filters.month)) {
+export function cleanFilters (filters: BudgetFilterTypes): BudgetFilterTypes {
+    if(typeof filters.month === "string" && MONTH_OPTIONS.includes(filters.month)) {
         return { ...filters, 'month': convertMonthToDigit(filters.month)};
     } else {
         return filters;
     }
 }
-export function convertMonthToDigit (month) {
+export function convertMonthToDigit (month: string): number {
     return MONTH_OPTIONS.indexOf(month) + 1;
 }
 
-export function monthNumToName (monthNum) {
+export function monthNumToName (monthNum: number): string {
     return MONTH_OPTIONS[monthNum - 1];
 }
 
-export function getNewPeriod (period, direction) {
+export function getNewPeriod (period: PeriodTypes, direction: "next" | "prev"): PeriodTypes {
     if (direction === "next") {
         return getNextPeriod(period)
-    } else if (direction === "prev") {
+    } else {
         return getPreviousPeriod(period)
     }
 }
-export function getPreviousPeriod (period) {
+export function getPreviousPeriod (period: PeriodTypes): PeriodTypes {
     if (period.month === 1) {
         return {month: 12, year: period.year}
     } else {
@@ -76,7 +81,7 @@ export function getPreviousPeriod (period) {
     }
 }
 
-export function getNextPeriod (period) {
+export function getNextPeriod (period: PeriodTypes): PeriodTypes {
     if (period.month === 12) {
         return {month: 1, year: period.year}
     } else {

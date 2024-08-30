@@ -1,9 +1,9 @@
 import { BudgetItemTypes } from "../budget/budgetTypes"
-import { CategoriesType } from "../newCategory/newCategoryTypes"
+import { NewCategoryTypes } from "../newCategory/newCategoryTypes"
 
 export type BudgetItemProps = {
     budgetItem: BudgetItemTypes, 
-    categories: CategoriesType,
+    categories: NewCategoryTypes[],
     setUpdateRequired: React.Dispatch<React.SetStateAction<boolean>>,
     setErrors: React.Dispatch<React.SetStateAction<string[]>>
 }
@@ -16,6 +16,6 @@ export type InputBudgetItemProps = {
 
 export type SelectBudgetItemProps = {
     budgetItem: BudgetItemTypes,
-    categories: CategoriesType,
+    categories: NewCategoryTypes[],
     setUpdateRequired: React.Dispatch<React.SetStateAction<boolean>>
 }

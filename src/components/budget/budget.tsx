@@ -8,11 +8,11 @@ import { getBudgetItems, getCategories } from '../../misc/apiCalls';
 import { getCurrentMonth, getCurentYear, cleanFilters } from '../../misc/miscFunctions';
 import './budget.css';
 import { BudgetFilterTypes, BudgetItemTypes } from './budgetTypes';
-import { CategoriesType } from '../newCategory/newCategoryTypes';
+import { NewCategoryTypes } from '../newCategory/newCategoryTypes';
 
 export default function Budget (): JSX.Element {
     const [ budget, setBudget ] = useState<BudgetItemTypes[]>([]);
-    const [ categories, setCategories ] = useState<CategoriesType>([]);
+    const [ categories, setCategories ] = useState<NewCategoryTypes[]>([]);
     const [ updateRequired, setUpdateRequired ] = useState<boolean>(false);
     const [ filters, setFilters ] = useState<BudgetFilterTypes>({
         month: getCurrentMonth(),
@@ -45,7 +45,6 @@ export default function Budget (): JSX.Element {
                     <BudgetFilter
                         filters={ filters }
                         setFilters={ setFilters } 
-                        setUpdateRequired={ setUpdateRequired }
                         setErrors={ setErrors }/>
                     <div className="new-category-header">New Category</div>
                     <NewCategory

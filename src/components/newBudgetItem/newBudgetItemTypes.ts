@@ -1,5 +1,5 @@
 import { BudgetItemTypes } from "../budget/budgetTypes"
-import { CategoriesType } from "../newCategory/newCategoryTypes"
+import { CategoriesType, NewCategoryTypes } from "../newCategory/newCategoryTypes"
 
 export type NewBudgetItemTypes = {
     owner?: number,
@@ -9,7 +9,7 @@ export type NewBudgetItemTypes = {
 
 export type NewBudgetItemProps = {
     budget: BudgetItemTypes[], 
-    categories: CategoriesType,
+    categories: NewCategoryTypes[],
     setErrors: React.Dispatch<React.SetStateAction<string[]>>,
     setUpdateRequired: React.Dispatch<React.SetStateAction<boolean>>
 }

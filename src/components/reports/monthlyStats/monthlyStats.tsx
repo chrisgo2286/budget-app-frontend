@@ -3,16 +3,18 @@ import MonthlyStatsHeader from "./monthlyStatsHeader";
 import MonthlyStatsBody from "./monthlyStatsBody";
 import { getNewPeriod, monthNumToName, getCurrentPeriod } from "../../../misc/miscFunctions";
 import { getMonthlyStats } from "../../../misc/apiCalls";
+import { MonthlyStatsTypes } from "./monthStatsTypes";
+import { PeriodTypes } from "../reportTypes";
 
-export default function MonthlyStats () {
-    const [ data, setData ] = useState()
-    const [ period, setPeriod ] = useState(getCurrentPeriod())
+export default function MonthlyStats (): JSX.Element {
+    const [ data, setData ] = useState<MonthlyStatsTypes>()
+    const [ period, setPeriod ] = useState<PeriodTypes>(getCurrentPeriod())
 
     useEffect(() => {
         getMonthlyStats(period).then((data) => setData(data))
     }, [period])
 
-    function handlePeriodChange (direction) {
+    function handlePeriodChange (direction: "next" | "prev"): void {
         setPeriod(getNewPeriod(period, direction))
     }
     

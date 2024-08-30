@@ -7,12 +7,12 @@ import Validation from "../validation/validation";
 import { getLedgerItems, getCategories } from "../../misc/apiCalls";
 import './ledger.css';
 import { FilterTypes, LedgerTypes } from "./ledgerTypes";
-import { CategoriesType } from "../newCategory/newCategoryTypes";
+import { CategoriesType, NewCategoryTypes } from "../newCategory/newCategoryTypes";
 
 export default function Ledger (): JSX.Element {
 
     const [ ledger, setLedger ] = useState<LedgerTypes[]>([])
-    const [ categories, setCategories ] = useState<CategoriesType>([])
+    const [ categories, setCategories ] = useState<NewCategoryTypes[]>([])
     const [ UpdateRequired, setUpdateRequired ] = useState(false)
     const [ filters, setFilters ] = useState<FilterTypes>({
         startDate: '',

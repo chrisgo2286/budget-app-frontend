@@ -1,6 +1,9 @@
 import { PrevArrow, NextArrow, ReportHeader } from "../miscReportComponents";
+import { MonthlyExpenseChartHeaderProp } from "./monthlyExpenseChartTypes";
 
-export default function MonthlyExpenseChartHeader ({ handlePeriodChange }) {
+export default function MonthlyExpenseChartHeader ({ 
+    handlePeriodChange 
+}: MonthlyExpenseChartHeaderProp ): JSX.Element {
     return (
         <div className="mt-4 flex justify-between">
             <PrevArrow handleClick={ () => handlePeriodChange("prev")} />

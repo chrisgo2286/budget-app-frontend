@@ -3,16 +3,18 @@ import MonthlyExpenseChartBody from "./monthlyExpenseChartBody";
 import MonthlyExpenseChartHeader from "./monthlyExpenseChartHeader";
 import { getMonthlyExpenseChart } from "../../../misc/apiCalls";
 import { getCurrentPeriod, getNewPeriod } from "../../../misc/miscFunctions";
+import { MonthlyExpenseChartTypes } from "./monthlyExpenseChartTypes";
+import { PeriodTypes } from "../reportTypes";
 
-export default function MonthlyExpenseChart () {
-    const [ data, setData ] = useState([])
-    const [ period, setPeriod ] = useState(getCurrentPeriod())
+export default function MonthlyExpenseChart (): JSX.Element {
+    const [ data, setData ] = useState<MonthlyExpenseChartTypes>([])
+    const [ period, setPeriod ] = useState<PeriodTypes>(getCurrentPeriod())
 
     useEffect(() => {
         getMonthlyExpenseChart(period).then((data) => setData(data))
     }, [period])
     
-    function handlePeriodChange (direction) {
+    function handlePeriodChange (direction: "next" | "prev"): void {
         setPeriod(getNewPeriod(period, direction))
     }
 

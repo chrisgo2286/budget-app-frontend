@@ -1,6 +1,9 @@
 import { BarChart, Bar, ResponsiveContainer, XAxis, YAxis } from 'recharts';
+import { MonthlyExpenseChartTypes } from './monthlyExpenseChartTypes';
 
-export default function MonthlySavingsChartBody ({ data }) {
+export default function MonthlyExpenseChartBody ({ 
+    data 
+}: {data: MonthlyExpenseChartTypes}): JSX.Element {
     return (
         <ResponsiveContainer width="90%" height="70%">
             <BarChart data={data}>

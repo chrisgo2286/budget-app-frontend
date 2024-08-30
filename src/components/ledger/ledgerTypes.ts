@@ -1,4 +1,4 @@
-import { CategoriesType } from "../newCategory/newCategoryTypes"
+import { CategoriesType, NewCategoryTypes } from "../newCategory/newCategoryTypes"
 
 export type FilterTypes = {
     startDate: string,
@@ -18,14 +18,14 @@ export type LedgerTypes = {
 export type NewLedgerItemTypes = {
     owner?: number,
     date: string,
-    category: string,
+    category: string | undefined,
     amount: string
 }
 
 export type LedgerFilterProps = {
-    categories: CategoriesType, 
+    categories: NewCategoryTypes[], 
     filters: FilterTypes,
-    setFilters: React.Dispatch<React.SetStateAction<LedgerTypes>>,
+    setFilters: React.Dispatch<React.SetStateAction<FilterTypes>>,
     setUpdateRequired: React.Dispatch<React.SetStateAction<boolean>>
 }
 
@@ -35,7 +35,7 @@ export type LedgerItemProps = {
 }
 
 export type NewLedgerItemProps = {
-    categories: CategoriesType, 
+    categories: NewCategoryTypes[], 
     setUpdateRequired: React.Dispatch<React.SetStateAction<boolean>>,
     setErrors: React.Dispatch<React.SetStateAction<string[]>>
 }

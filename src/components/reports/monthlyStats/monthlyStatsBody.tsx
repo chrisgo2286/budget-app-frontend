@@ -1,6 +1,9 @@
 import { Stat } from "../miscReportComponents"
+import { MonthlyStatsTypes } from "./monthStatsTypes"
 
-export default function YearlyStatsBody ({ data }) {
+export default function MonthlyStatsBody ({ 
+    data 
+}: { data: MonthlyStatsTypes }): JSX.Element {
     return (
         <div className="flex flex-col items-center px-4">
             <Stat label="Spent" data={ data?.expenses } />

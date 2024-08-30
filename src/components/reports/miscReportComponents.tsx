@@ -1,4 +1,4 @@
-export function PrevArrow ({ handleClick }) {
+export function PrevArrow ({ handleClick }: {handleClick: () => void}) {
     return (
         <span 
             className="hover:cursor-pointer material-icons"
@@ -8,7 +8,7 @@ export function PrevArrow ({ handleClick }) {
     )
 }
 
-export function NextArrow ({ handleClick }) {
+export function NextArrow ({ handleClick }: {handleClick: () => void}) {
     return (
         <span 
             className="hover:cursor-pointer material-icons"
@@ -18,7 +18,10 @@ export function NextArrow ({ handleClick }) {
     )
 }
 
-export function Stat ({ label, data }) {
+export function Stat ({ 
+    label, 
+    data 
+}: {label: string, data: string}): JSX.Element {
     return (
         <div className="text-2xl my-2">
             <i className="text-xl">{ label } </i>
@@ -27,7 +30,7 @@ export function Stat ({ label, data }) {
     )
 }
 
-export function ReportHeader ({ label }) {
+export function ReportHeader ({ label }: {label: string}): JSX.Element {
     return (
         <span className="text-3xl font-bold">{ label }</span>
     )

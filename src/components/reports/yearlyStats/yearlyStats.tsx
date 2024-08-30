@@ -2,16 +2,18 @@ import { useState, useEffect } from "react";
 import YearlyStatsBody from "./yearlyStatsBody";
 import YearlyStatsHeader from "./yearlyStatsHeader";
 import { getYearlyStats } from "../../../misc/apiCalls";
+import { YearlyStatsTypes } from "./yearlyStatsTypes";
 
-export default function YearlyStats () {
+export default function YearlyStats (): JSX.Element {
     const curDate = new Date()
-    const [ data, setData ] = useState()
-    const [ year, setYear ] = useState(curDate.getFullYear())
+    const [ data, setData ] = useState<YearlyStatsTypes>()
+    const [ year, setYear ] = useState<number>(curDate.getFullYear())
 
-    function handleYearChange (direction) {
+    function handleYearChange (direction: "next" | "prev") {
         const newYear = (direction === "next") ? year + 1 : year - 1;
         setYear(newYear);
     }
+    
     useEffect(() => {
         getYearlyStats(year).then((data) => setData(data))
     }, [year])

@@ -24,7 +24,7 @@ const headers = {
 
 export async function getLedgerItems (
     filters: FilterTypes, 
-    categories: CategoriesType
+    categories: NewCategoryTypes[]
 ): Promise<LedgerTypes[]> {
     if(filters.category) {
         const categoryId = findCategoryID(filters.category, categories)
@@ -50,7 +50,7 @@ export async function deleteLedgerItem (id: string): Promise<StatusType> {
     return result.data;
 }
 
-export async function getCategories (): Promise<CategoriesType> {
+export async function getCategories (): Promise<NewCategoryTypes[]> {
     const result = await axios.get(url + 'categories/', headers);
     return result.data;
 }

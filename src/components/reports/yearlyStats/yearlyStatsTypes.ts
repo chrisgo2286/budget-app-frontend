@@ -4,3 +4,8 @@ export type YearlyStatsTypes = {
     savings: string,
     budgetPercent: string
 }
+
+export type YearlyStatsHeaderProps = {
+    year: number, 
+    handleYearChange: (direction: "next" | "prev") => void
+}

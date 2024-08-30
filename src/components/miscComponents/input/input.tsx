@@ -6,6 +6,9 @@ type InputProps = {
     name: string,
     value: string | number,
     fields: object,
+    onFocus?: () => void,
+    onBlur?: () => void,
+    placeholder?: string,
     setFields: React.Dispatch<React.SetStateAction<any>>
 }
 export default function Input ({ 
@@ -13,7 +16,10 @@ export default function Input ({
     type, 
     name, 
     value, 
-    fields, 
+    fields,
+    onFocus,
+    onBlur,
+    placeholder, 
     setFields, 
     ...other 
 }: InputProps): JSX.Element {
@@ -32,6 +38,9 @@ export default function Input ({
             id={ name }
             onChange={ handleChange }
             data-cy={ className }
+            onFocus={ onFocus }
+            onBlur={ onBlur }
+            placeholder={ placeholder }
             { ...other }>
         </input>
     )

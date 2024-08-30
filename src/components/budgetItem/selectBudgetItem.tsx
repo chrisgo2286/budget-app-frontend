@@ -33,7 +33,9 @@ export default function SelectBudgetItem ({
     async function createNewBudgetItem (value: string): Promise<void> {
         setChoice(value);
         const categoryId = findCategoryID(value, categories);
-        await createBudgetItem({ 'category': categoryId, 'amount': budgetItem.budget_amount });
+        if (categoryId) {
+            await createBudgetItem({ 'category': categoryId, 'amount': budgetItem.budget_amount });  
+        }    
     }
 
     return (
