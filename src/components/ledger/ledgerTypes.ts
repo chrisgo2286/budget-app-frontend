@@ -18,7 +18,7 @@ export type LedgerTypes = {
 export type NewLedgerItemTypes = {
     owner?: number,
     date: string,
-    category: string | undefined,
+    category: string,
     amount: string
 }
 

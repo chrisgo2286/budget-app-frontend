@@ -22,10 +22,12 @@ export default function NewLedgerItem ({
         const result = validateNewLedgerItem(fields);
         if(result === 'Valid') {
             const category_id = findCategoryID(fields.category, categories);
-            const newFields = { ...fields, 'category': category_id }
-            await createLedgerItem(newFields);
-            setUpdateRequired(true);
-            resetFields();
+            if (category_id) {
+                const newFields = { ...fields, 'category': category_id }
+                await createLedgerItem(newFields);
+                setUpdateRequired(true);
+                resetFields();
+            }
         } else {
             setErrors(result);
         }
