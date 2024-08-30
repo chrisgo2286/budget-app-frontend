@@ -49,7 +49,7 @@ export default function Registration (): JSX.Element {
                     navigate('/');
                 }
             }
-        } else {
+        } else if (typeof result !== "string") {
             setErrors(result);
         }
     }

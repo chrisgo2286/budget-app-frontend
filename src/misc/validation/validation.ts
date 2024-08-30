@@ -1,3 +1,5 @@
+import { BudgetItemTypes } from '../../components/budget/budgetTypes';
+import { NewCategoryTypes } from '../../components/newCategory/newCategoryTypes';
 import {
     isEmptyString,
     isValidYear,
@@ -11,7 +13,10 @@ import {
     isValidDate
     } from './validationHelperFuncs';
 
-export function validateYear (year) {
+export function validateYear (year: string | number): string {
+    if(typeof year === "number") {
+        year = `${year}`
+    }
     if(isEmptyString(year)) {
         return 'Please enter a year!'
     }
@@ -27,7 +32,7 @@ export function validateYear (year) {
     return 'Valid';
 }
 
-export function validateCategory (category, categories) {
+export function validateCategory (category: string, categories: NewCategoryTypes[]) {
     if(isEmptyString(category)) {
         return 'Please enter a category!';
     }
@@ -43,7 +48,7 @@ export function validateCategory (category, categories) {
     return 'Valid';
 }
 
-export function validateType (type) {
+export function validateType (type: string): string {
     if(isNotValidType(type) || isEmptyString(type)) {
         return 'Please enter a valid type!'
     };
@@ -51,7 +56,7 @@ export function validateType (type) {
     return 'Valid';
 }
 
-export function validateAmount (amount) {
+export function validateAmount (amount: string): string {
     if(isEmptyString(amount)) {
         return 'Please enter an amount!';
     } 
@@ -63,7 +68,7 @@ export function validateAmount (amount) {
     return 'Valid';
 }
 
-export function validateFilterDates (startDate, endDate) {
+export function validateFilterDates (startDate: string, endDate: string): string {
     if(startDate && endDate) {
         const startDateObj = new Date(startDate);
         const endDateObj = new Date(endDate);
@@ -74,21 +79,21 @@ export function validateFilterDates (startDate, endDate) {
     return 'Valid';
 }
 
-export function validateDate (date) {
+export function validateDate (date: string): string {
     if(isValidDate(date) === false) {
         return 'Please enter a date between 2000 and 2030!'
     }
     return 'Valid';
 }
 
-export function validateCategorySelect (category) {
+export function validateCategorySelect (category: string): string {
     if(isEmptyString(category) || isNotValidCategory(category)) {
         return 'Please choose a valid category!'
     }
     return 'Valid';
 }
 
-export function validateDuplicateBudgetItem (category, budget) {
+export function validateDuplicateBudgetItem (category: string, budget: BudgetItemTypes[]) {
     if(isDuplicateBudgetItem(category, budget)) {
         return 'This is a duplicate budget item!'
     }
@@ -96,21 +101,21 @@ export function validateDuplicateBudgetItem (category, budget) {
 }
 
 
-export function validateUsername (username) {
+export function validateUsername (username: string): string {
     if(isEmptyString(username)) {
         return 'Please enter your username!'
     }
     return 'Valid';
 }
 
-export function validatePassword (password) {
+export function validatePassword (password: string): string {
     if(isEmptyString(password)) {
         return 'Please enter your password!'
     }
     return 'Valid';
 }
 
-export function validatePasswordMatch (password1, password2) {
+export function validatePasswordMatch (password1: string, password2: string): string {
     if(password1 !== password2) {
         return 'Passwords need to match!'
     }

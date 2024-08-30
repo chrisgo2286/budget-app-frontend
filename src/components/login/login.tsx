@@ -35,7 +35,7 @@ export default function Login (): JSX.Element {
             } else {
                 setErrors(['You have entered invalid credentials!']);
             }
-        } else {
+        } else if (typeof result !== "string") {
             setErrors(result);
         }
     }

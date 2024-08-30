@@ -1,6 +1,10 @@
+import { NewCategoryTypes } from "../../components/newCategory/newCategoryTypes";
 import { validateCategory, validateType } from "./validation";
 
-export function validateNewCategory (fields, categories) {
+export function validateNewCategory (
+    fields: NewCategoryTypes, 
+    categories: NewCategoryTypes[]
+): string | string[] {
     let errors = [];
     const categoryResult = validateCategory(fields.name, categories);
     const typeResult = validateType(fields.type);

@@ -1,6 +1,7 @@
+import { NewLedgerItemTypes } from '../../components/ledger/ledgerTypes';
 import { validateAmount, validateCategorySelect, validateDate } from './validation';
 
-export function validateNewLedgerItem (fields) {
+export function validateNewLedgerItem (fields: NewLedgerItemTypes): string | string[] {
     let errors = []
     const dateResult = validateDate(fields.date);
     const categoryResult = validateCategorySelect(fields.category);

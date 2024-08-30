@@ -20,7 +20,7 @@ export default function InputBudgetItem ({
         if(result === 'Valid') {
             await patchBudgetItem(budgetItem.id, amount);
             setUpdateRequired(true);
-        } else {
+        } else if (typeof result !== "string") {
             setAmount(budgetItem.budget_amount);
             setErrors(result);
         }

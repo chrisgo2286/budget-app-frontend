@@ -1,10 +1,15 @@
+import { BudgetItemTypes } from "../../components/budget/budgetTypes";
+import { NewBudgetItemTypes } from "../../components/newBudgetItem/newBudgetItemTypes";
 import { 
     validateCategorySelect, 
     validateAmount, 
     validateDuplicateBudgetItem 
     } from "./validation";
 
-export function validateNewBudgetItem (fields, budget) {
+export function validateNewBudgetItem (
+    fields: NewBudgetItemTypes, 
+    budget: BudgetItemTypes[]
+): string | string[] {
     let errors = [];
     console.log(fields, budget)
     const categoryResult = validateCategorySelect(fields.category);

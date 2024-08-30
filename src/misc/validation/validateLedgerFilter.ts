@@ -1,6 +1,7 @@
+import { FilterTypes } from "../../components/ledger/ledgerTypes";
 import { validateCategorySelect, validateFilterDates, validateType } from "./validation";
 
-export function validateLedgerFilter (fields) {
+export function validateLedgerFilter (fields: FilterTypes): string | string[] {
     let errors = [];
     const filterDatesResult = validateFilterDates(fields.startDate, fields.endDate);
     const categoryResult = validateCategorySelect(fields.category);

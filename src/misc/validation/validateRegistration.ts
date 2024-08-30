@@ -1,6 +1,7 @@
+import { RegistrationTypes } from "../../components/registration/registrationTypes";
 import { validateUsername, validatePassword, validatePasswordMatch } from "./validation";
 
-export function validateRegistration (fields) {
+export function validateRegistration (fields: RegistrationTypes): string | string[] {
     let errors = [];
     const usernameResult = validateUsername(fields.username);
     const password1Result = validatePassword(fields.password1);

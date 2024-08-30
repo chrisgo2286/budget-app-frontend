@@ -28,7 +28,7 @@ export default function NewLedgerItem ({
                 setUpdateRequired(true);
                 resetFields();
             }
-        } else {
+        } else if (typeof result !== "string") {
             setErrors(result);
         }
     }

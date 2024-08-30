@@ -19,7 +19,7 @@ export default function NewCategory ({
         const result = validateNewCategory(fields, categories)
         if(result === 'Valid') {
             createNewCategory();
-        } else {
+        } else if (typeof result !== "string") {
             setErrors(result);
         }
     }

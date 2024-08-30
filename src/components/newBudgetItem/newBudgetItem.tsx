@@ -30,7 +30,7 @@ export default function NewBudgetItem ({
                 })
                 setUpdateRequired(true);
             }
-        } else {
+        } else if(typeof result !== "string") {
             setErrors(result);
         }
     }

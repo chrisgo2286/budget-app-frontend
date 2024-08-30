@@ -1,6 +1,7 @@
+import { LoginFieldsTypes } from "../../components/login/loginTypes";
 import { validateUsername, validatePassword } from "./validation";
 
-export function validateLogin (fields) {
+export function validateLogin (fields: LoginFieldsTypes): string | string[] {
     let errors = [];
     const usernameResult = validateUsername(fields.username);
     const passwordResult = validatePassword(fields.password);

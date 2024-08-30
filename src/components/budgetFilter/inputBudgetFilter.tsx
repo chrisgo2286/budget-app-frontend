@@ -20,7 +20,7 @@ export default function InputBudgetFilter ({
         if(result === 'Valid') {
             setErrors([]);
             setFilters(newFilters);
-        } else {
+        } else if (typeof result !== "string") {
             setYear(filters.year);
             setErrors(result);
         }
