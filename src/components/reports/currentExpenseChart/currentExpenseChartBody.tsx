@@ -7,7 +7,7 @@ export default function CurrentExpenseChartBody (
 
     const COLORS = ['#0088FE', '#00C49F', '#FFBB28', '#FF8042', '#0088FE', '#00C49F', '#FFBB28', '#FF8042']
 
-    function renderLabel ({name, amount}) {
+    function renderLabel ({name, amount}: {name: string, amount: string}) {
         return (amount) ? name : null;
     }
 

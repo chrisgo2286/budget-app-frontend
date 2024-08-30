@@ -19,7 +19,7 @@ export default function Registration (): JSX.Element {
         password1: '',
         password2: '',
     })
-    const [errors, setErrors] = useState<string[] | string>([]);
+    const [errors, setErrors] = useState<string[]>([]);
 
     async function handleSubmit (): Promise<void> {
 

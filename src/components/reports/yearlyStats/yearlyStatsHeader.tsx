@@ -8,7 +8,7 @@ export default function YearlyStatsHeader ({
     return (
         <div className="my-4 flex justify-between">
             <PrevArrow handleClick={ () => handleYearChange("prev")} />    
-            <ReportHeader label={ year } Stats />
+            <ReportHeader label={ `${year} Stats`} />
             <NextArrow handleClick={ () => handleYearChange("next")} />
         </div>
     )

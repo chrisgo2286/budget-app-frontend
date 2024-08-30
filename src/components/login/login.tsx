@@ -17,7 +17,7 @@ export default function Login (): JSX.Element {
         username: '',
         password: '',
     })
-    const [ errors, setErrors ] = useState<string[] | string>([])
+    const [ errors, setErrors ] = useState<string[]>([])
 
     async function handleSubmit (): Promise<void> {
         const result = validateLogin(credentials);
@@ -25,8 +25,8 @@ export default function Login (): JSX.Element {
         if(result === 'Valid') {
             const response = await loginUser(credentials);
 
-            if(response.status && response.status === 200) {
-                const token = response.data.key;
+            if(typeof response !== "string" && response.status === 200) {
+                const token = response.token;
                 updateLocalStorage(token, credentials.username);
                 updateUser(token, credentials.username, user, setUser);
                 navigate('/');

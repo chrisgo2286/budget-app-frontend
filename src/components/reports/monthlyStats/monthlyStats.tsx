@@ -7,7 +7,12 @@ import { MonthlyStatsTypes } from "./monthStatsTypes";
 import { PeriodTypes } from "../reportTypes";
 
 export default function MonthlyStats (): JSX.Element {
-    const [ data, setData ] = useState<MonthlyStatsTypes>()
+    const [ data, setData ] = useState<MonthlyStatsTypes>({
+        expenses: "",
+        income: "",
+        savings: "",
+        budgetPercent: ""
+    })
     const [ period, setPeriod ] = useState<PeriodTypes>(getCurrentPeriod())
 
     useEffect(() => {

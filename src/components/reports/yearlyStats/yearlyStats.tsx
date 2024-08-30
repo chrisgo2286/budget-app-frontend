@@ -6,7 +6,12 @@ import { YearlyStatsTypes } from "./yearlyStatsTypes";
 
 export default function YearlyStats (): JSX.Element {
     const curDate = new Date()
-    const [ data, setData ] = useState<YearlyStatsTypes>()
+    const [ data, setData ] = useState<YearlyStatsTypes>({
+        expenses: "",
+        income: "",
+        savings: "",
+        budgetPercent: ""
+    })
     const [ year, setYear ] = useState<number>(curDate.getFullYear())
 
     function handleYearChange (direction: "next" | "prev") {

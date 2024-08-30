@@ -28,7 +28,9 @@ export async function getLedgerItems (
 ): Promise<LedgerTypes[]> {
     if(filters.category) {
         const categoryId = findCategoryID(filters.category, categories)
-        filters = { ...filters, 'category': categoryId }
+        if (categoryId) {
+            filters = { ...filters, 'category': categoryId }
+        }
     }
     const newUrl = (
         url + 'ledger/?startDate=' + filters.startDate + '&endDate=' +
@@ -73,7 +75,9 @@ export async function getBudgetItems (filters: BudgetFilterTypes): Promise<Budge
     return result.data;
 }
 
-export async function createBudgetItem (fields: {category: string, amount: string}): Promise<StatusType> {
+export async function createBudgetItem (fields: {
+    owner?: number, category: string, amount: string
+}): Promise<StatusType> {
     fields.owner = 1;
     const result = await axios.post(url + 'budget_items/', fields, headers)
     return result.data;

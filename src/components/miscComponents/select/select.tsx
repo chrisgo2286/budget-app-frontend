@@ -7,7 +7,8 @@ type SelectProps = {
     initial: string,
     options: string[],
     fields: object,
-    setFields: React.Dispatch<React.SetStateAction<any>>
+    setFields: React.Dispatch<React.SetStateAction<any>>,
+    value?: string
 }
 
 export default function Select ({
@@ -17,6 +18,7 @@ export default function Select ({
     options,
     fields,
     setFields,
+    value,
     ...other 
 }: SelectProps): JSX.Element {
     

@@ -22,12 +22,14 @@ export default function NewBudgetItem ({
         const result = validateNewBudgetItem(fields, budget);
         if(result === 'Valid') {            
             const categoryId = findCategoryID(fields.category, categories);
-            await createBudgetItem({ ...fields, category: categoryId });
-            setFields({
-                category: '',
-                amount: '',
-            })
-            setUpdateRequired(true);
+            if (categoryId) {
+                await createBudgetItem({ ...fields, category: categoryId });
+                setFields({
+                    category: '',
+                    amount: '',
+                })
+                setUpdateRequired(true);
+            }
         } else {
             setErrors(result);
         }
