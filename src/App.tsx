@@ -7,10 +7,12 @@ import Ledger from './components/ledger/ledger';
 import Reports from './components/reports/reports';
 import Registration from './components/registration/registration';
 import Login from './components/login/login';
-import { UserContext } from './misc/context';
+import { UserContext, CategoriesContext } from './misc/context';
 import axios from 'axios';
 import './App.css';
 import { UserTypes } from './misc/miscTypes';
+import { NewCategoryTypes } from './components/newCategory/newCategoryTypes';
+import { useGetCategories } from './misc/hooks';
 
 export default function App (): JSX.Element {
     
@@ -21,15 +23,18 @@ export default function App (): JSX.Element {
     let token = localStorage.getItem('token');
     let username = localStorage.getItem('username');
 
-    const [user, setUser] = useState<UserTypes>({
+    const [ user, setUser ] = useState<UserTypes>({
         username: (username) ? username: '',
         isLoggedIn: (token) ? true: false,
         token: (token) ? token: '',
     })
 
+    const { categories, setCategoryUpdate } = useGetCategories();
+
     return (
         <React.Fragment>
             <UserContext.Provider value={{ user, setUser }}>
+            <CategoriesContext.Provider value={{ categories, setCategoryUpdate }}>
             <Router>
                 <Navbar />
                 <Routes>
@@ -41,6 +46,7 @@ export default function App (): JSX.Element {
                     <Route path='/login' element={ <Login /> } />
                 </Routes>
             </Router>
+            </CategoriesContext.Provider>
             </UserContext.Provider>
         </React.Fragment>
     )

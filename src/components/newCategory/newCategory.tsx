@@ -1,12 +1,12 @@
-import { useState } from 'react';
+import { useState, useContext } from 'react';
 import Input from '../miscComponents/input/input';
 import Select from '../miscComponents/select/select';
 import { createCategory } from '../../misc/apiCalls';
 import { validateNewCategory } from '../../misc/validation/validateNewCategory';
 import { NewCategoryProps, NewCategoryTypes } from './newCategoryTypes';
+import { CategoriesContext } from '../../misc/context';
 
 export default function NewCategory ({ 
-    categories, 
     setErrors, 
     setUpdateRequired 
 }: NewCategoryProps): JSX.Element {
@@ -14,7 +14,8 @@ export default function NewCategory ({
         name: '',
         type: ''
     })
-
+    const { categories } = useContext(CategoriesContext)
+    
     function handleSubmit (): void {
         const result = validateNewCategory(fields, categories)
         if(result === 'Valid') {

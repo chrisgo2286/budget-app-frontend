@@ -8,7 +8,6 @@ export type NewCategoryTypes = {
 }
 
 export type NewCategoryProps = {
-    categories: NewCategoryTypes[], 
     setErrors: React.Dispatch<React.SetStateAction<string[]>>,
     setUpdateRequired: React.Dispatch<React.SetStateAction<boolean>>
 }

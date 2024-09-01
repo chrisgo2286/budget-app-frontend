@@ -1,10 +1,8 @@
 import { createContext } from "react";
-import { UserTypes } from "./miscTypes";
+import { CategoriesContextType, UserContextType } from "./miscTypes";
+import { NewCategoryTypes } from "../components/newCategory/newCategoryTypes";
 
-export type UserContextType = {
-    user: UserTypes,
-    setUser: React.Dispatch<React.SetStateAction<UserTypes>>
-}
+
 
 export const UserContext = createContext<UserContextType>({
     user: {
@@ -14,3 +12,8 @@ export const UserContext = createContext<UserContextType>({
     },
     setUser: () => console.log("Oops, default value used!")
 });
+
+export const CategoriesContext = createContext<CategoriesContextType>({
+    categories: [],
+    setCategoryUpdate: () => console.log("Ooops, categories not loaded")
+})

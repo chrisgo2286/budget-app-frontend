@@ -1,32 +1,20 @@
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 import BudgetFilter from '../budgetFilter/budgetFilter';
 import NewCategory from '../newCategory/newCategory';
 import NewBudgetItem from '../newBudgetItem/newBudgetItem';
 import BudgetSection from './budgetSection';
 import Validation from '../validation/validation';
-import { getBudgetItems, getCategories } from '../../misc/apiCalls';
-import { getCurrentMonth, getCurentYear, cleanFilters } from '../../misc/miscFunctions';
+import { getCurrentPeriod } from '../../misc/miscFunctions';
 import './budget.css';
-import { BudgetFilterTypes, BudgetItemTypes } from './budgetTypes';
-import { NewCategoryTypes } from '../newCategory/newCategoryTypes';
+import { BudgetFilterTypes } from './budgetTypes';
+import { useGetBudget, useGetCategories } from '../../misc/hooks';
 
 export default function Budget (): JSX.Element {
-    const [ budget, setBudget ] = useState<BudgetItemTypes[]>([]);
-    const [ categories, setCategories ] = useState<NewCategoryTypes[]>([]);
-    const [ updateRequired, setUpdateRequired ] = useState<boolean>(false);
-    const [ filters, setFilters ] = useState<BudgetFilterTypes>({
-        month: getCurrentMonth(),
-        year: getCurentYear(),
-    })
+    const [ filters, setFilters ] = useState<BudgetFilterTypes>(getCurrentPeriod())
     const [ filtersVisible, setFiltersVisible ] = useState<boolean>(false);
     const [ errors, setErrors ] = useState<string[]>([])
-
-    useEffect(() => {
-        const newFilters = cleanFilters(filters);
-        getBudgetItems(newFilters).then((budget) => setBudget(budget))
-        getCategories().then((categories) => setCategories(categories))
-        setUpdateRequired(false)
-    }, [updateRequired, filters])
+    const { categories, setCategoryUpdate } = useGetCategories()
+    const { budget, setBudgetUpdate } = useGetBudget(filters)
 
     return (
         <main className="budget-page">
@@ -48,14 +36,14 @@ export default function Budget (): JSX.Element {
                         setErrors={ setErrors }/>
                     <div className="new-category-header">New Category</div>
                     <NewCategory
-                        categories={ categories }
+                        // categories={ categories }
                         setErrors={ setErrors }
-                        setUpdateRequired={ setUpdateRequired } />
+                        setUpdateRequired={ setCategoryUpdate } />
                     <div className="new-budget-item-header">New Budget Item</div>
                     <NewBudgetItem 
                         budget={ budget }
                         categories={ categories }
-                        setUpdateRequired={ setUpdateRequired }
+                        setUpdateRequired={ setBudgetUpdate }
                         setErrors={ setErrors } />
                 </div>
 
@@ -64,13 +52,13 @@ export default function Budget (): JSX.Element {
                     section_type='Income'
                     budget={ budget }
                     categories={ categories }
-                    setUpdateRequired={ setUpdateRequired }
+                    setUpdateRequired={ setBudgetUpdate }
                     setErrors={ setErrors } />
                 <BudgetSection
                     section_type='Expense'
                     budget={ budget }
                     categories={ categories }
-                    setUpdateRequired={ setUpdateRequired }
+                    setUpdateRequired={ setBudgetUpdate }
                     setErrors={ setErrors }/>
             </div>
         </main>
