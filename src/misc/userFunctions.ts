@@ -6,20 +6,6 @@ export function updateLocalStorage (token: string, username: string): void {
     localStorage.setItem('username', username);
 }
 
-// export function updateUser (
-//     token: string, 
-//     username: string,
-//     oldUser: UserTypes, 
-//     setUser: React.Dispatch<React.SetStateAction<UserTypes>>
-// ): void {
-//     const newUser = {
-//         username: username,
-//         isLoggedIn: true,
-//         token: token,
-//     }
-//     setUser({ ...oldUser, ...newUser });
-// }
-
 export function updateUser (
     newUser: UserTypes,
     setUser: React.Dispatch<React.SetStateAction<UserTypes>>
@@ -48,4 +34,12 @@ export function updateLogin (
     updateLocalStorage(newUser.token, newUser.username)
     updateUser(newUser, setUser)
     navigate('/');
+}
+
+export function createNewUserData (username: string, token: string): UserTypes {
+    return {
+        username: username,
+        isLoggedIn: true,
+        token: token
+    }
 }

@@ -2,43 +2,43 @@ import { useState, useContext } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { UserContext, ErrorsContext } from '../../misc/context';
 import { loginUser } from '../../misc/apiCalls';
-import { refreshPage } from '../../misc/miscFunctions';
 import { validateLogin } from '../../misc/validation/validateLogin';
 import Validation from '../validation/validation';
 import LoginFields from './loginFields';
 import './login.css';
 import { LoginFieldsTypes } from './loginTypes';
-import { updateLogin } from '../../misc/userFunctions';
+import { createNewUserData, updateLogin } from '../../misc/userFunctions';
 
 export default function Login (): JSX.Element {
-    const { user, setUser } = useContext(UserContext);
+    const { setUser } = useContext(UserContext);
     const navigate = useNavigate();
     const [ credentials, setCredentials ] = useState<LoginFieldsTypes>({
         username: '',
         password: '',
     })
     const { setErrors } = useContext(ErrorsContext)
-
+    
     async function handleSubmit (): Promise<void> {
         const result = validateLogin(credentials);
-
         if(result === 'Valid') {
-            const response = await loginUser(credentials);
-            if(typeof response !== "string" && response.status === 200) {
-                const newUser = {
-                    username: credentials.username,
-                    isLoggedIn: true,
-                    token: response.token
-                }
-                updateLogin(newUser, setUser, navigate)
-                refreshPage();
-                
-            } else {
-                setErrors(['You have entered invalid credentials!']);
-            }
+            handleLogin()
         } else if (typeof result !== "string") {
             setErrors(result);
         }
+    }
+
+    async function handleLogin (): Promise<void> {
+        const response = await loginUser(credentials);
+        if(typeof response !== "string" && response.status === 200) {
+            handleLoginSuccess(response.token)
+        } else {
+            setErrors(['You have entered invalid credentials!']);
+        }
+    }
+
+    function handleLoginSuccess (token: string): void {
+        const newUser = createNewUserData(credentials.username, token)
+        updateLogin(newUser, setUser, navigate)
     }
 
     return (
