@@ -1,20 +1,18 @@
 import { useState, useContext } from 'react';
-import Input from '../miscComponents/input/input';
-import Select from '../miscComponents/select/select';
-import { createCategory } from '../../misc/apiCalls';
-import { validateNewCategory } from '../../misc/validation/validateNewCategory';
-import { NewCategoryProps, NewCategoryTypes } from './newCategoryTypes';
-import { CategoriesContext } from '../../misc/context';
+import Input from '../../miscComponents/input/input';
+import Select from '../../miscComponents/select/select';
+import { createCategory } from '../../../misc/apiCalls';
+import { validateNewCategory } from '../../../misc/validation/validateNewCategory';
+import { NewCategoryTypes } from './newCategoryTypes';
+import { CategoriesContext, ErrorsContext } from '../../../misc/context';
 
-export default function NewCategory ({ 
-    setErrors, 
-    setUpdateRequired 
-}: NewCategoryProps): JSX.Element {
+export default function NewCategory (): JSX.Element {
     const [ fields, setFields ] = useState<NewCategoryTypes>({
         name: '',
         type: ''
     })
-    const { categories } = useContext(CategoriesContext)
+    const { setErrors } = useContext(ErrorsContext)
+    const { categories, setCategoryUpdate } = useContext(CategoriesContext)
     
     function handleSubmit (): void {
         const result = validateNewCategory(fields, categories)
@@ -28,7 +26,7 @@ export default function NewCategory ({
     async function createNewCategory (): Promise<void> {
         await createCategory(fields)
         setFields({ name: '', type: '' })
-        setUpdateRequired(true);
+        setCategoryUpdate(true);
     }
 
     return (

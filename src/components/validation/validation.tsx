@@ -1,8 +1,10 @@
+import { useContext } from 'react';
+import { ErrorsContext } from '../../misc/context';
 import './validation.css';
 
-export default function Validation ({ 
-    errors 
-}: {errors: string[]}): JSX.Element {
+export default function Validation (): JSX.Element {
+
+    const { errors } = useContext(ErrorsContext)
 
     function displayErrors (): JSX.Element[] {
         return errors.map((error, ndx) => (

@@ -1,14 +1,15 @@
-import { useState } from 'react';
-import { createBudgetItem, deleteBudgetItem } from '../../misc/apiCalls';
-import { compileBudgetCategoryNames, findCategoryID } from '../../misc/miscFunctions';
+import { useState, useContext } from 'react';
+import { createBudgetItem, deleteBudgetItem } from '../../../misc/apiCalls';
+import { compileBudgetCategoryNames, findCategoryID } from '../../../misc/miscFunctions';
 import { SelectBudgetItemProps } from './budgetItemTypes';
+import { BudgetContext, CategoriesContext } from '../../../misc/context';
 
 export default function SelectBudgetItem ({ 
     budgetItem, 
-    categories, 
-    setUpdateRequired 
 }: SelectBudgetItemProps): JSX.Element {
     
+    const { setBudgetUpdate } = useContext(BudgetContext)
+    const { categories } = useContext(CategoriesContext)
     const [ choice, setChoice ] = useState(budgetItem.category);
     const options = compileBudgetCategoryNames(categories);
     
@@ -22,7 +23,7 @@ export default function SelectBudgetItem ({
                 createNewBudgetItem(value);
                 deleteSelectedBudgetItem();
             }
-            setUpdateRequired(true);
+            setBudgetUpdate(true);
         }
     }    
     

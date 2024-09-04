@@ -1,21 +1,19 @@
-import { useState } from 'react';
+import { useContext, useState } from 'react';
 import Input from "../miscComponents/input/input";
 import Select from "../miscComponents/select/select";
 import { compileBudgetCategoryNames } from "../../misc/miscFunctions";
-import { LedgerFilterProps } from './ledgerTypes';
+import { CategoriesContext, LedgerContext, LedgerFiltersContext } from '../../misc/context';
 
-export default function LedgerFilter ({ 
-    categories, 
-    filters, 
-    setFilters, 
-    setUpdateRequired 
-}: LedgerFilterProps) {
+export default function LedgerFilter (): JSX.Element {
     
+    const { categories } = useContext(CategoriesContext)
+    const { setLedgerUpdate } = useContext(LedgerContext)
+    const { filters, setFilters } = useContext(LedgerFiltersContext)
     const [ startDateType, setStartDateType ] = useState<string>('text');
     const [ endDateType, setEndDateType ] = useState<string>('text');
 
     function handleSubmit (): void {
-        setUpdateRequired(true);
+        setLedgerUpdate(true);
     }
 
     function handleStartDateFocus (): void {
@@ -41,7 +39,7 @@ export default function LedgerFilter ({
             category: '',
             type: '',
         })
-        setUpdateRequired(true);
+        setLedgerUpdate(true);
     }
 
     return (

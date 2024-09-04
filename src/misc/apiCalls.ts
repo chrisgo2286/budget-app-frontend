@@ -1,10 +1,10 @@
 import axios from 'axios';
 import { findCategoryID } from './miscFunctions';
 import { FilterTypes, LedgerTypes, NewLedgerItemTypes } from "../components/ledger/ledgerTypes";
-import { CategoriesType, NewCategoryTypes } from "../components/newCategory/newCategoryTypes";
+import { CategoriesType, NewCategoryTypes } from "../components/budget/newCategory/newCategoryTypes";
 import { ResponseType, StatusType } from './miscTypes';
 import { BudgetFilterTypes, BudgetItemTypes } from '../components/budget/budgetTypes';
-import { NewBudgetItemTypes } from '../components/newBudgetItem/newBudgetItemTypes';
+import { NewBudgetItemTypes } from '../components/budget/newBudgetItem/newBudgetItemTypes';
 import { RegistrationTypes } from '../components/registration/registrationTypes';
 import { LoginFieldsTypes } from '../components/login/loginTypes';
 import { PeriodTypes } from '../components/reports/reportTypes';
@@ -102,7 +102,8 @@ export async function registerNewUser (fields: RegistrationTypes): Promise<Respo
 export async function loginUser (credentials: LoginFieldsTypes): Promise<ResponseType | string>  {
     try {
         const result = await axios.post(url + 'login/', credentials)
-        return { status: result.data.status, token: result.data.token }
+        console.log(result)
+        return { status: result.status, token: result.data.key }
     } catch {
         return 'Invalid Credentials';
     }
@@ -110,7 +111,7 @@ export async function loginUser (credentials: LoginFieldsTypes): Promise<Respons
 
 export async function logoutUser (): Promise<StatusType> {
     const result = await axios.post(url + 'logout/')
-    return result.data
+    return { status: result.status }
 }
 
 export async function getMonthlyStats (period: PeriodTypes): Promise<MonthlyStatsTypes> {

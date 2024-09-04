@@ -1,15 +1,16 @@
-import { useState } from 'react';
-import { patchBudgetItem } from '../../misc/apiCalls';
-import { validateBudgetItem } from '../../misc/validation/validateBudgetItem';
+import { useContext, useState } from 'react';
+import { patchBudgetItem } from '../../../misc/apiCalls';
+import { validateBudgetItem } from '../../../misc/validation/validateBudgetItem';
 import { InputBudgetItemProps } from './budgetItemTypes';
+import { BudgetContext, ErrorsContext } from '../../../misc/context';
 
 export default function InputBudgetItem ({ 
-    budgetItem, 
-    setUpdateRequired, 
-    setErrors 
+    budgetItem
 }: InputBudgetItemProps): JSX.Element {
     const [ amount, setAmount ] = useState<string>(budgetItem.budget_amount);
-
+    const { setBudgetUpdate } = useContext(BudgetContext)
+    const { setErrors } = useContext(ErrorsContext)
+    
     function handleChange (event: React.ChangeEvent<HTMLInputElement>) {
         const { value } = event.target;
         setAmount(value);
@@ -19,7 +20,7 @@ export default function InputBudgetItem ({
         const result = validateBudgetItem(amount)
         if(result === 'Valid') {
             await patchBudgetItem(budgetItem.id, amount);
-            setUpdateRequired(true);
+            setBudgetUpdate(true);
         } else if (typeof result !== "string") {
             setAmount(budgetItem.budget_amount);
             setErrors(result);

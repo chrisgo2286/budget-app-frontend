@@ -1,17 +1,20 @@
 import { useEffect, useState } from "react";
-import { getCategories, getBudgetItems } from "./apiCalls";
-import { NewCategoryTypes } from "../components/newCategory/newCategoryTypes";
+import { getCategories, getBudgetItems, getLedgerItems } from "./apiCalls";
+import { NewCategoryTypes } from "../components/budget/newCategory/newCategoryTypes";
 import { BudgetFilterTypes, BudgetItemTypes } from "../components/budget/budgetTypes";
-import { UseGetCategoryTypes, UseGetBudgetTypes } from "./miscTypes";
+import { UseGetCategoryTypes, UseGetBudgetTypes, UseGetLedgerTypes, UserTypes } from "./miscTypes";
 import { cleanFilters } from "./miscFunctions";
+import { FilterTypes, LedgerTypes } from "../components/ledger/ledgerTypes";
 
-export function useGetCategories (): UseGetCategoryTypes {
+export function useGetCategories (isLoggedIn: boolean): UseGetCategoryTypes {
     const [ categories, setCategories ] = useState<NewCategoryTypes[]>([])  
     const [ categoryUpdate, setCategoryUpdate ] = useState<boolean>(false)
 
     useEffect(() => {
-        getCategories().then((data) => setCategories(data))
-    },[categoryUpdate])
+        if (isLoggedIn) {
+            getCategories().then((data) => setCategories(data))
+        }
+    },[categoryUpdate, isLoggedIn])
 
     return { categories, setCategoryUpdate }
 }
@@ -27,3 +30,19 @@ export function useGetBudget (filters: BudgetFilterTypes): UseGetBudgetTypes {
     
     return { budget, setBudgetUpdate }
 }
+
+export function useGetLedger (
+    filters: FilterTypes, 
+    categories: NewCategoryTypes[]
+): UseGetLedgerTypes {
+    const [ ledger, setLedger ] = useState<LedgerTypes[]>([])
+    const [ ledgerUpdate, setLedgerUpdate ] = useState<boolean>(false)
+
+    useEffect(() => {
+        getLedgerItems(filters, categories).then((ledger) => setLedger(ledger));
+        setLedgerUpdate(false);
+    }, [ledgerUpdate, filters])
+
+    return { ledger, setLedgerUpdate }
+}
+

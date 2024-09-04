@@ -1,16 +1,18 @@
+import { useContext } from "react";
 import { deleteLedgerItem } from "../../misc/apiCalls";
 import { LedgerItemProps } from "./ledgerTypes";
+import { LedgerContext } from "../../misc/context";
 
 export default function LedgerItem ({ 
     item, 
-    setUpdateRequired 
 }: LedgerItemProps): JSX.Element {
     
     const { date, id, category__name, category__type, amount } = item;
+    const { setLedgerUpdate } = useContext(LedgerContext)
 
     function handleDelete (): void {
         deleteLedgerItem(id);
-        setUpdateRequired(true);
+        setLedgerUpdate(true);
     }
 
     return (

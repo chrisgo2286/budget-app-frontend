@@ -1,14 +1,13 @@
-import Select from "../miscComponents/select/select";
+import Select from "../../miscComponents/select/select";
 import InputBudgetFilter from "./inputBudgetFilter";
-import { MONTH_OPTIONS } from "../../misc/miscFunctions";
-import { BudgetFilterProps } from "./budgetFilterTypes";
+import { MONTH_OPTIONS } from "../../../misc/miscFunctions";
+import { useContext } from "react";
+import { BudgetFiltersContext } from "../../../misc/context";
 
-export default function BudgetFilter ({ 
-    filters, 
-    setFilters, 
-    setErrors 
-}: BudgetFilterProps): JSX.Element {
+export default function BudgetFilter (): JSX.Element {
 
+    const { filters, setFilters } = useContext(BudgetFiltersContext)
+    
     function createInitialMonth (): string {
         if (typeof filters.month === "string") {
             return filters.month
@@ -26,10 +25,7 @@ export default function BudgetFilter ({
                 options={ MONTH_OPTIONS }
                 fields={ filters }
                 setFields={ setFilters }/>
-            <InputBudgetFilter 
-                filters={ filters }
-                setFilters={ setFilters } 
-                setErrors={ setErrors }/>
+            <InputBudgetFilter />
         </section>
     )
 }

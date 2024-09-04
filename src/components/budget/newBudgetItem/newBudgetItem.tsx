@@ -1,23 +1,22 @@
-import React, { useState } from "react";
-import Input from "../miscComponents/input/input";
-import Select from "../miscComponents/select/select";
-import { createBudgetItem } from "../../misc/apiCalls";
-import { validateNewBudgetItem } from "../../misc/validation/validateNewBudgetItem";
-import { compileCategoryNames, findCategoryID } from "../../misc/miscFunctions";
-import { NewBudgetItemProps, NewBudgetItemTypes } from "./newBudgetItemTypes";
+import { useState, useContext } from "react";
+import Input from "../../miscComponents/input/input";
+import Select from "../../miscComponents/select/select";
+import { createBudgetItem } from "../../../misc/apiCalls";
+import { validateNewBudgetItem } from "../../../misc/validation/validateNewBudgetItem";
+import { compileCategoryNames, findCategoryID } from "../../../misc/miscFunctions";
+import { NewBudgetItemTypes } from "./newBudgetItemTypes";
+import { CategoriesContext, BudgetContext, ErrorsContext } from "../../../misc/context";
 
-export default function NewBudgetItem ({ 
-    budget, 
-    categories, 
-    setErrors, 
-    setUpdateRequired 
-}: NewBudgetItemProps): JSX.Element {
+export default function NewBudgetItem (): JSX.Element {
     
     const [ fields, setFields ] = useState<NewBudgetItemTypes>({
         category: '',
         amount: '',
     })
-
+    const { categories } = useContext(CategoriesContext)
+    const { budget, setBudgetUpdate } = useContext(BudgetContext)
+    const { setErrors } = useContext(ErrorsContext)
+    
     async function handleSubmit (): Promise<void> {
         const result = validateNewBudgetItem(fields, budget);
         if(result === 'Valid') {            
@@ -28,7 +27,7 @@ export default function NewBudgetItem ({
                     category: '',
                     amount: '',
                 })
-                setUpdateRequired(true);
+                setBudgetUpdate(true);
             }
         } else if(typeof result !== "string") {
             setErrors(result);

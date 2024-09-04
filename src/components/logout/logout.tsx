@@ -1,4 +1,4 @@
-import React, { useContext } from 'react';
+import { useContext } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { UserContext } from '../../misc/context';
 import { logoutUser } from '../../misc/apiCalls';
@@ -12,7 +12,7 @@ export default function Logout (): JSX.Element {
     async function handleLogout (): Promise<void> {
         if(localStorage.getItem('token') !== '') {
             const response = await logoutUser();
-            
+            console.log(response)
             if(response.status === 200) {
                 clearUser(user, setUser)
                 navigate('/');

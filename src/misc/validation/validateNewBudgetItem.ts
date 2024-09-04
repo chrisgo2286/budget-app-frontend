@@ -1,5 +1,5 @@
 import { BudgetItemTypes } from "../../components/budget/budgetTypes";
-import { NewBudgetItemTypes } from "../../components/newBudgetItem/newBudgetItemTypes";
+import { NewBudgetItemTypes } from "../../components/budget/newBudgetItem/newBudgetItemTypes";
 import { 
     validateCategorySelect, 
     validateAmount, 

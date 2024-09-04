@@ -7,11 +7,10 @@ import Ledger from './components/ledger/ledger';
 import Reports from './components/reports/reports';
 import Registration from './components/registration/registration';
 import Login from './components/login/login';
-import { UserContext, CategoriesContext } from './misc/context';
+import { UserContext, CategoriesContext, ErrorsContext } from './misc/context';
 import axios from 'axios';
 import './App.css';
 import { UserTypes } from './misc/miscTypes';
-import { NewCategoryTypes } from './components/newCategory/newCategoryTypes';
 import { useGetCategories } from './misc/hooks';
 
 export default function App (): JSX.Element {
@@ -28,12 +27,15 @@ export default function App (): JSX.Element {
         isLoggedIn: (token) ? true: false,
         token: (token) ? token: '',
     })
-
-    const { categories, setCategoryUpdate } = useGetCategories();
+    const [ errors, setErrors ] = useState<string[]>([])
+    const { categories, setCategoryUpdate } = useGetCategories(user.isLoggedIn);
+   
+    
 
     return (
         <React.Fragment>
             <UserContext.Provider value={{ user, setUser }}>
+            <ErrorsContext.Provider value={{ errors, setErrors }}>
             <CategoriesContext.Provider value={{ categories, setCategoryUpdate }}>
             <Router>
                 <Navbar />
@@ -47,6 +49,7 @@ export default function App (): JSX.Element {
                 </Routes>
             </Router>
             </CategoriesContext.Provider>
+            </ErrorsContext.Provider>
             </UserContext.Provider>
         </React.Fragment>
     )

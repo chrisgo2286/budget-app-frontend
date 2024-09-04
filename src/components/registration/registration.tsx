@@ -1,15 +1,14 @@
 import { useState, useContext } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { UserContext } from '../../misc/context';
+import { UserContext, ErrorsContext } from '../../misc/context';
 import { registerNewUser } from '../../misc/apiCalls';
-import { updateLocalStorage } from '../../misc/userFunctions';
-import { updateUser } from '../../misc/userFunctions';
 import { loginUser } from '../../misc/apiCalls';
 import { validateRegistration } from '../../misc/validation/validateRegistration';
 import NewUserFields from './newUserFields';
 import Validation from '../validation/validation';
 import './registration.css';
 import { RegistrationTypes } from './registrationTypes';
+import { updateLogin } from '../../misc/userFunctions';
 
 export default function Registration (): JSX.Element {
     const {user, setUser} = useContext(UserContext);
@@ -19,7 +18,7 @@ export default function Registration (): JSX.Element {
         password1: '',
         password2: '',
     })
-    const [errors, setErrors] = useState<string[]>([]);
+    const { errors, setErrors } = useContext(ErrorsContext)
 
     async function handleSubmit (): Promise<void> {
 
@@ -29,10 +28,12 @@ export default function Registration (): JSX.Element {
             const response = await registerNewUser(credentials);
             
             if(response.status === 201) {
-                const token = response.token;
-                updateLocalStorage(token, credentials.username)
-                updateUser(token, credentials.username, user, setUser)
-                navigate('/');
+                const newUser = {
+                    username: credentials.username,
+                    isLoggedIn: true,
+                    token: response.token,    
+                }
+                updateLogin(newUser, setUser, navigate)
 
             } else if(response.status === 204) {
                 const loginCredentials = {
@@ -43,10 +44,12 @@ export default function Registration (): JSX.Element {
                 const response = await loginUser(loginCredentials);
 
                 if(typeof response !== "string" && response.status === 200) {
-                    const token = response.token;
-                    updateLocalStorage(token, credentials.username);
-                    updateUser(token, credentials.username, user, setUser);
-                    navigate('/');
+                    const newUser = {
+                        username: credentials.username,
+                        isLoggedIn: true,
+                        token: response.token
+                    }
+                    updateLogin(newUser, setUser, navigate)
                 }
             }
         } else if (typeof result !== "string") {
@@ -58,7 +61,7 @@ export default function Registration (): JSX.Element {
         <main className="registration-page">
             <div className="registration" data-cy='registration'>
                 <div className="registration-header">Registration</div>
-                <Validation errors={ errors } />
+                <Validation />
                 <NewUserFields 
                     fields={ credentials } 
                     setFields={ setCredentials }

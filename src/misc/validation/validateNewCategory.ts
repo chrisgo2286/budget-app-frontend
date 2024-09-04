@@ -1,4 +1,4 @@
-import { NewCategoryTypes } from "../../components/newCategory/newCategoryTypes";
+import { NewCategoryTypes } from "../../components/budget/newCategory/newCategoryTypes";
 import { validateCategory, validateType } from "./validation";
 
 export function validateNewCategory (

@@ -1,22 +1,23 @@
-import { useState } from "react";
+import { useContext, useState } from "react";
 import { createLedgerItem } from "../../misc/apiCalls";
 import Input from "../miscComponents/input/input";
 import Select from "../miscComponents/select/select";
 import { validateNewLedgerItem } from "../../misc/validation/validateNewLedgerItem";
 import { findCategoryID, compileCategoryNames } from "../../misc/miscFunctions";
-import { NewLedgerItemProps, NewLedgerItemTypes } from "./ledgerTypes";
+import { NewLedgerItemTypes } from "./ledgerTypes";
+import { CategoriesContext, LedgerContext } from "../../misc/context";
+import { ErrorsContext } from "../../misc/context";
 
-export default function NewLedgerItem ({ 
-    categories, 
-    setUpdateRequired, 
-    setErrors 
-}: NewLedgerItemProps): JSX.Element {
+export default function NewLedgerItem (): JSX.Element {
+    const { categories } = useContext(CategoriesContext)
+    const { setLedgerUpdate } = useContext(LedgerContext)
     const [ fields, setFields ] = useState<NewLedgerItemTypes>({
         date: '',
         category: '',
         amount: ''
     })
     const [ inputType, setInputType ] = useState<string>('text');
+    const { setErrors } = useContext(ErrorsContext)
 
     async function handleSubmit (): Promise<void> {
         const result = validateNewLedgerItem(fields);
@@ -25,7 +26,7 @@ export default function NewLedgerItem ({
             if (category_id) {
                 const newFields = { ...fields, 'category': category_id }
                 await createLedgerItem(newFields);
-                setUpdateRequired(true);
+                setLedgerUpdate(true);
                 resetFields();
             }
         } else if (typeof result !== "string") {

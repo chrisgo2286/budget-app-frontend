@@ -1,4 +1,4 @@
-import { NewCategoryTypes } from "../newCategory/newCategoryTypes"
+import { NewCategoryTypes } from "./newCategory/newCategoryTypes"
 
 export type BudgetFilterTypes = {
     month: string | number,
@@ -15,9 +15,5 @@ export type BudgetItemTypes = {
 }
 
 export type BudgetSectionProps = {
-    section_type: string, 
-    budget: BudgetItemTypes[],
-    categories: NewCategoryTypes[],
-    setUpdateRequired: React.Dispatch<React.SetStateAction<boolean>>,
-    setErrors: React.Dispatch<React.SetStateAction<string[]>>
+    section_type: string
 }

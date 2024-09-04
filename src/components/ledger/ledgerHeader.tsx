@@ -1,5 +1,3 @@
-import React from "react";
-
 export default function LedgerHeader (): JSX.Element {
     return (
         <section className="ledger-header" data-cy="ledger-header">
