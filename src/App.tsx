@@ -27,16 +27,12 @@ export default function App (): JSX.Element {
         isLoggedIn: (token) ? true: false,
         token: (token) ? token: '',
     })
-    const [ errors, setErrors ] = useState<string[]>([])
-    const { categories, setCategoryUpdate } = useGetCategories(user.isLoggedIn);
-   
-    
+    const [ errors, setErrors ] = useState<string[]>([])    
 
     return (
         <React.Fragment>
             <UserContext.Provider value={{ user, setUser }}>
             <ErrorsContext.Provider value={{ errors, setErrors }}>
-            <CategoriesContext.Provider value={{ categories, setCategoryUpdate }}>
             <Router>
                 <Navbar />
                 <Routes>
@@ -48,7 +44,6 @@ export default function App (): JSX.Element {
                     <Route path='/login' element={ <Login /> } />
                 </Routes>
             </Router>
-            </CategoriesContext.Provider>
             </ErrorsContext.Provider>
             </UserContext.Provider>
         </React.Fragment>

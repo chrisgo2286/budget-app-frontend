@@ -36,7 +36,7 @@ export default function Login (): JSX.Element {
         }
     }
 
-    function handleLoginSuccess (token: string): void {
+    async function handleLoginSuccess (token: string): Promise<void> {
         const newUser = createNewUserData(credentials.username, token)
         updateLogin(newUser, setUser, navigate)
     }

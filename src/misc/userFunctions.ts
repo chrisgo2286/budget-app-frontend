@@ -28,12 +28,12 @@ export function clearUser (
 
 export function updateLogin (
     newUser: UserTypes, 
-    setUser: React.Dispatch<React.SetStateAction<UserTypes>>, 
+    setUser: React.Dispatch<React.SetStateAction<UserTypes>>,
     navigate: NavigateFunction
 ): void {
     updateLocalStorage(newUser.token, newUser.username)
     updateUser(newUser, setUser)
-    navigate('/');
+    navigate('/')
 }
 
 export function createNewUserData (username: string, token: string): UserTypes {
@@ -41,5 +41,14 @@ export function createNewUserData (username: string, token: string): UserTypes {
         username: username,
         isLoggedIn: true,
         token: token
+    }
+}
+
+export function createHeaders () {
+    const token = localStorage.getItem('token')
+    return {
+        headers: {
+            Authorization: 'Token ' + token
+        }
     }
 }

@@ -9,52 +9,42 @@ import Validation from '../validation/validation';
 import './registration.css';
 import { RegistrationTypes } from './registrationTypes';
 import { updateLogin } from '../../misc/userFunctions';
+import { createNewUserData } from '../../misc/userFunctions';
 
 export default function Registration (): JSX.Element {
-    const {user, setUser} = useContext(UserContext);
     const navigate = useNavigate();
-    const [credentials, setCredentials] = useState<RegistrationTypes>({
-        username: '',
-        password1: '',
-        password2: '',
-    })
-    const { errors, setErrors } = useContext(ErrorsContext)
+    const { setUser} = useContext(UserContext);
+    const { setErrors } = useContext(ErrorsContext)
+    const [credentials, setCredentials] = useState<RegistrationTypes>(blankCredentials)
 
     async function handleSubmit (): Promise<void> {
-
         const result = validateRegistration(credentials);
+        (typeof result === "string") ? handleRegistration() : setErrors(result);
+    }
 
-        if(result === 'Valid') {
-            const response = await registerNewUser(credentials);
-            
-            if(response.status === 201) {
-                const newUser = {
-                    username: credentials.username,
-                    isLoggedIn: true,
-                    token: response.token,    
-                }
-                updateLogin(newUser, setUser, navigate)
-
-            } else if(response.status === 204) {
-                const loginCredentials = {
-                    username: credentials.username,
-                    password: credentials.password1
-                }
-
-                const response = await loginUser(loginCredentials);
-
-                if(typeof response !== "string" && response.status === 200) {
-                    const newUser = {
-                        username: credentials.username,
-                        isLoggedIn: true,
-                        token: response.token
-                    }
-                    updateLogin(newUser, setUser, navigate)
-                }
-            }
-        } else if (typeof result !== "string") {
-            setErrors(result);
+    async function handleRegistration () {
+        const response = await registerNewUser(credentials);
+        if(response.status === 204) {
+            handleRegistrationSuccess()
+        } else {
+            console.log("Error registering this user!")
         }
+    }
+
+    async function handleRegistrationSuccess () {
+        const loginCredentials = {
+            username: credentials.username,
+            password: credentials.password1
+        }
+        const response = await loginUser(loginCredentials)
+        if(typeof response !== "string" && response.status === 200) {
+            handleLoginSuccess(response.token)
+        }
+    }
+
+    function handleLoginSuccess (token: string): void {
+        const newUser = createNewUserData(credentials.username, token)
+        updateLogin(newUser, setUser, navigate)
     }
 
     return (
@@ -67,7 +57,12 @@ export default function Registration (): JSX.Element {
                     setFields={ setCredentials }
                     handleSubmit={ handleSubmit }/>
             </div>
-        </main>
-        
+        </main>  
     )
+}
+
+const blankCredentials = {
+    username: '',
+    password1: '',
+    password2: '',
 }

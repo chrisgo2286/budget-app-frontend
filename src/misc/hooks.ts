@@ -2,19 +2,17 @@ import { useEffect, useState } from "react";
 import { getCategories, getBudgetItems, getLedgerItems } from "./apiCalls";
 import { NewCategoryTypes } from "../components/budget/newCategory/newCategoryTypes";
 import { BudgetFilterTypes, BudgetItemTypes } from "../components/budget/budgetTypes";
-import { UseGetCategoryTypes, UseGetBudgetTypes, UseGetLedgerTypes, UserTypes } from "./miscTypes";
+import { UseGetCategoryTypes, UseGetBudgetTypes, UseGetLedgerTypes } from "./miscTypes";
 import { cleanFilters } from "./miscFunctions";
 import { FilterTypes, LedgerTypes } from "../components/ledger/ledgerTypes";
 
-export function useGetCategories (isLoggedIn: boolean): UseGetCategoryTypes {
+export function useGetCategories (): UseGetCategoryTypes {
     const [ categories, setCategories ] = useState<NewCategoryTypes[]>([])  
     const [ categoryUpdate, setCategoryUpdate ] = useState<boolean>(false)
 
     useEffect(() => {
-        if (isLoggedIn) {
-            getCategories().then((data) => setCategories(data))
-        }
-    },[categoryUpdate, isLoggedIn])
+        getCategories().then((data) => setCategories(data))
+    },[categoryUpdate])
 
     return { categories, setCategoryUpdate }
 }

@@ -12,7 +12,6 @@ export default function Logout (): JSX.Element {
     async function handleLogout (): Promise<void> {
         if(localStorage.getItem('token') !== '') {
             const response = await logoutUser();
-            console.log(response)
             if(response.status === 200) {
                 clearUser(user, setUser)
                 navigate('/');
@@ -21,7 +20,6 @@ export default function Logout (): JSX.Element {
     }
     
     return (
-
             <div
                 className='logout'
                 onClick={ handleLogout } 
