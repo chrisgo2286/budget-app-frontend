@@ -17,3 +17,7 @@ export type BudgetItemTypes = {
 export type BudgetSectionProps = {
     section_type: string
 }
+
+export type BudgetHeaderProps = {
+    handlePeriodChange: (direction: "prev" | "next") => void
+}

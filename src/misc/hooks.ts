@@ -5,6 +5,7 @@ import { BudgetFilterTypes, BudgetItemTypes } from "../components/budget/budgetT
 import { UseGetCategoryTypes, UseGetBudgetTypes, UseGetLedgerTypes } from "./miscTypes";
 import { cleanFilters } from "./miscFunctions";
 import { FilterTypes, LedgerTypes } from "../components/ledger/ledgerTypes";
+import { PeriodTypes } from "../components/reports/reportTypes";
 
 export function useGetCategories (): UseGetCategoryTypes {
     const [ categories, setCategories ] = useState<NewCategoryTypes[]>([])  
@@ -17,14 +18,14 @@ export function useGetCategories (): UseGetCategoryTypes {
     return { categories, setCategoryUpdate }
 }
 
-export function useGetBudget (filters: BudgetFilterTypes): UseGetBudgetTypes {
+export function useGetBudget (period: PeriodTypes): UseGetBudgetTypes {
     const [ budget, setBudget ] = useState<BudgetItemTypes[]>([])
     const [ budgetUpdate, setBudgetUpdate ] = useState<boolean>(false)
 
     useEffect(() => {
-        const newFilters = cleanFilters(filters);
-        getBudgetItems(newFilters).then((data) => setBudget(data))
-    },[budgetUpdate, filters])
+        // const newFilters = cleanFilters(filters);
+        getBudgetItems(period).then((data) => setBudget(data))
+    },[budgetUpdate, period])
     
     return { budget, setBudgetUpdate }
 }

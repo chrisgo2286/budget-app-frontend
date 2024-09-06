@@ -64,8 +64,8 @@ export async function deleteCategory (id: number): Promise<void> {
     await axios.delete(newUrl, createHeaders());
 }
 
-export async function getBudgetItems (filters: BudgetFilterTypes): Promise<BudgetItemTypes[]> {
-    const newUrl = url + 'budget/?month=' + filters.month + '&year=' + filters.year;
+export async function getBudgetItems (period: PeriodTypes): Promise<BudgetItemTypes[]> {
+    const newUrl = url + 'budget/?month=' + period.month + '&year=' + period.year;
     const result = await axios.get(newUrl, createHeaders())
     return result.data;
 }

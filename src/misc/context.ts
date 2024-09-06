@@ -6,7 +6,8 @@ import {
     LedgerContextType,
     BudgetFiltersContextType,
     ErrorsContextType,
-    LedgerFilterContextType
+    LedgerFilterContextType,
+    BudgetPeriodContextType
 } from "./miscTypes";
 
 export const UserContext = createContext<UserContextType>({
@@ -51,4 +52,9 @@ export const LedgerFiltersContext = createContext<LedgerFilterContextType>({
         type: ""
     },
     setFilters: () => console.log("Ooops, default value used!")
+})
+
+export const BudgetPeriodContext = createContext<BudgetPeriodContextType>({
+    period: { month: 1, year: 2024 },
+    setPeriod: () => console.log("Ooops, default value used!")
 })
