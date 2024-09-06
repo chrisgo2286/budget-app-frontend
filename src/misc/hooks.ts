@@ -23,8 +23,8 @@ export function useGetBudget (period: PeriodTypes): UseGetBudgetTypes {
     const [ budgetUpdate, setBudgetUpdate ] = useState<boolean>(false)
 
     useEffect(() => {
-        // const newFilters = cleanFilters(filters);
         getBudgetItems(period).then((data) => setBudget(data))
+        setBudgetUpdate(false)
     },[budgetUpdate, period])
     
     return { budget, setBudgetUpdate }

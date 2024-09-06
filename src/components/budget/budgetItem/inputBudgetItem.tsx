@@ -19,8 +19,10 @@ export default function InputBudgetItem ({
     async function handleBlur (): Promise<void> {
         const result = validateBudgetItem(amount)
         if(result === 'Valid') {
-            await patchBudgetItem(budgetItem.id, amount);
-            setBudgetUpdate(true);
+            const response = await patchBudgetItem(budgetItem.id, amount);
+            if ( response.status === 200 ) {
+                setBudgetUpdate(true);
+            }
         } else if (typeof result !== "string") {
             setAmount(budgetItem.budget_amount);
             setErrors(result);

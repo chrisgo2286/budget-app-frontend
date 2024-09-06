@@ -84,8 +84,8 @@ export async function deleteBudgetItem (id: string): Promise<StatusType> {
 }
 
 export async function patchBudgetItem (id: string, amount: string): Promise<StatusType> {
-    const result = await axios.patch(url + 'budget_items/' + id + '/', amount, createHeaders())
-    return result.data;
+    const result = await axios.patch(url + 'budget_items/' + id + '/', { 'amount': amount}, createHeaders())
+    return { status: result.status}
 }
 
 export async function registerNewUser (fields: RegistrationTypes): Promise<StatusType> {
