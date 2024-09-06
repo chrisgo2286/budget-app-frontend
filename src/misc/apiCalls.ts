@@ -47,7 +47,6 @@ export async function deleteLedgerItem (id: string): Promise<StatusType> {
 }
 
 export async function getCategories (): Promise<NewCategoryTypes[]> {
-    console.log(createHeaders())
     const result = await axios.get(url + 'categories/', createHeaders());
     return result.data;
 }
@@ -71,7 +70,7 @@ export async function getBudgetItems (period: PeriodTypes): Promise<BudgetItemTy
 }
 
 export async function createBudgetItem (fields: {
-    owner?: number, category: string, amount: string
+    owner?: number, month: number, year: number, category: string, amount: string
 }): Promise<StatusType> {
     fields.owner = 1;
     const result = await axios.post(url + 'budget_items/', fields, createHeaders())

@@ -2,12 +2,13 @@ import { useState, useContext } from 'react';
 import { createBudgetItem, deleteBudgetItem } from '../../../misc/apiCalls';
 import { compileBudgetCategoryNames, findCategoryID } from '../../../misc/miscFunctions';
 import { SelectBudgetItemProps } from './budgetItemTypes';
-import { BudgetContext, CategoriesContext } from '../../../misc/context';
+import { BudgetContext, BudgetPeriodContext, CategoriesContext } from '../../../misc/context';
 
 export default function SelectBudgetItem ({ 
     budgetItem, 
 }: SelectBudgetItemProps): JSX.Element {
     
+    const { period } = useContext(BudgetPeriodContext)
     const { setBudgetUpdate } = useContext(BudgetContext)
     const { categories } = useContext(CategoriesContext)
     const [ choice, setChoice ] = useState(budgetItem.category);
@@ -35,7 +36,13 @@ export default function SelectBudgetItem ({
         setChoice(value);
         const categoryId = findCategoryID(value, categories);
         if (categoryId) {
-            await createBudgetItem({ 'category': categoryId, 'amount': budgetItem.budget_amount });  
+            const newFields = {
+                category: categoryId,
+                amount: budgetItem.budget_amount,
+                month: period.month,
+                year: period.year
+            }
+            await createBudgetItem(newFields);  
         }    
     }
 

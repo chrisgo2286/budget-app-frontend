@@ -5,10 +5,11 @@ import { createBudgetItem } from "../../../misc/apiCalls";
 import { validateNewBudgetItem } from "../../../misc/validation/validateNewBudgetItem";
 import { compileCategoryNames, findCategoryID } from "../../../misc/miscFunctions";
 import { NewBudgetItemTypes } from "./newBudgetItemTypes";
-import { CategoriesContext, BudgetContext, ErrorsContext } from "../../../misc/context";
+import { CategoriesContext, BudgetContext, ErrorsContext, BudgetPeriodContext } from "../../../misc/context";
 
 export default function NewBudgetItem (): JSX.Element {
     
+    const { period } = useContext(BudgetPeriodContext)
     const [ fields, setFields ] = useState<NewBudgetItemTypes>({
         category: '',
         amount: '',
@@ -22,7 +23,14 @@ export default function NewBudgetItem (): JSX.Element {
         if(result === 'Valid') {            
             const categoryId = findCategoryID(fields.category, categories);
             if (categoryId) {
-                await createBudgetItem({ ...fields, category: categoryId });
+                const newFields = {
+                    ...fields, 
+                    category: categoryId,
+                    month: period.month,
+                    year: period.year   
+                }
+                console.log(newFields)
+                await createBudgetItem(newFields);
                 setFields({
                     category: '',
                     amount: '',

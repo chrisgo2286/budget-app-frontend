@@ -3,6 +3,8 @@ import { CategoriesType, NewCategoryTypes } from "../newCategory/newCategoryType
 
 export type NewBudgetItemTypes = {
     owner?: number,
+    month?: number,
+    year?: number,
     category: string,
     amount: string
 }
