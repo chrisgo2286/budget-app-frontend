@@ -7,6 +7,7 @@ import { FilterTypes } from "./ledgerTypes";
 import { useGetLedger } from "../../misc/hooks";
 import { CategoriesContext, LedgerContext, LedgerFiltersContext } from "../../misc/context";
 import HiddenLedgerSection from "./hiddenLedgerSection/hiddenLedgerSection";
+import { useGetCategories } from "../../misc/hooks";
 
 export default function Ledger (): JSX.Element {
 
@@ -16,12 +17,13 @@ export default function Ledger (): JSX.Element {
         category: '',
         type: '',
     })
-    const { categories } = useContext(CategoriesContext)
+    const { categories, setCategoryUpdate } = useGetCategories()
     const { ledger, setLedgerUpdate } = useGetLedger(filters, categories)
 
     return (
         <LedgerContext.Provider value={{ ledger, setLedgerUpdate }}>
         <LedgerFiltersContext.Provider value={{ filters, setFilters }}>
+        <CategoriesContext.Provider value={{ categories, setCategoryUpdate }}>
             <main className='ledger-page'>
                 <div className="ledger">
                     <Validation />
@@ -35,6 +37,7 @@ export default function Ledger (): JSX.Element {
                     </section>
                 </div>
             </main>
+        </CategoriesContext.Provider>
         </LedgerFiltersContext.Provider>
         </LedgerContext.Provider>
     )

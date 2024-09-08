@@ -25,6 +25,7 @@ export function compileBudgetCategoryNames (categories: NewCategoryTypes[]): str
 }
 
 export function compileCategoryNames (categories: NewCategoryTypes[]): string[] {
+    console.log(categories)
     return categories.map((category) => category.name)
 }
 
