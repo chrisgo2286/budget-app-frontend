@@ -3,7 +3,7 @@ import { findCategoryID } from './miscFunctions';
 import { FilterTypes, LedgerTypes, NewLedgerItemTypes } from "../components/ledger/ledgerTypes";
 import { NewCategoryTypes } from "../components/budget/newCategory/newCategoryTypes";
 import { ResponseType, StatusType } from './miscTypes';
-import { BudgetFilterTypes, BudgetItemTypes } from '../components/budget/budgetTypes';
+import { BudgetDataTypes, BudgetFilterTypes, BudgetItemTypes } from '../components/budget/budgetTypes';
 import { RegistrationTypes } from '../components/registration/registrationTypes';
 import { LoginFieldsTypes } from '../components/login/loginTypes';
 import { PeriodTypes } from '../components/reports/reportTypes';
@@ -63,7 +63,7 @@ export async function deleteCategory (id: number): Promise<void> {
     await axios.delete(newUrl, createHeaders());
 }
 
-export async function getBudgetItems (period: PeriodTypes): Promise<BudgetItemTypes[]> {
+export async function getBudgetItems (period: PeriodTypes): Promise<BudgetDataTypes> {
     const newUrl = url + 'budget/?month=' + period.month + '&year=' + period.year;
     const result = await axios.get(newUrl, createHeaders())
     return result.data;

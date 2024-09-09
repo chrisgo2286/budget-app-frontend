@@ -19,7 +19,7 @@ export default function NewBudgetItem (): JSX.Element {
     const { setErrors } = useContext(ErrorsContext)
     
     async function handleSubmit (): Promise<void> {
-        const result = validateNewBudgetItem(fields, budget);
+        const result = validateNewBudgetItem(fields, budget.items);
         if(result === 'Valid') {            
             const categoryId = findCategoryID(fields.category, categories);
             if (categoryId) {

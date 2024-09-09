@@ -1,5 +1,5 @@
 import { NewCategoryTypes } from "../components/budget/newCategory/newCategoryTypes";
-import { BudgetItemTypes } from "../components/budget/budgetTypes";
+import { BudgetDataTypes, BudgetItemTypes } from "../components/budget/budgetTypes";
 import { FilterTypes, LedgerTypes } from "../components/ledger/ledgerTypes";
 import { BudgetFilterTypes } from "../components/budget/budgetTypes";
 import { PeriodTypes } from "../components/reports/reportTypes";
@@ -25,7 +25,7 @@ export type UseGetCategoryTypes = {
 }
 
 export type UseGetBudgetTypes = {
-    budget: BudgetItemTypes[],
+    budget: BudgetDataTypes,
     setBudgetUpdate: React.Dispatch<React.SetStateAction<boolean>>
 }
 
@@ -45,7 +45,7 @@ export type CategoriesContextType = {
 }
 
 export type BudgetContextType = {
-    budget: BudgetItemTypes[],
+    budget: BudgetDataTypes,
     setBudgetUpdate: React.Dispatch<React.SetStateAction<boolean>>
 }
 

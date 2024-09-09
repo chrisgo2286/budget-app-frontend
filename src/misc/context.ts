@@ -9,6 +9,7 @@ import {
     LedgerFilterContextType,
     BudgetPeriodContextType
 } from "./miscTypes";
+import { DefaultBudget } from "../components/budget/budgetTypes";
 
 export const UserContext = createContext<UserContextType>({
     user: {
@@ -25,7 +26,7 @@ export const CategoriesContext = createContext<CategoriesContextType>({
 })
 
 export const BudgetContext = createContext<BudgetContextType>({
-    budget: [],
+    budget: DefaultBudget,
     setBudgetUpdate: () => console.log("Ooops, budget not loaded!")
 })
 

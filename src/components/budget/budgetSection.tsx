@@ -8,17 +8,19 @@ export default function BudgetSection ({
  }: BudgetSectionProps): JSX.Element {
 
     const { budget } = useContext(BudgetContext)
-    const budgetItems = budget.filter((budgetItem) => (
+    const budgetItems = budget.items.filter((budgetItem) => (
         budgetItem.type === section_type
     ))
 
     return (
         <section 
-            className={ section_type.toLowerCase() }
             data-cy={ section_type.toLowerCase() + '-section' } >
-            { budgetItems.map((budgetItem) => (
-                <BudgetItem key={ budgetItem.id } budgetItem={ budgetItem } />
-            ))}
+            <div>{ section_type.toUpperCase() }</div>
+            <div className={ section_type.toLowerCase() }>
+                { budgetItems.map((budgetItem) => (
+                    <BudgetItem key={ budgetItem.id } budgetItem={ budgetItem } />
+                ))}
+            </div>
         </section>
     )
 }

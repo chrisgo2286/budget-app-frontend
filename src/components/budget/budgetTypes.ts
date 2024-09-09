@@ -5,6 +5,18 @@ export type BudgetFilterTypes = {
     year: string | number
 }
 
+export type BudgetDataTypes = {
+    expense: {
+        budget: string,
+        ledger: string
+    },
+    income: {
+        budget: string,
+        ledger: string
+    },
+    items: BudgetItemTypes[]
+}
+
 export type BudgetItemTypes = {
     id: string,
     category: string,
@@ -21,3 +33,16 @@ export type BudgetSectionProps = {
 export type BudgetHeaderProps = {
     handlePeriodChange: (direction: "prev" | "next") => void
 }
+
+export const DefaultBudget = {
+    "expense": {
+        "budget": "",
+        "ledger": ""
+    },
+    "income": {
+        "budget": "",
+        "ledger": "",
+    },
+    "items": []
+}
+
