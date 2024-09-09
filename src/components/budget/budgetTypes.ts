@@ -6,10 +6,14 @@ export type BudgetFilterTypes = {
 }
 
 export type BudgetDataTypes = {
-    expense: {
+    variable_expense: {
         budget: string,
         ledger: string
     },
+    fixed_expense: {
+        budget: string,
+        ledger: string,
+    }
     income: {
         budget: string,
         ledger: string
@@ -35,7 +39,11 @@ export type BudgetHeaderProps = {
 }
 
 export const DefaultBudget = {
-    "expense": {
+    "variable_expense": {
+        "budget": "",
+        "ledger": ""
+    },
+    "fixed_expense": {
         "budget": "",
         "ledger": ""
     },

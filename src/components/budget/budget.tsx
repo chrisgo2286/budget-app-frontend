@@ -36,7 +36,8 @@ export default function Budget (): JSX.Element {
                     <HiddenBudgetSection />
                     <BudgetHeader handlePeriodChange={ handlePeriodChange } />
                     <BudgetSection section_type='Income' />
-                    <BudgetSection section_type='Expense'/>
+                    <BudgetSection section_type='Fixed_Expense'/>
+                    <BudgetSection section_type='Variable_Expense'/>
                 </div>
             </main>
         </CategoriesContext.Provider>

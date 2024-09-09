@@ -1,9 +1,8 @@
 import { useEffect, useState } from "react";
 import { getCategories, getBudgetItems, getLedgerItems } from "./apiCalls";
 import { NewCategoryTypes } from "../components/budget/newCategory/newCategoryTypes";
-import { BudgetDataTypes, BudgetFilterTypes, BudgetItemTypes, DefaultBudget } from "../components/budget/budgetTypes";
+import { BudgetDataTypes, DefaultBudget } from "../components/budget/budgetTypes";
 import { UseGetCategoryTypes, UseGetBudgetTypes, UseGetLedgerTypes } from "./miscTypes";
-import { cleanFilters } from "./miscFunctions";
 import { FilterTypes, LedgerTypes } from "../components/ledger/ledgerTypes";
 import { PeriodTypes } from "../components/reports/reportTypes";
 

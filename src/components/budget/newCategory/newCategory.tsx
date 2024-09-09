@@ -24,7 +24,12 @@ export default function NewCategory (): JSX.Element {
     }
 
     async function createNewCategory (): Promise<void> {
-        await createCategory(fields)
+        if (fields.type === "Fixed Expense" || fields.type === "Variable Expense") {
+            const newFields = { ...fields, type: fields.type.replace(" ", "_")}
+            await createCategory(newFields)
+        } else {
+            await createCategory(fields)
+        }
         setFields({ name: '', type: '' })
         setCategoryUpdate(true);
     }
@@ -44,7 +49,7 @@ export default function NewCategory (): JSX.Element {
                 name='type'
                 initial='Type'
                 value={(fields.type) ?  fields.type: ''}
-                options={ [ 'Expense', 'Income' ] }
+                options={ [ 'Fixed Expense', 'Variable Expense', 'Income' ] }
                 fields={ fields }
                 setFields={ setFields } />
             <button 

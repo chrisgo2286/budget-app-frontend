@@ -12,10 +12,14 @@ export default function BudgetSection ({
         budgetItem.type === section_type
     ))
 
+    function handleSectionName (): string {
+        return section_type.toUpperCase().replace("_", " ")
+    }
+
     return (
         <section 
             data-cy={ section_type.toLowerCase() + '-section' } >
-            <div>{ section_type.toUpperCase() }</div>
+            <div>{ handleSectionName() }</div>
             <div className={ section_type.toLowerCase() }>
                 { budgetItems.map((budgetItem) => (
                     <BudgetItem key={ budgetItem.id } budgetItem={ budgetItem } />
