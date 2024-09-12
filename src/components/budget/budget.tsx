@@ -1,5 +1,4 @@
 import { useState } from 'react';
-import BudgetSection from './budgetSection';
 import Validation from '../validation/validation';
 import { getCurrentPeriod, getNewPeriod } from '../../misc/miscFunctions';
 import './budget.css';
@@ -14,6 +13,8 @@ import {
 import HiddenBudgetSection from './hiddenBudgetSection/hiddenBudgetSection';
 import { PeriodTypes } from '../reports/reportTypes';
 import BudgetHeader from './budgetHeader';
+import IncomeBudgetSection from './incomeBudgetSection';
+import ExpenseBudgetSection from './expenseBudgetSection';
 
 export default function Budget (): JSX.Element {
     const [ filters, setFilters ] = useState<BudgetFilterTypes>(getCurrentPeriod())
@@ -35,9 +36,8 @@ export default function Budget (): JSX.Element {
                     <Validation />
                     <HiddenBudgetSection />
                     <BudgetHeader handlePeriodChange={ handlePeriodChange } />
-                    <BudgetSection section_type='Income' />
-                    <BudgetSection section_type='Fixed_Expense'/>
-                    <BudgetSection section_type='Variable_Expense'/>
+                    <IncomeBudgetSection />
+                    <ExpenseBudgetSection />
                 </div>
             </main>
         </CategoriesContext.Provider>

@@ -16,3 +16,9 @@ export default function BudgetHeader ({ handlePeriodChange }: BudgetHeaderProps)
         </div>
     )
 }
+
+export function BudgetExpenseHeader (): JSX.Element {
+    return (
+        <div className="indent-10">EXPENSE</div>
+    )
+}

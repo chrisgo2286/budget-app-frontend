@@ -13,10 +13,16 @@ export type BudgetDataTypes = {
     fixed_expense: {
         budget: string,
         ledger: string,
-    }
+    },
+    expense: {
+        budget: string,
+        ledger: string,
+        percent: string
+    },
     income: {
         budget: string,
-        ledger: string
+        ledger: string,
+        percent: string
     },
     items: BudgetItemTypes[]
 }
@@ -47,9 +53,15 @@ export const DefaultBudget = {
         "budget": "",
         "ledger": ""
     },
+    "expense": {
+        "budget": "",
+        "ledger": "",
+        "percent": ""
+    },
     "income": {
         "budget": "",
         "ledger": "",
+        "percent": ""
     },
     "items": []
 }

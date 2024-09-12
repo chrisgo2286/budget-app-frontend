@@ -6,6 +6,12 @@ export default function BudgetItem ({
     budgetItem
 }: BudgetItemProps): JSX.Element {
     
+    function handleClassName () {
+        let baseClass = "absolute h-full rounded";
+        baseClass += (budgetItem.type === "Income") ? " bg-green-100": " bg-blue-100";
+        return baseClass;
+    }
+
     return (
         <div className="budget-item">
             <div className="budget-item-header">
@@ -17,9 +23,9 @@ export default function BudgetItem ({
                     <InputBudgetItem budgetItem={ budgetItem } />
                 </div>
             </div>
-            <div className='outer-bar'>
+            <div className="relative h-5 rounded border border-solid border-gray-100 bg-gray-100">
                 <div 
-                    className='inner-bar' 
+                    className={ handleClassName() } 
                     data-cy='inner-bar' 
                     style={{ width: budgetItem.percent }}>
                 </div>

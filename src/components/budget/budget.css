@@ -141,10 +141,10 @@
     border-radius: 20px;
 }
 
-.income .inner-bar {
+.income-section .inner-bar {
     background-color: var(--secondColor);
 }
 
-.expense .inner-bar {
+.expense-section .inner-bar {
     background-color: var(--thirdColor);
 }
