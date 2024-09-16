@@ -7,7 +7,8 @@ import {
     BudgetFiltersContextType,
     ErrorsContextType,
     LedgerFilterContextType,
-    BudgetPeriodContextType
+    BudgetPeriodContextType,
+    FileImportDataContextType
 } from "./miscTypes";
 import { DefaultBudget } from "../components/budget/budgetTypes";
 
@@ -58,4 +59,8 @@ export const LedgerFiltersContext = createContext<LedgerFilterContextType>({
 export const BudgetPeriodContext = createContext<BudgetPeriodContextType>({
     period: { month: 1, year: 2024 },
     setPeriod: () => console.log("Ooops, default value used!")
+})
+
+export const FileImportDataContext = createContext<FileImportDataContextType>({
+    parsedData: []
 })

@@ -31,6 +31,7 @@ export function siteLinksLoggedIn (): JSX.Element {
             <Link to='/budget' data-cy='budget-link'>Budget</Link>
             <Link to='/ledger' data-cy='ledger-link'>Ledger</Link>
             <Link to='/reports' data-cy='reports-link'>Reports</Link>
+            <Link to='/import' data-cy='import-link'>Import</Link>
         </React.Fragment>
     )
 }
@@ -42,6 +43,7 @@ export function siteLinksLoggedOut (): JSX.Element {
             <Link to='/login'>Budget</Link>
             <Link to='/login'>Ledger</Link>
             <Link to='/login'>Reports</Link>
+            <Link to='/login'>Import</Link>
         </React.Fragment>
     )
 }

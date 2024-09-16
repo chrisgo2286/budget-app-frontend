@@ -10,6 +10,7 @@ export const MONTH_OPTIONS = [
 
 export function findCategoryID (categoryName: string, categories: NewCategoryTypes[]): string | undefined{
     const category = categories.find((category) => category.name == categoryName)
+    console.log(categoryName, category)
     return category?.id
 }
 

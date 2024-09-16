@@ -1,4 +1,4 @@
-import { useState, useContext } from "react";
+import { useContext, useState } from "react";
 import LedgerHeader from "./ledgerHeader";
 import LedgerItem from "./ledgerItem";
 import Validation from "../validation/validation";
@@ -7,23 +7,21 @@ import { FilterTypes } from "./ledgerTypes";
 import { useGetLedger } from "../../misc/hooks";
 import { CategoriesContext, LedgerContext, LedgerFiltersContext } from "../../misc/context";
 import HiddenLedgerSection from "./hiddenLedgerSection/hiddenLedgerSection";
-import { useGetCategories } from "../../misc/hooks";
 
 export default function Ledger (): JSX.Element {
 
+    const { categories } = useContext(CategoriesContext)
     const [ filters, setFilters ] = useState<FilterTypes>({
         startDate: '',
         endDate: '', 
         category: '',
         type: '',
     })
-    const { categories, setCategoryUpdate } = useGetCategories()
     const { ledger, setLedgerUpdate } = useGetLedger(filters, categories)
 
     return (
         <LedgerContext.Provider value={{ ledger, setLedgerUpdate }}>
         <LedgerFiltersContext.Provider value={{ filters, setFilters }}>
-        <CategoriesContext.Provider value={{ categories, setCategoryUpdate }}>
             <main className='ledger-page'>
                 <div className="ledger">
                     <Validation />
@@ -37,7 +35,6 @@ export default function Ledger (): JSX.Element {
                     </section>
                 </div>
             </main>
-        </CategoriesContext.Provider>
         </LedgerFiltersContext.Provider>
         </LedgerContext.Provider>
     )

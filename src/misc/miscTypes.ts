@@ -1,6 +1,6 @@
 import { NewCategoryTypes } from "../components/budget/newCategory/newCategoryTypes";
 import { BudgetDataTypes, BudgetItemTypes } from "../components/budget/budgetTypes";
-import { FilterTypes, LedgerTypes } from "../components/ledger/ledgerTypes";
+import { FilterTypes, LedgerTypes, NewLedgerItemTypes } from "../components/ledger/ledgerTypes";
 import { BudgetFilterTypes } from "../components/budget/budgetTypes";
 import { PeriodTypes } from "../components/reports/reportTypes";
 
@@ -77,4 +77,8 @@ export type LedgerFilterContextType = {
 export type BudgetPeriodContextType = {
     period: PeriodTypes,
     setPeriod: React.Dispatch<React.SetStateAction<PeriodTypes>>
+}
+
+export type FileImportDataContextType = {
+    parsedData: NewLedgerItemTypes[]
 }
