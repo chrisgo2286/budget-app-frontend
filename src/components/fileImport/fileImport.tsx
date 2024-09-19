@@ -9,15 +9,15 @@ import { createLedgerItem } from "../../misc/apiCalls";
 import { findCategoryID } from "../../misc/miscFunctions";
 
 export type RowNumsTypes = {
-    date: number,
-    category: number,
-    amount: number
+    date: number | null,
+    category: number | null,
+    amount: number | null
 }
 
 export default function FileImport () {
     
     const { categories } = useContext(CategoriesContext)
-    const [ data, setData ] = useState<string[][]>([])
+    const [ rawData, setRawData ] = useState<string[][]>([])
     const [ parsedData, setParsedData ] = useState<NewLedgerItemTypes[]>([])
     const [ queriesVisible, setQueriesVisible ] = useState<boolean>(false)
 
@@ -28,7 +28,7 @@ export default function FileImport () {
             Papa.parse(event.target.files[0], {
                 skipEmptyLines: true,
                 complete: function(results: ParseResult<string[]>) {
-                    setData(results.data)
+                    setRawData(results.data)
                     setQueriesVisible(true)
                 }
             })
@@ -37,11 +37,11 @@ export default function FileImport () {
 
 
     function parseData (rowNums: RowNumsTypes): void {
-        const newData = data.map((row) => (
+        const newData = rawData.map((row) => (
             { 
-                date: row[rowNums.date - 1], 
-                category: row[rowNums.category - 1], 
-                amount: row[rowNums.amount - 1] 
+                date: row[(rowNums.date) ? rowNums.date - 1: 0], 
+                category: row[(rowNums.category) ? rowNums.category - 1: 1], 
+                amount: row[(rowNums.amount) ? rowNums.amount - 1: 2] 
             }
         ))
         setParsedData(newData);
@@ -52,7 +52,7 @@ export default function FileImport () {
         parsedData.map((item) => (
             addLedgerItem(item)
         ))
-        setData([])
+        setParsedData([])
     }
 
     async function addLedgerItem (item: NewLedgerItemTypes): Promise<void> {
@@ -74,15 +74,15 @@ export default function FileImport () {
     function handleChange (ndx: number, event: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>): void {
         const { value, name } = event.target
         const newName = name.split("-")[0]
-        const newItem = { ...data[ndx], [newName]: value }
-        const newData = data.map((item, index) => (
+        const newItem = { ...parsedData[ndx], [newName]: value }
+        const newData = parsedData.map((item, index) => (
             index === ndx ? newItem : item
         ))
-        setData(newData)
+        setParsedData(newData)
     }
 
     return (
-        <main className="absolute">
+        <main className="flex flex-col justify-center items-center mt-10 border border-gray-100">
             <FileInput onChange={ handleFile }/>
             <FileImportDataContext.Provider value={{ parsedData }}>
                 <FileImportTable 
@@ -91,7 +91,8 @@ export default function FileImport () {
             </FileImportDataContext.Provider>
             <RawDataQueries 
                 queriesVisible={ queriesVisible }
-                parseData={ parseData }/>
+                parseData={ parseData }
+                rawData={ rawData }/>
         </main>
 
     )

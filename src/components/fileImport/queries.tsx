@@ -1,48 +1,55 @@
-import { useState } from "react"
 import { RowNumsTypes } from "./fileImport"
 
 type QueriesType = {
-    parseData: (rowNums: RowNumsTypes) => void
+    rowNums: RowNumsTypes,
+    handleChange: (event: React.ChangeEvent<HTMLInputElement>) => void
 }
 
-export default function Queries({ 
-    parseData 
+export default function Queries({
+    rowNums, 
+    handleChange 
 }: QueriesType): JSX.Element {
     
-    const [ rowNums, setRowNums ] = useState<RowNumsTypes>({
-        date: 0,
-        category: 0,
-        amount: 0
-    })
-
-    function handleChange (event: React.ChangeEvent<HTMLInputElement> ) {
-        setRowNums({ ...rowNums, [event.target.name]: event.target.value })
-    }
-    
     return (
-        <div>
-            <div className="grid grid-cols-2">
-                <div>What is the column for Date? </div>
-                <input 
-                    type="number" 
+        <div className="mt-10">
+            <div className="">
+                <QueryInputPair 
                     name="date"
                     value={ rowNums.date }
-                    onChange={ handleChange } />
-                <div>What is the column for Category? </div>
-                <input 
-                    type="number" 
+                    onChange={ (event) => handleChange(event) } />
+                <QueryInputPair
                     name="category"
                     value={ rowNums.category }
-                    onChange={ handleChange } />
-                <div>What is the column for Amount? </div>
-                <input 
-                    type="number" 
+                    onChange={ (event) => handleChange(event)} />
+                <QueryInputPair
                     name="amount"
                     value={ rowNums.amount }
-                    onChange={ handleChange } />
+                    onChange={ (event) => handleChange(event)} />
             </div>
-            <button onClick={ () => parseData(rowNums) }>Submit</button>
         </div>
         
+    )
+}
+
+type QueryInputPairTypes = {
+    name: string,
+    value: number | null,
+    onChange: (event: React.ChangeEvent<HTMLInputElement>) => void
+}
+
+function QueryInputPair ({ 
+    name, value, onChange 
+}: QueryInputPairTypes): JSX.Element {
+    return (
+        <div className="grid grid-cols-2 mt-5">
+            <span className="text-right">What is the column for { name }? </span>
+            <input
+                className="ml-8 w-16 rounded-md text-center border border-gray-300" 
+                type="number" 
+                name={ name }
+                value={ (value) ? value: 0 }
+                onChange={ onChange } />
+        </div>
+                
     )
 }

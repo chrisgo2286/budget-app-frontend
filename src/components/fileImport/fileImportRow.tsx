@@ -16,15 +16,15 @@ export default function FileImportRow ({
     const { categories } = useContext(CategoriesContext)
     const options = compileCategoryNames(categories)
     return (
-        <React.Fragment>
+        <>
             <input
-                className="" 
+                className="w-1/3 text-center" 
                 type="text" 
                 name={ `date-${ndx}` } 
                 value={ parsedData[ndx].date } 
                 onChange={(event: React.ChangeEvent<HTMLInputElement>) => handleChange(ndx, event) } />
             <select
-                className=""
+                className="w-1/3 text-center"
                 name={ `category-${ndx}` } 
                 value={ parsedData[ndx].category } 
                 onChange={(event: React.ChangeEvent<HTMLSelectElement>) => handleChange(ndx, event) } >
@@ -33,10 +33,11 @@ export default function FileImportRow ({
                 ))}
             </select>
             <input 
+                className="w-1/3 text-center"
                 type="number" 
                 name={ `amount-${ndx}` } 
                 value={ parsedData[ndx].amount} 
                 onChange={(event: React.ChangeEvent<HTMLInputElement>) => handleChange(ndx, event) } />       
-        </React.Fragment>
+        </>
     )
 }
