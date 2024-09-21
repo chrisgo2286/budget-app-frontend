@@ -14,16 +14,22 @@ export type RowNumsTypes = {
     amount: number | null
 }
 
+export type ParsedDataItemType = {
+    date: string,
+    description: string,
+    amount: string,
+    category: string
+}
+
 export default function FileImport () {
     
     const { categories } = useContext(CategoriesContext)
     const [ rawData, setRawData ] = useState<string[][]>([])
-    const [ parsedData, setParsedData ] = useState<NewLedgerItemTypes[]>([])
+    const [ parsedData, setParsedData ] = useState<ParsedDataItemType[]>([])
     const [ queriesVisible, setQueriesVisible ] = useState<boolean>(false)
 
     function handleFile (event: React.ChangeEvent<HTMLInputElement>): void {
         
-
         if (event.target.files) {
             Papa.parse(event.target.files[0], {
                 skipEmptyLines: true,
@@ -35,13 +41,13 @@ export default function FileImport () {
         }
     }
 
-
     function parseData (rowNums: RowNumsTypes): void {
         const newData = rawData.map((row) => (
             { 
                 date: row[(rowNums.date) ? rowNums.date - 1: 0], 
-                category: row[(rowNums.category) ? rowNums.category - 1: 1], 
-                amount: row[(rowNums.amount) ? rowNums.amount - 1: 2] 
+                description: row[(rowNums.category) ? rowNums.category - 1: 1], 
+                amount: row[(rowNums.amount) ? rowNums.amount - 1: 2],
+                category: "Category",
             }
         ))
         setParsedData(newData);
@@ -55,11 +61,11 @@ export default function FileImport () {
         setParsedData([])
     }
 
-    async function addLedgerItem (item: NewLedgerItemTypes): Promise<void> {
+    async function addLedgerItem (item: ParsedDataItemType): Promise<void> {
         const result = await createLedgerItem(cleanItem(item))
     }
 
-    function cleanItem (item: NewLedgerItemTypes): NewLedgerItemTypes {
+    function cleanItem (item: ParsedDataItemType): NewLedgerItemTypes {
         const dateObj = new Date(item.date)
         const newDate = `${ dateObj.getFullYear() }-${ dateObj.getMonth()+1 }-${ dateObj.getDate() }`
         const categoryId = findCategoryID(item.category, categories)

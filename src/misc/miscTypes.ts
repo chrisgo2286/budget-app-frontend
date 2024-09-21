@@ -1,8 +1,9 @@
 import { NewCategoryTypes } from "../components/budget/newCategory/newCategoryTypes";
-import { BudgetDataTypes, BudgetItemTypes } from "../components/budget/budgetTypes";
-import { FilterTypes, LedgerTypes, NewLedgerItemTypes } from "../components/ledger/ledgerTypes";
+import { BudgetDataTypes } from "../components/budget/budgetTypes";
+import { FilterTypes, LedgerTypes } from "../components/ledger/ledgerTypes";
 import { BudgetFilterTypes } from "../components/budget/budgetTypes";
 import { PeriodTypes } from "../components/reports/reportTypes";
+import { ParsedDataItemType } from "../components/fileImport/fileImport";
 
 export type UserTypes = {
     username: string;
@@ -80,5 +81,5 @@ export type BudgetPeriodContextType = {
 }
 
 export type FileImportDataContextType = {
-    parsedData: NewLedgerItemTypes[]
+    parsedData: ParsedDataItemType[]
 }

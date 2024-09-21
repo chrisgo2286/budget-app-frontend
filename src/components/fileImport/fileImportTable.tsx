@@ -1,9 +1,7 @@
 import { useContext } from "react"
 import FileImportRow from "./fileImportRow"
 import { FileImportDataContext } from "../../misc/context"
-import { FileImportDataContextType } from "../../misc/miscTypes"
 import { NewLedgerItemTypes } from "../ledger/ledgerTypes"
-import { isVisible } from "@testing-library/user-event/dist/utils"
 import Button from "../miscComponents/button/button"
 
 type FileImportTableTypes = {
@@ -43,9 +41,10 @@ export default function FileImportTable ({
 function FileImportTableHeader () {
     return (
         <thead className="flex flex-row justify-around border-b border-gray-200">
-            <th className="w-1/3 text-center">Date</th>
-            <th className="w-1/3 text-center">Category</th>
-            <th className="w-1/3 text-center">Amount</th>
+            <th className="w-1/4 text-left">Date</th>
+            <th className="w-1/4 text-left">Description</th>
+            <th className="w-1/4 text-left">Amount</th>
+            <th className="w-1/4 text-left">Category</th>
         </thead>
     )
 }

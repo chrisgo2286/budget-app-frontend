@@ -18,26 +18,28 @@ export default function FileImportRow ({
     return (
         <>
             <input
-                className="w-1/3 text-center" 
+                className="w-1/4 text-left" 
                 type="text" 
                 name={ `date-${ndx}` } 
                 value={ parsedData[ndx].date } 
                 onChange={(event: React.ChangeEvent<HTMLInputElement>) => handleChange(ndx, event) } />
-            <select
-                className="w-1/3 text-center"
-                name={ `category-${ndx}` } 
-                value={ parsedData[ndx].category } 
-                onChange={(event: React.ChangeEvent<HTMLSelectElement>) => handleChange(ndx, event) } >
-                { options.map((option) => (
-                    <option key={ option } value={ option }>{ option }</option>
-                ))}
-            </select>
+            <div className="w-1/4 text-left">{ parsedData[ndx].description }</div>
             <input 
-                className="w-1/3 text-center"
+                className="w-1/4 text-left"
                 type="number" 
                 name={ `amount-${ndx}` } 
                 value={ parsedData[ndx].amount} 
-                onChange={(event: React.ChangeEvent<HTMLInputElement>) => handleChange(ndx, event) } />       
+                onChange={(event: React.ChangeEvent<HTMLInputElement>) => handleChange(ndx, event) } />
+            <select
+                className="w-1/4 text-left"
+                name={ `category-${ndx}` } 
+                value={ parsedData[ndx].category } 
+                onChange={(event: React.ChangeEvent<HTMLSelectElement>) => handleChange(ndx, event) } >
+                    <option key="Category" value="Category">Category</option>
+                    { options.map((option) => (
+                    <option key={ option } value={ option }>{ option }</option>
+                    ))}
+            </select>       
         </>
     )
 }
