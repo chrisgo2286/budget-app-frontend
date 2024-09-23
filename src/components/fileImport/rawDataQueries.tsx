@@ -2,11 +2,11 @@ import { useState } from "react";
 import RawData from "./rawData";
 import Queries from "./queries";
 import Button from "../miscComponents/button/button";
-import { RowNumsTypes } from "./fileImport";
+import { QueryFieldsTypes } from "./fileImport";
 
 type RawDataQueryTypes = {
     queriesVisible: boolean,
-    parseData: (rowNums: RowNumsTypes) => void,
+    parseData: (rowNums: QueryFieldsTypes) => void,
     rawData: string[][]
 }
 export default function RawDataQueries ({
@@ -15,29 +15,32 @@ export default function RawDataQueries ({
     rawData
 }: RawDataQueryTypes): JSX.Element {
 
-    const [ rowNums, setRowNums ] = useState<RowNumsTypes>({
+    const [ queryFields, setQueryFields ] = useState<QueryFieldsTypes>({
         date: 1,
-        category: 2,
-        amount: 3
+        description: 2,
+        amount: 3,
+        isHeader: "No"
     })
 
     function handleClassName (): string {
         return (queriesVisible) ?  queriesVisibleClass : queriesNotVisibleClass;
     }
 
-    function handleChange (event: React.ChangeEvent<HTMLInputElement> ) {
-        setRowNums({ ...rowNums, [event.target.name]: event.target.value })
+    function handleChange (event: React.ChangeEvent<HTMLInputElement | HTMLSelectElement> ) {
+        setQueryFields({ ...queryFields, [event.target.name]: event.target.value })
     }
 
     return (
         <div className={ handleClassName() } >
-            <Queries rowNums={ rowNums } handleChange={ (event) => handleChange(event) }/>
+            <Queries 
+                queryFields={ queryFields } 
+                handleChange={ (event) => handleChange(event) } />
             <RawData rawData={ rawData }/>
             <Button
                 className="mx-auto mt-10" 
-                onClick={ () => parseData(rowNums) }>
+                onClick={ () => parseData(queryFields) }>
                 Next
-            </Button>  
+            </Button>
         </div>
     )
 }

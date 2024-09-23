@@ -6,12 +6,14 @@ import Button from "../miscComponents/button/button"
 
 type FileImportTableTypes = {
     handleChange: (ndx: number, event: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>) => void,
-    submitForm: () => void
+    submitForm: () => void,
+    handleDeleteRow: (ndx: number) => void
 }
 
 export default function FileImportTable ({
     handleChange,
-    submitForm
+    submitForm,
+    handleDeleteRow
 }: FileImportTableTypes): JSX.Element {
 
     const { parsedData } = useContext(FileImportDataContext)
@@ -24,7 +26,8 @@ export default function FileImportTable ({
                         <FileImportTableHeader />
                         <FileImportTableBody 
                             data={ parsedData }
-                            handleChange={ handleChange } />
+                            handleChange={ handleChange }
+                            handleDeleteRow={ handleDeleteRow } />
                     </table>
                     <Button 
                         className="mx-auto mt-10"
@@ -41,28 +44,34 @@ export default function FileImportTable ({
 function FileImportTableHeader () {
     return (
         <thead className="flex flex-row justify-around border-b border-gray-200">
-            <th className="w-1/4 text-left">Date</th>
-            <th className="w-1/4 text-left">Description</th>
-            <th className="w-1/4 text-left">Amount</th>
-            <th className="w-1/4 text-left">Category</th>
+            <th className="w-1/5 text-left">Date</th>
+            <th className="w-1/5 text-left">Description</th>
+            <th className="w-1/5 text-left">Amount</th>
+            <th className="w-1/5 text-left">Category</th>
+            <th className="w-1/5 text-center">Delete</th>
         </thead>
     )
 }
 
 type FileImportTableBodyProp = {
     data: NewLedgerItemTypes[],
-    handleChange: (ndx: number, event: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>) => void
+    handleChange: (ndx: number, event: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>) => void,
+    handleDeleteRow: (ndx: number) => void
 }
 
 function FileImportTableBody ({ 
     data,
-    handleChange
+    handleChange,
+    handleDeleteRow
 }: FileImportTableBodyProp): JSX.Element {
     return (
         <tbody>
             { data.map((row, ndx) => (
                 <tr className="flex flex-row justify-between border-b border-gray-200" key={ ndx }>
-                    <FileImportRow ndx={ ndx } handleChange={ handleChange } />
+                    <FileImportRow 
+                        ndx={ ndx } 
+                        handleChange={ handleChange } 
+                        handleDeleteRow={ () => handleDeleteRow(ndx) }/>
                 </tr>
             ))}
         </tbody>

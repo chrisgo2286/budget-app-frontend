@@ -17,7 +17,7 @@ export default function RawData ({
         }
     }
     return (
-        <table className="table-fixed w-1/2 mx-auto mt-10 border border-gray-200">
+        <table className="table-fixed w-1/2 mx-auto mt-10 border-b border-gray-200">
             <RawDataHeader columns={ columns } />
             <RawDataBody clippedData={ clippedData } />
         </table>
@@ -38,9 +38,12 @@ function RawDataHeader ({columns}: {columns: number}): JSX.Element {
 
     return (
         <thead>
-            { createHeaders().map((header) => (
-                header
-            ))}
+            <tr className="border-b border-gray-200">
+                { createHeaders().map((header) => (
+                    header
+                ))}
+            </tr>
+
         </thead>
     )
 }

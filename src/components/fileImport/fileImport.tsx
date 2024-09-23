@@ -8,10 +8,11 @@ import { NewLedgerItemTypes } from "../ledger/ledgerTypes";
 import { createLedgerItem } from "../../misc/apiCalls";
 import { findCategoryID } from "../../misc/miscFunctions";
 
-export type RowNumsTypes = {
+export type QueryFieldsTypes = {
     date: number | null,
-    category: number | null,
-    amount: number | null
+    description: number | null,
+    amount: number | null,
+    isHeader: string
 }
 
 export type ParsedDataItemType = {
@@ -41,17 +42,29 @@ export default function FileImport () {
         }
     }
 
-    function parseData (rowNums: RowNumsTypes): void {
-        const newData = rawData.map((row) => (
+    function parseData (queryFields: QueryFieldsTypes): void {
+        let newData = rawData.map((row) => (
             { 
-                date: row[(rowNums.date) ? rowNums.date - 1: 0], 
-                description: row[(rowNums.category) ? rowNums.category - 1: 1], 
-                amount: row[(rowNums.amount) ? rowNums.amount - 1: 2],
+                date: row[(queryFields.date) ? queryFields.date - 1: 0], 
+                description: row[(queryFields.description) ? queryFields.description - 1: 1], 
+                amount: row[(queryFields.amount) ? queryFields.amount - 1: 2],
                 category: "Category",
             }
         ))
+        
+        if (queryFields.isHeader === "Yes") {
+            newData = newData.slice(1, newData.length + 1)
+        }
+
         setParsedData(newData);
         setQueriesVisible(false);
+    }
+
+    function handleDeleteRow (ndx: number) {
+        const firstArray = parsedData.slice(0, ndx)
+        const secondArray = parsedData.slice(ndx + 1, parsedData.length)
+        const newData = firstArray.concat(secondArray)
+        setParsedData(newData)
     }
 
     function submitForm () {
@@ -93,7 +106,8 @@ export default function FileImport () {
             <FileImportDataContext.Provider value={{ parsedData }}>
                 <FileImportTable 
                     handleChange={ handleChange }
-                    submitForm={ submitForm } />
+                    submitForm={ submitForm } 
+                    handleDeleteRow={ handleDeleteRow }/>
             </FileImportDataContext.Provider>
             <RawDataQueries 
                 queriesVisible={ queriesVisible }
