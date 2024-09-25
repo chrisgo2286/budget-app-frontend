@@ -12,6 +12,7 @@ module.exports = {
       },
       colors: {
         "site-font-color": "var(--siteFontColor)",
+        "site-border-color": "var(--siteBorderColor)",
         "first-color": "var(--firstColor)",
         "second-color": "var(--secondColor)",
         "third-color": "var(--thirdColor)",

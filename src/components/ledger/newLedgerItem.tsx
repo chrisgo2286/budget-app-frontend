@@ -6,7 +6,7 @@ import { validateNewLedgerItem } from "../../misc/validation/validateNewLedgerIt
 import { findCategoryID, compileCategoryNames } from "../../misc/miscFunctions";
 import { NewLedgerItemTypes } from "./ledgerTypes";
 import { CategoriesContext, LedgerContext } from "../../misc/context";
-import { ErrorsContext } from "../../misc/context";
+import { LedgerErrorsContext } from "../../misc/context";
 
 export default function NewLedgerItem (): JSX.Element {
     const { categories } = useContext(CategoriesContext)
@@ -17,7 +17,7 @@ export default function NewLedgerItem (): JSX.Element {
         amount: ''
     })
     const [ inputType, setInputType ] = useState<string>('text');
-    const { setErrors } = useContext(ErrorsContext)
+    const { setErrors } = useContext(LedgerErrorsContext)
 
     async function handleSubmit (): Promise<void> {
         const result = validateNewLedgerItem(fields);

@@ -5,7 +5,7 @@ import Validation from "../validation/validation";
 import './ledger.css';
 import { FilterTypes } from "./ledgerTypes";
 import { useGetLedger } from "../../misc/hooks";
-import { CategoriesContext, LedgerContext, LedgerFiltersContext } from "../../misc/context";
+import { CategoriesContext, LedgerContext, LedgerErrorsContext, LedgerFiltersContext } from "../../misc/context";
 import HiddenLedgerSection from "./hiddenLedgerSection/hiddenLedgerSection";
 
 export default function Ledger (): JSX.Element {
@@ -18,13 +18,15 @@ export default function Ledger (): JSX.Element {
         type: '',
     })
     const { ledger, setLedgerUpdate } = useGetLedger(filters, categories)
+    const [ errors, setErrors ] = useState<string[]>([])
 
     return (
         <LedgerContext.Provider value={{ ledger, setLedgerUpdate }}>
         <LedgerFiltersContext.Provider value={{ filters, setFilters }}>
+        <LedgerErrorsContext.Provider value={{ errors, setErrors }}>
             <main className='ledger-page'>
                 <div className="ledger">
-                    <Validation />
+                    <Validation errors={ errors }/>
                     <HiddenLedgerSection />
                     <div className="ledger-title" data-cy="ledger-title">Ledger</div>
                     <LedgerHeader />
@@ -35,6 +37,7 @@ export default function Ledger (): JSX.Element {
                     </section>
                 </div>
             </main>
+        </LedgerErrorsContext.Provider>
         </LedgerFiltersContext.Provider>
         </LedgerContext.Provider>
     )

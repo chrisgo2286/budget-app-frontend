@@ -1,6 +1,6 @@
 import { useContext } from "react";
-import BudgetItem from "./budgetItem/budgetItem";
-import { BudgetContext } from "../../misc/context";
+import BudgetItem from "../budgetItem/budgetItem";
+import { BudgetContext } from "../../../misc/context";
 
 export default function IncomeBudgetSection (): JSX.Element {
 

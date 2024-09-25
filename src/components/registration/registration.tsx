@@ -1,6 +1,6 @@
 import { useState, useContext } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { UserContext, ErrorsContext } from '../../misc/context';
+import { UserContext } from '../../misc/context';
 import { registerNewUser } from '../../misc/apiCalls';
 import { loginUser } from '../../misc/apiCalls';
 import { validateRegistration } from '../../misc/validation/validateRegistration';
@@ -14,7 +14,7 @@ import { createNewUserData } from '../../misc/userFunctions';
 export default function Registration (): JSX.Element {
     const navigate = useNavigate();
     const { setUser} = useContext(UserContext);
-    const { setErrors } = useContext(ErrorsContext)
+    const [ errors, setErrors ] = useState<string[]>([])
     const [credentials, setCredentials] = useState<RegistrationTypes>(blankCredentials)
 
     async function handleSubmit (): Promise<void> {
@@ -45,13 +45,14 @@ export default function Registration (): JSX.Element {
     function handleLoginSuccess (token: string): void {
         const newUser = createNewUserData(credentials.username, token)
         updateLogin(newUser, setUser, navigate)
+        setErrors([])
     }
 
     return (
         <main className="registration-page">
             <div className="registration" data-cy='registration'>
                 <div className="registration-header">Registration</div>
-                <Validation />
+                <Validation errors={ errors }/>
                 <NewUserFields 
                     fields={ credentials } 
                     setFields={ setCredentials }

@@ -1,5 +1,4 @@
 import { BudgetFilterTypes, BudgetItemTypes } from "../components/budget/budgetTypes";
-import { FilterTypes } from "../components/ledger/ledgerTypes";
 import { NewCategoryTypes } from "../components/budget/newCategory/newCategoryTypes";
 import { PeriodTypes } from "../components/reports/reportTypes";
 
@@ -10,7 +9,6 @@ export const MONTH_OPTIONS = [
 
 export function findCategoryID (categoryName: string, categories: NewCategoryTypes[]): string | undefined{
     const category = categories.find((category) => category.name == categoryName)
-    console.log(categoryName, category)
     return category?.id
 }
 

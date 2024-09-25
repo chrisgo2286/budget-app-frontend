@@ -1,11 +1,11 @@
 import { useContext, useState } from 'react';
 import { validateBudgetFilter } from '../../../misc/validation/validateBudgetFilter';
-import { BudgetFiltersContext, ErrorsContext } from '../../../misc/context';
+import { BudgetFiltersContext, BudgetErrorsContext } from '../../../misc/context';
 
 export default function InputBudgetFilter (): JSX.Element {
     const { filters, setFilters } = useContext(BudgetFiltersContext)
     const [ year, setYear ] = useState<number | string>(filters?.year);
-    const { setErrors } = useContext(ErrorsContext)
+    const { setErrors } = useContext(BudgetErrorsContext)
 
     function handleChange(event: React.ChangeEvent<HTMLInputElement>): void {
         const { value } = event.target;

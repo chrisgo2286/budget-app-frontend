@@ -41,7 +41,12 @@ export const BudgetFiltersContext = createContext<BudgetFiltersContextType>({
     setFilters: () => console.log("Ooops, default value used!")
 })
 
-export const ErrorsContext = createContext<ErrorsContextType>({
+export const BudgetErrorsContext = createContext<ErrorsContextType>({
+    errors: [],
+    setErrors: () => console.log("Ooops, default value used!")
+})
+
+export const LedgerErrorsContext = createContext<ErrorsContextType>({
     errors: [],
     setErrors: () => console.log("Ooops, default value used!")
 })

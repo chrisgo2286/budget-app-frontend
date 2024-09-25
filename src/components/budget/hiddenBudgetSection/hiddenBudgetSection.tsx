@@ -3,6 +3,7 @@ import BudgetFilter from "../budgetFilter/budgetFilter"
 import NewCategory from "../newCategory/newCategory"
 import NewBudgetItem from "../newBudgetItem/newBudgetItem"
 import ExpandIcon from "../../miscComponents/expandIcon/expandIcon"
+import DeleteCategory from "../deleteCategory/deleteCategory"
 
 export default function HiddenBudgetSection (): JSX.Element {
     const [ filtersVisible, setFiltersVisible ] = useState<boolean>(false);
@@ -19,6 +20,7 @@ export default function HiddenBudgetSection (): JSX.Element {
             <div className={ (!filtersVisible) ? "filter-container collapsed":"filter-container" }>
                 <div className="filters-header">Filters</div>
                 <BudgetFilter />
+                <DeleteCategory />
                 <div className="new-category-header">New Category</div>
                 <NewCategory />
                 <div className="new-budget-item-header">New Budget Item</div>

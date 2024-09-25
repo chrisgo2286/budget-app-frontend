@@ -5,7 +5,7 @@ import { createBudgetItem } from "../../../misc/apiCalls";
 import { validateNewBudgetItem } from "../../../misc/validation/validateNewBudgetItem";
 import { compileCategoryNames, findCategoryID } from "../../../misc/miscFunctions";
 import { NewBudgetItemTypes } from "./newBudgetItemTypes";
-import { CategoriesContext, BudgetContext, ErrorsContext, BudgetPeriodContext } from "../../../misc/context";
+import { CategoriesContext, BudgetContext, BudgetErrorsContext, BudgetPeriodContext } from "../../../misc/context";
 
 export default function NewBudgetItem (): JSX.Element {
     
@@ -16,7 +16,7 @@ export default function NewBudgetItem (): JSX.Element {
     })
     const { categories } = useContext(CategoriesContext)
     const { budget, setBudgetUpdate } = useContext(BudgetContext)
-    const { setErrors } = useContext(ErrorsContext)
+    const { setErrors } = useContext(BudgetErrorsContext)
     
     async function handleSubmit (): Promise<void> {
         const result = validateNewBudgetItem(fields, budget.items);
@@ -29,12 +29,12 @@ export default function NewBudgetItem (): JSX.Element {
                     month: period.month,
                     year: period.year   
                 }
-                console.log(newFields)
                 await createBudgetItem(newFields);
                 setFields({
                     category: '',
                     amount: '',
                 })
+                setErrors([])
                 setBudgetUpdate(true);
             }
         } else if(typeof result !== "string") {

@@ -1,6 +1,6 @@
 import { useState, useContext } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { UserContext, ErrorsContext } from '../../misc/context';
+import { UserContext } from '../../misc/context';
 import { loginUser } from '../../misc/apiCalls';
 import { validateLogin } from '../../misc/validation/validateLogin';
 import Validation from '../validation/validation';
@@ -16,7 +16,7 @@ export default function Login (): JSX.Element {
         username: '',
         password: '',
     })
-    const { setErrors } = useContext(ErrorsContext)
+    const [ errors, setErrors ] = useState<string[]>([])
     
     async function handleSubmit (): Promise<void> {
         const result = validateLogin(credentials);
@@ -39,17 +39,18 @@ export default function Login (): JSX.Element {
     async function handleLoginSuccess (token: string): Promise<void> {
         const newUser = createNewUserData(credentials.username, token)
         updateLogin(newUser, setUser, navigate)
+        setErrors([])
     }
 
     return (
         <main className="login-page">
             <div className="login" data-cy='login'>
                 <div className="login-header" data-cy='login-header'>Login</div>
-                <Validation />
+                <Validation errors={ errors }/>
                 <LoginFields 
                     fields={ credentials } 
                     setFields={ setCredentials } 
-                    handleSubmit={ handleSubmit }/>
+                    handleSubmit={ handleSubmit } />
             </div>
         </main>
         

@@ -26,7 +26,7 @@
 }
 
 .filter-container {
-    height: 250px;
+    height: 350px;
     transition: height .2s ease;
     padding-left: 40px;
 }
@@ -34,11 +34,12 @@
 .collapsed {
     height: 0px;
     overflow: hidden;
-    transition: height .2s ease;
+    transition: height .1s ease;
 }
 
 .new-budget-item,
-.budget-filter {
+.budget-filter,
+.delete-category {
     display: grid;
     grid-template-columns: 3fr 3fr 3fr 3fr 1fr;
     height: 30px;
@@ -48,7 +49,8 @@
 }
 
 .new-budget-item > *,
-.budget-filter > * {
+.budget-filter > *,
+.delete-category > * {
     margin: 0px 10px;
     border: 1px solid var(--siteFieldBorderColor);
     border-radius: 5px;

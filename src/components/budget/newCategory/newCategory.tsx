@@ -4,16 +4,16 @@ import Select from '../../miscComponents/select/select';
 import { createCategory } from '../../../misc/apiCalls';
 import { validateNewCategory } from '../../../misc/validation/validateNewCategory';
 import { NewCategoryTypes } from './newCategoryTypes';
-import { CategoriesContext, ErrorsContext } from '../../../misc/context';
+import { CategoriesContext, BudgetErrorsContext } from '../../../misc/context';
 
 export default function NewCategory (): JSX.Element {
     const [ fields, setFields ] = useState<NewCategoryTypes>({
         name: '',
         type: ''
     })
-    const { setErrors } = useContext(ErrorsContext)
+    const { setErrors } = useContext(BudgetErrorsContext)
     const { categories, setCategoryUpdate } = useContext(CategoriesContext)
-    
+
     function handleSubmit (): void {
         const result = validateNewCategory(fields, categories)
         if(result === 'Valid') {
@@ -31,6 +31,7 @@ export default function NewCategory (): JSX.Element {
             await createCategory(fields)
         }
         setFields({ name: '', type: '' })
+        setErrors([])
         setCategoryUpdate(true);
     }
 

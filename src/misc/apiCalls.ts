@@ -57,10 +57,10 @@ export async function createCategory (fields: NewCategoryTypes): Promise<StatusT
     return result.data;
 }
 
-export async function deleteCategory (id: number): Promise<void> {
-    console.log('Requesting API...')
+export async function deleteCategory (id: number): Promise<StatusType> {
     const newUrl = url + 'categories/' + id + '/';
-    await axios.delete(newUrl, createHeaders());
+    const result = await axios.delete(newUrl, createHeaders());
+    return { status: result.status }
 }
 
 export async function getBudgetItems (period: PeriodTypes): Promise<BudgetDataTypes> {
@@ -86,6 +86,11 @@ export async function deleteBudgetItem (id: string): Promise<StatusType> {
 export async function patchBudgetItem (id: string, amount: string): Promise<StatusType> {
     const result = await axios.patch(url + 'budget_items/' + id + '/', { 'amount': amount}, createHeaders())
     return { status: result.status}
+}
+
+export async function copyBudget (): Promise<StatusType> {
+    const result = await axios.post(url + "copy_budget/", createHeaders())
+    return { status: result.status }
 }
 
 export async function registerNewUser (fields: RegistrationTypes): Promise<StatusType> {

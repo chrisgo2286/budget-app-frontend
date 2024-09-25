@@ -5,7 +5,7 @@ import { LoginFieldsProps } from "./loginTypes";
 export default function LoginFields ({ 
     fields, 
     setFields, 
-    handleSubmit 
+    handleSubmit
 }: LoginFieldsProps): JSX.Element {
     return (
         <React.Fragment>

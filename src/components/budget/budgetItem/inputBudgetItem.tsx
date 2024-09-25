@@ -2,14 +2,14 @@ import { useContext, useState } from 'react';
 import { patchBudgetItem } from '../../../misc/apiCalls';
 import { validateBudgetItem } from '../../../misc/validation/validateBudgetItem';
 import { InputBudgetItemProps } from './budgetItemTypes';
-import { BudgetContext, ErrorsContext } from '../../../misc/context';
+import { BudgetContext, BudgetErrorsContext } from '../../../misc/context';
 
 export default function InputBudgetItem ({ 
     budgetItem
 }: InputBudgetItemProps): JSX.Element {
     const [ amount, setAmount ] = useState<string>(budgetItem.budget_amount);
     const { setBudgetUpdate } = useContext(BudgetContext)
-    const { setErrors } = useContext(ErrorsContext)
+    const { setErrors } = useContext(BudgetErrorsContext)
     
     function handleChange (event: React.ChangeEvent<HTMLInputElement>) {
         const { value } = event.target;
