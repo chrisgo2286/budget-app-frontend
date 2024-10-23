@@ -3,7 +3,7 @@ import { createLedgerItem } from "../../misc/apiCalls";
 import Input from "../miscComponents/input/input";
 import Select from "../miscComponents/select/select";
 import { validateNewLedgerItem } from "../../misc/validation/validateNewLedgerItem";
-import { findCategoryID, compileCategoryNames } from "../../misc/miscFunctions";
+import { findCategoryID, compileCategoryNames, refreshPage } from "../../misc/miscFunctions";
 import { NewLedgerItemTypes } from "./ledgerTypes";
 import { CategoriesContext, LedgerContext } from "../../misc/context";
 import { LedgerErrorsContext } from "../../misc/context";
@@ -26,7 +26,7 @@ export default function NewLedgerItem (): JSX.Element {
             if (category_id) {
                 const newFields = { ...fields, 'category': category_id }
                 await createLedgerItem(newFields);
-                setLedgerUpdate(true);
+                setLedgerUpdate(true)
                 resetFields();
             }
         } else if (typeof result !== "string") {
@@ -35,11 +35,8 @@ export default function NewLedgerItem (): JSX.Element {
     }
 
     function resetFields (): void {
-        setFields({
-            date: '',
-            category: '',
-            amount: ''
-        });
+        const newFields = { ...fields, date: "", amount: "" }
+        setFields(newFields);
     }
 
     function handleFocus (): void {
