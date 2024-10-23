@@ -15,11 +15,15 @@ export default function LedgerItem ({
         setLedgerUpdate(true);
     }
 
+    function formatType (): string {
+        return item.category__type.split("_")[0]
+    }
+
     return (
         <div className='ledger-item' data-cy="ledger-item">
             <div data-cy="ledger-item-date">{ date }</div>
             <div data-cy="ledger-item-category">{ category__name }</div>
-            <div data-cy="ledger-item-type">{ category__type }</div>
+            <div data-cy="ledger-item-type">{ formatType() }</div>
             <div data-cy="ledger-item-amount">{ amount }</div>
             <div 
                 className='ledger-item-delete'

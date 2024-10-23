@@ -44,3 +44,16 @@ export function useGetLedger (
     return { ledger, setLedgerUpdate }
 }
 
+export function useGetCategoryLedger (
+    filters: FilterTypes,
+    categories: NewCategoryTypes[]
+): { ledger: LedgerTypes[]} {
+    const [ ledger, setLedger ] = useState<LedgerTypes[]>([])
+
+    useEffect(() => {
+        getLedgerItems(filters, categories).then((ledger) => setLedger(ledger));
+    }, [])
+
+    return { ledger }
+}
+

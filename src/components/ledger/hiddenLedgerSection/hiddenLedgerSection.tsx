@@ -16,7 +16,7 @@ export default function HiddenLedgerSection () {
             <ExpandIcon handleClick={ handleExpandIconClick }>
                 { filtersVisible ? "expand_less" : "expand_more" }
             </ExpandIcon>
-            <div className={ (!filtersVisible) ? "filter-container collapsed":"filter-container" }>
+            <div className={ (!filtersVisible) ? "ledger-filter-container collapsed":"ledger-filter-container" }>
                 <div className="filters-header" data-cy="filters-header">Filters</div>
                 <LedgerFilter />
                 <div className="new-ledger-header" data-cy="new-ledger-header">New Item</div>

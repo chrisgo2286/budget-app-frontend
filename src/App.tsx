@@ -7,6 +7,7 @@ import Ledger from './components/ledger/ledger';
 import Reports from './components/reports/reports';
 import Registration from './components/registration/registration';
 import Login from './components/login/login';
+import ConfirmDeleteCategory from './components/budget/deleteCategory/confirmDeleteCategory';
 import { UserContext, CategoriesContext } from './misc/context';
 import axios from 'axios';
 import './App.css';
@@ -44,6 +45,7 @@ export default function App (): JSX.Element {
                     <Route path='/import' element={ <FileImport /> } />
                     <Route path='/registration' element={ <Registration /> } />
                     <Route path='/login' element={ <Login /> } />
+                    <Route path='/confirmDeleteCategory' element={ <ConfirmDeleteCategory /> } />
                 </Routes>
             </Router>
             </CategoriesContext.Provider>

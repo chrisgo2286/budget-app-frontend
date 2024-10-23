@@ -1,26 +1,25 @@
 import { useContext, useState } from "react";
+import { useNavigate } from 'react-router-dom';
 import Button from "../../miscComponents/button/button";
 import { CategoriesContext, BudgetErrorsContext } from "../../../misc/context";
-import { compileCategoryNames, findCategoryID, refreshPage } from "../../../misc/miscFunctions";
-import { deleteCategory } from "../../../misc/apiCalls";
+import { compileCategoryNames, findCategoryID } from "../../../misc/miscFunctions";
+
+import { navToConfirmDeleteCategory } from "../../../misc/navFunctions";
 
 export default function DeleteCategory (): JSX.Element {
     
+    const navigate = useNavigate()
     const { categories } = useContext(CategoriesContext)
     const [ choice, setChoice ] = useState<string>("Category")
     let categoryNames = compileCategoryNames(categories)
     const { setErrors } = useContext(BudgetErrorsContext)
 
-    async function handleDeleteCategory () {
-        const categoryID = findCategoryID(choice, categories)
-        if (categoryID) {
-            const result = await deleteCategory(parseInt(categoryID))
-            if (result.status === 204) {
-                refreshPage();
-                setErrors([])
-            } else {
-                setErrors(["There was a problem deleting this category!"])
-            }
+    async function handleNavToConfirmDeleteCategory () {
+        const categoryId = findCategoryID(choice, categories)
+        if (categoryId) {
+            navToConfirmDeleteCategory(navigate, categoryId)    
+        } else {
+            setErrors(["There was a problem deleting this category!"])
         }
     }
 
@@ -44,7 +43,7 @@ export default function DeleteCategory (): JSX.Element {
                 </select>
                 <Button 
                     className="add-btn border border-gray-900 my-5"
-                    onClick={ handleDeleteCategory }>
+                    onClick={ handleNavToConfirmDeleteCategory }>
                     Delete
                 </Button>
             </div>

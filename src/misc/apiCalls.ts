@@ -13,6 +13,7 @@ import { CurrentExpenseChartTypes } from '../components/reports/currentExpenseCh
 import { MonthlyExpenseChartTypes } from '../components/reports/monthlyExpenseChart/monthlyExpenseChartTypes';
 import { MonthlySavingsChartTypes } from '../components/reports/monthlySavingsChart/monthlySavingsChartTypes';
 import { createHeaders } from './userFunctions';
+import { EditLedgerTypes } from '../components/budget/deleteCategory/confirmDeleteCategory';
 
 const url = 'http://127.0.0.1:8000/api/'
 
@@ -39,6 +40,12 @@ export async function createLedgerItem (fields: NewLedgerItemTypes): Promise<Led
     fields.owner = 1;
     const result = await axios.post(url + 'ledger_items/', fields, createHeaders())
     return result.data;
+}
+
+export async function patchLedgerItem (id: string, category: string): Promise<StatusType> {
+    const newUrl = url + "ledger_items/" + id + "/"
+    const result = await axios.patch(newUrl, { "category": category }, createHeaders())
+    return { status: result.status }
 }
 
 export async function deleteLedgerItem (id: string): Promise<StatusType> {
@@ -88,8 +95,10 @@ export async function patchBudgetItem (id: string, amount: string): Promise<Stat
     return { status: result.status}
 }
 
-export async function copyBudget (): Promise<StatusType> {
-    const result = await axios.post(url + "copy_budget/", createHeaders())
+export async function copyBudget (period: PeriodTypes): Promise<StatusType> {
+    const newUrl = url + 'budget_copy/?month=' + period.month + '&year=' + period.year;
+    const result = await axios.get(newUrl, createHeaders())
+    console.log(result)
     return { status: result.status }
 }
 
