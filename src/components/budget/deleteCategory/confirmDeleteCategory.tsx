@@ -21,6 +21,8 @@ export default function ConfirmDeleteCategory (): JSX.Element {
     const { setErrors } = useContext(BudgetErrorsContext)    
     const [ updates, setUpdates ] = useState<EditLedgerTypes[]>([])
     const filters = {
+        month: "",
+        year: "",
         startDate: "",
         endDate: "",
         category: categoryId,

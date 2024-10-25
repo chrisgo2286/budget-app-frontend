@@ -37,7 +37,7 @@ export function refreshPage (): void {
 }
 
 export function getCurrentPeriod (): PeriodTypes {
-    return { month: getCurrentMonth(), year: getCurentYear() }
+    return { month: getCurrentMonth(), year: getCurrentYear() }
 }
 
 export function getCurrentMonth (): number {
@@ -45,9 +45,16 @@ export function getCurrentMonth (): number {
     return currentDate.getMonth() + 1;
 }
 
-export function getCurentYear (): number {
+export function getCurrentYear (): number {
     const currentDate = new Date();
     return currentDate.getFullYear();
+}
+
+export function getLastDay (): Date {
+    const currentDate = new Date();
+    const lastDateObj = new Date(getCurrentYear(), getCurrentMonth() + 1, 0)
+    return lastDateObj
+
 }
 
 export function cleanFilters (filters: BudgetFilterTypes): BudgetFilterTypes {

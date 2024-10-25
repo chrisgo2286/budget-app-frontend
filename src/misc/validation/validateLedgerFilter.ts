@@ -1,4 +1,4 @@
-import { FilterTypes } from "../../components/ledger/ledgerTypes";
+import { FilterTypes } from "../../components/ledger/ledger";
 import { validateCategorySelect, validateFilterDates, validateType } from "./validation";
 
 export function validateLedgerFilter (fields: FilterTypes): string | string[] {

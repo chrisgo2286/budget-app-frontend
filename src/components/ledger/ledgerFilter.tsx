@@ -1,7 +1,7 @@
 import { useContext, useState } from 'react';
 import Input from "../miscComponents/input/input";
 import Select from "../miscComponents/select/select";
-import { compileBudgetCategoryNames } from "../../misc/miscFunctions";
+import { compileBudgetCategoryNames, getCurrentMonth, getCurrentYear } from "../../misc/miscFunctions";
 import { CategoriesContext, LedgerContext, LedgerFiltersContext } from '../../misc/context';
 
 export default function LedgerFilter (): JSX.Element {
@@ -34,6 +34,8 @@ export default function LedgerFilter (): JSX.Element {
 
     function handleClear (): void {
         setFilters({
+            month: getCurrentMonth().toString(),
+            year: getCurrentYear().toString(),
             startDate: '',
             endDate: '', 
             category: '',

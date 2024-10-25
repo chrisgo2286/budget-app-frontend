@@ -9,6 +9,7 @@ export default function BudgetItem ({
     function handleClassName () {
         let baseClass = "absolute h-full rounded";
         baseClass += (budgetItem.type === "Income") ? " bg-green-100": " bg-blue-100";
+        baseClass += (budgetItem.type !== "Income" && budgetItem.percent === "100%") ? " priority": "";
         return baseClass;
     }
 

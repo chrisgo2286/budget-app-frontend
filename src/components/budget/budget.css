@@ -150,3 +150,7 @@
 .expense-section .inner-bar {
     background-color: var(--thirdColor);
 }
+
+.priority {
+    background-color: rgba(255, 0, 0, 0.486);
+}

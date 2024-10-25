@@ -1,9 +1,9 @@
 import axios from 'axios';
 import { findCategoryID } from './miscFunctions';
-import { FilterTypes, LedgerTypes, NewLedgerItemTypes } from "../components/ledger/ledgerTypes";
+import { LedgerTypes, NewLedgerItemTypes } from "../components/ledger/ledgerTypes";
 import { NewCategoryTypes } from "../components/budget/newCategory/newCategoryTypes";
 import { ResponseType, StatusType } from './miscTypes';
-import { BudgetDataTypes, BudgetFilterTypes, BudgetItemTypes } from '../components/budget/budgetTypes';
+import { BudgetDataTypes } from '../components/budget/budgetTypes';
 import { RegistrationTypes } from '../components/registration/registrationTypes';
 import { LoginFieldsTypes } from '../components/login/loginTypes';
 import { PeriodTypes } from '../components/reports/reportTypes';
@@ -13,7 +13,7 @@ import { CurrentExpenseChartTypes } from '../components/reports/currentExpenseCh
 import { MonthlyExpenseChartTypes } from '../components/reports/monthlyExpenseChart/monthlyExpenseChartTypes';
 import { MonthlySavingsChartTypes } from '../components/reports/monthlySavingsChart/monthlySavingsChartTypes';
 import { createHeaders } from './userFunctions';
-import { EditLedgerTypes } from '../components/budget/deleteCategory/confirmDeleteCategory';
+import { FilterTypes } from '../components/ledger/ledger';
 
 const url = 'http://127.0.0.1:8000/api/'
 
@@ -21,6 +21,7 @@ export async function getLedgerItems (
     filters: FilterTypes, 
     categories: NewCategoryTypes[]
 ): Promise<LedgerTypes[]> {
+
     if(filters.category) {
         const categoryId = findCategoryID(filters.category, categories)
         if (categoryId) {
@@ -30,7 +31,7 @@ export async function getLedgerItems (
     const newUrl = (
         url + 'ledger/?startDate=' + filters.startDate + '&endDate=' +
         filters.endDate + '&category=' + filters.category + '&type=' +
-        filters.type
+        filters.type + "&month=" + filters.month + "&year=" + filters.year
     )
     const result = await axios.get(newUrl, createHeaders());
     return result.data;

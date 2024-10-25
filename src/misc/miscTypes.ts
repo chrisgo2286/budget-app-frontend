@@ -1,9 +1,10 @@
 import { NewCategoryTypes } from "../components/budget/newCategory/newCategoryTypes";
 import { BudgetDataTypes } from "../components/budget/budgetTypes";
-import { FilterTypes, LedgerTypes } from "../components/ledger/ledgerTypes";
+import { LedgerTypes } from "../components/ledger/ledgerTypes";
 import { BudgetFilterTypes } from "../components/budget/budgetTypes";
 import { PeriodTypes } from "../components/reports/reportTypes";
 import { ParsedDataItemType } from "../components/fileImport/fileImport";
+import { FilterTypes } from "../components/ledger/ledger";
 
 export type UserTypes = {
     username: string;

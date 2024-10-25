@@ -53,6 +53,8 @@ export const LedgerErrorsContext = createContext<ErrorsContextType>({
 
 export const LedgerFiltersContext = createContext<LedgerFilterContextType>({
     filters: {
+        month: "",
+        year: "",
         startDate: "",
         endDate: "",
         category: "",

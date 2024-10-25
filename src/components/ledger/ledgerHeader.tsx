@@ -1,11 +1,21 @@
-export default function LedgerHeader (): JSX.Element {
+import { PrevArrow, NextArrow, ReportHeader } from "../reports/miscReportComponents"
+import { monthNumToName } from "../../misc/miscFunctions"
+import { useContext } from "react"
+import { LedgerFiltersContext } from "../../misc/context"
+
+type LedgerHeaderProps = {
+    handlePeriodChange: (dir: "prev" | "next") => void
+}
+
+export default function LedgerHeader ({ handlePeriodChange }: LedgerHeaderProps): JSX.Element {
+
+    const { filters } = useContext(LedgerFiltersContext)
+
     return (
-        <section className="ledger-header" data-cy="ledger-header">
-            <div>Date</div>
-            <div>Category</div>
-            <div>Type</div>
-            <div>Amount</div>
-            <div>Delete</div>
-        </section>
+        <div className="mt-4 flex justify-between">
+            <PrevArrow handleClick={ () => handlePeriodChange("prev")} />
+            <ReportHeader label={ `${monthNumToName(parseInt(filters.month))} ${filters.year} Ledger` } />
+            <NextArrow handleClick={ () => handlePeriodChange("next")} />
+        </div>
     )
 }
