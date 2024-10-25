@@ -2,11 +2,11 @@ import { useContext, useState } from "react";
 import { createLedgerItem } from "../../misc/apiCalls";
 import Input from "../miscComponents/input/input";
 import Select from "../miscComponents/select/select";
-import { validateNewLedgerItem } from "../../misc/validation/validateNewLedgerItem";
-import { findCategoryID, compileCategoryNames, refreshPage } from "../../misc/miscFunctions";
+import { findCategoryID, compileCategoryNames } from "../../misc/miscFunctions";
 import { NewLedgerItemTypes } from "./ledgerTypes";
 import { CategoriesContext, LedgerContext } from "../../misc/context";
 import { LedgerErrorsContext } from "../../misc/context";
+import { validateLedgerItemFields } from "./hiddenLedgerSection/newLedgerItemValidation";
 
 export default function NewLedgerItem (): JSX.Element {
     const { categories } = useContext(CategoriesContext)
@@ -20,7 +20,7 @@ export default function NewLedgerItem (): JSX.Element {
     const { setErrors } = useContext(LedgerErrorsContext)
 
     async function handleSubmit (): Promise<void> {
-        const result = validateNewLedgerItem(fields);
+        const result = validateLedgerItemFields(fields)
         if(result === 'Valid') {
             const category_id = findCategoryID(fields.category, categories);
             if (category_id) {
