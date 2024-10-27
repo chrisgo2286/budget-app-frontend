@@ -1,4 +1,4 @@
-import { RegistrationTypes } from "../../components/registration/registrationTypes";
+import { RegistrationTypes } from "../../components/registration/registration";
 import { validateUsername, validatePassword, validatePasswordMatch } from "./validation";
 
 export function validateRegistration (fields: RegistrationTypes): string | string[] {

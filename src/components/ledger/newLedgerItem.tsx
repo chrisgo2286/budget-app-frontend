@@ -6,7 +6,7 @@ import { findCategoryID, compileCategoryNames } from "../../misc/miscFunctions";
 import { NewLedgerItemTypes } from "./ledgerTypes";
 import { CategoriesContext, LedgerContext } from "../../misc/context";
 import { LedgerErrorsContext } from "../../misc/context";
-import { validateLedgerItemFields } from "./hiddenLedgerSection/newLedgerItemValidation";
+import { validateLedgerItemFields } from "./newLedgerItemValidation";
 
 export default function NewLedgerItem (): JSX.Element {
     const { categories } = useContext(CategoriesContext)

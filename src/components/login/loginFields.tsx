@@ -1,6 +1,12 @@
 import React from "react";
 import InputWithIcon from "../miscComponents/inputWithIcon/inputWithIcon";
-import { LoginFieldsProps } from "./loginTypes";
+import { LoginFieldsTypes } from "./login";
+
+export type LoginFieldsProps = {
+    fields: LoginFieldsTypes,
+    setFields: React.Dispatch<React.SetStateAction<LoginFieldsTypes>>,
+    handleSubmit: () => Promise<void>
+}
 
 export default function LoginFields ({ 
     fields, 

@@ -13,6 +13,18 @@ export default function LedgerFilter (): JSX.Element {
     const [ endDateType, setEndDateType ] = useState<string>('text');
 
     function handleSubmit (): void {
+        if(filters.category === "Category") {
+            setFilters({ ...filters, category: "" })
+        }
+        if(filters.type === "Type") {
+            setFilters({ ...filters, type: "" })
+        }
+        if(filters.type === "Fixed Expense") {
+            setFilters({ ...filters, type: "Fixed_Expense"})
+        }
+        if(filters.type === "Variable Expense") {
+            setFilters({ ...filters, type: "Variable_Expense"})
+        }
         setLedgerUpdate(true);
     }
 
@@ -77,7 +89,7 @@ export default function LedgerFilter (): JSX.Element {
                 className='ledger-filter-type'
                 name='type'
                 initial='Type'
-                options={[ 'Expense', 'Income' ]}
+                options={[ "Fixed Expense", "Variable Expense", "Income" ]}
                 fields={ filters }
                 setFields={ setFilters } />
             <button 

@@ -1,5 +1,3 @@
-import { CategoriesType, NewCategoryTypes } from "../budget/newCategory/newCategoryTypes"
-
 export type LedgerTypes = {
     id: string,
     date: string,

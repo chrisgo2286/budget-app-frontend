@@ -1,5 +1,5 @@
 import { z } from "zod";
-import { NewLedgerItemTypes } from "../ledgerTypes";
+import { NewLedgerItemTypes } from "./ledgerTypes";
 
 const LedgerItemSchema = z.object({
     date: z

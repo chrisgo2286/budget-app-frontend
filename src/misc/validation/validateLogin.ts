@@ -1,4 +1,4 @@
-import { LoginFieldsTypes } from "../../components/login/loginTypes";
+import { LoginFieldsTypes } from "../../components/login/login";
 import { validateUsername, validatePassword } from "./validation";
 
 export function validateLogin (fields: LoginFieldsTypes): string | string[] {

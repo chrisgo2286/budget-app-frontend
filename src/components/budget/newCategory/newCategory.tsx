@@ -2,9 +2,16 @@ import { useState, useContext } from 'react';
 import Input from '../../miscComponents/input/input';
 import Select from '../../miscComponents/select/select';
 import { createCategory } from '../../../misc/apiCalls';
-import { validateNewCategory } from '../../../misc/validation/validateNewCategory';
-import { NewCategoryTypes } from './newCategoryTypes';
+import { validateCategory } from './newCategoryValidation';
 import { CategoriesContext, BudgetErrorsContext } from '../../../misc/context';
+import { compileCategoryNames } from '../../../misc/miscFunctions';
+
+export type NewCategoryTypes = {
+    owner?: number,
+    id?: string,
+    name: string,
+    type: string
+}
 
 export default function NewCategory (): JSX.Element {
     const [ fields, setFields ] = useState<NewCategoryTypes>({
@@ -13,12 +20,13 @@ export default function NewCategory (): JSX.Element {
     })
     const { setErrors } = useContext(BudgetErrorsContext)
     const { categories, setCategoryUpdate } = useContext(CategoriesContext)
+    const categoryNames = compileCategoryNames(categories)
 
     function handleSubmit (): void {
-        const result = validateNewCategory(fields, categories)
+        const result = validateCategory(fields, categoryNames)
         if(result === 'Valid') {
             createNewCategory();
-        } else if (typeof result !== "string") {
+        } else if (result && typeof result !== "string") {
             setErrors(result);
         }
     }

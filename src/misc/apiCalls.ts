@@ -4,8 +4,8 @@ import { LedgerTypes, NewLedgerItemTypes } from "../components/ledger/ledgerType
 import { NewCategoryTypes } from "../components/budget/newCategory/newCategoryTypes";
 import { ResponseType, StatusType } from './miscTypes';
 import { BudgetDataTypes } from '../components/budget/budgetTypes';
-import { RegistrationTypes } from '../components/registration/registrationTypes';
-import { LoginFieldsTypes } from '../components/login/loginTypes';
+import { RegistrationTypes } from '../components/registration/registration';
+import { LoginFieldsTypes } from '../components/login/login';
 import { PeriodTypes } from '../components/reports/reportTypes';
 import { MonthlyStatsTypes } from '../components/reports/monthlyStats/monthStatsTypes';
 import { YearlyStatsTypes } from '../components/reports/yearlyStats/yearlyStatsTypes';

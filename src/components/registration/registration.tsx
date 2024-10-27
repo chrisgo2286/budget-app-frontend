@@ -3,13 +3,18 @@ import { useNavigate } from 'react-router-dom';
 import { UserContext } from '../../misc/context';
 import { registerNewUser } from '../../misc/apiCalls';
 import { loginUser } from '../../misc/apiCalls';
-import { validateRegistration } from '../../misc/validation/validateRegistration';
 import NewUserFields from './newUserFields';
-import Validation from '../validation/validation';
+import { validateRegistration } from './registrationValidation';
 import './registration.css';
-import { RegistrationTypes } from './registrationTypes';
 import { updateLogin } from '../../misc/userFunctions';
 import { createNewUserData } from '../../misc/userFunctions';
+import Validation from '../validation/validation';
+
+export type RegistrationTypes = {
+    username: string,
+    password1: string,
+    password2: string
+}
 
 export default function Registration (): JSX.Element {
     const navigate = useNavigate();

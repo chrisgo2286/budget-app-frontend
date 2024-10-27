@@ -1,6 +1,12 @@
 import React from "react";
 import InputWithIcon from "../miscComponents/inputWithIcon/inputWithIcon";
-import { NewUserFieldsProps } from "./registrationTypes";
+import { RegistrationTypes } from "./registration";
+
+export type NewUserFieldsProps = {
+    fields: RegistrationTypes,
+    setFields: React.Dispatch<React.SetStateAction<RegistrationTypes>>,
+    handleSubmit: () => void
+}
 
 export default function NewUserFields ({ 
     fields, 

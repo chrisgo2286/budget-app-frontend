@@ -2,12 +2,16 @@ import { useState, useContext } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { UserContext } from '../../misc/context';
 import { loginUser } from '../../misc/apiCalls';
-import { validateLogin } from '../../misc/validation/validateLogin';
+import { validateLogin } from "./loginValidation";
 import Validation from '../validation/validation';
 import LoginFields from './loginFields';
 import './login.css';
-import { LoginFieldsTypes } from './loginTypes';
 import { createNewUserData, updateLogin } from '../../misc/userFunctions';
+
+export type LoginFieldsTypes = {
+    username: string,
+    password: string
+}
 
 export default function Login (): JSX.Element {
     const { setUser } = useContext(UserContext);
