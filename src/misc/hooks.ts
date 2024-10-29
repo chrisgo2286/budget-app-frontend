@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { getCategories, getBudgetItems, getLedgerItems } from "./apiCalls";
-import { NewCategoryTypes } from "../components/budget/newCategory/newCategoryTypes";
+import { NewCategoryTypes } from "../components/budget/newCategory/newCategory";
 import { BudgetDataTypes, DefaultBudget } from "../components/budget/budgetTypes";
 import { UseGetCategoryTypes, UseGetBudgetTypes, UseGetLedgerTypes } from "./miscTypes";
 import { LedgerTypes } from "../components/ledger/ledgerTypes";

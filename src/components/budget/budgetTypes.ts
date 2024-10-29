@@ -1,5 +1,3 @@
-import { NewCategoryTypes } from "./newCategory/newCategoryTypes"
-
 export type BudgetFilterTypes = {
     month: string | number,
     year: string | number

@@ -1,4 +1,4 @@
-import { NewCategoryTypes } from "../components/budget/newCategory/newCategoryTypes";
+import { NewCategoryTypes } from "../components/budget/newCategory/newCategory";
 import { BudgetDataTypes } from "../components/budget/budgetTypes";
 import { LedgerTypes } from "../components/ledger/ledgerTypes";
 import { BudgetFilterTypes } from "../components/budget/budgetTypes";

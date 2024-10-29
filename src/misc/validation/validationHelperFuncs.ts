@@ -1,5 +1,5 @@
 import { BudgetItemTypes } from "../../components/budget/budgetTypes";
-import { NewCategoryTypes } from "../../components/budget/newCategory/newCategoryTypes";
+import { NewCategoryTypes } from "../../components/budget/newCategory/newCategory";
 import { categoryIsInBudget, categoryIsInCategories } from "../miscFunctions";
 
 export function isEmptyString(value: string): boolean {

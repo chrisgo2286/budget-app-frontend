@@ -1,5 +1,5 @@
 import { BudgetFilterTypes, BudgetItemTypes } from "../components/budget/budgetTypes";
-import { NewCategoryTypes } from "../components/budget/newCategory/newCategoryTypes";
+import { NewCategoryTypes } from "../components/budget/newCategory/newCategory";
 import { PeriodTypes } from "../components/reports/reportTypes";
 
 export const MONTH_OPTIONS = [

@@ -2,10 +2,17 @@ import { useState, useContext } from "react";
 import Input from "../../miscComponents/input/input";
 import Select from "../../miscComponents/select/select";
 import { createBudgetItem } from "../../../misc/apiCalls";
-import { validateNewBudgetItem } from "../../../misc/validation/validateNewBudgetItem";
+import { validateBudgetItem } from "./newBudgetItemValidation";
 import { compileCategoryNames, findCategoryID } from "../../../misc/miscFunctions";
-import { NewBudgetItemTypes } from "./newBudgetItemTypes";
 import { CategoriesContext, BudgetContext, BudgetErrorsContext, BudgetPeriodContext } from "../../../misc/context";
+
+export type NewBudgetItemTypes = {
+    owner?: number,
+    month?: number,
+    year?: number,
+    category: string,
+    amount: string
+}
 
 export default function NewBudgetItem (): JSX.Element {
     
@@ -19,7 +26,7 @@ export default function NewBudgetItem (): JSX.Element {
     const { setErrors } = useContext(BudgetErrorsContext)
     
     async function handleSubmit (): Promise<void> {
-        const result = validateNewBudgetItem(fields, budget.items);
+        const result = validateBudgetItem(fields, budget.items);
         if(result === 'Valid') {            
             const categoryId = findCategoryID(fields.category, categories);
             if (categoryId) {

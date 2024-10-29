@@ -1,7 +1,7 @@
 import axios from 'axios';
 import { findCategoryID } from './miscFunctions';
 import { LedgerTypes, NewLedgerItemTypes } from "../components/ledger/ledgerTypes";
-import { NewCategoryTypes } from "../components/budget/newCategory/newCategoryTypes";
+import { NewCategoryTypes } from '../components/budget/newCategory/newCategory';
 import { ResponseType, StatusType } from './miscTypes';
 import { BudgetDataTypes } from '../components/budget/budgetTypes';
 import { RegistrationTypes } from '../components/registration/registration';
