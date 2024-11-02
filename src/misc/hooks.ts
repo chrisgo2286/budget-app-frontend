@@ -49,7 +49,6 @@ export function useGetLedger (
 
     useEffect(() => {
         const newFilters = updateFilters(filters)
-        console.log(newFilters)
         getLedgerItems(filters, categories).then((ledger) => setLedger(ledger));
         setLedgerUpdate(false);
     }, [ledgerUpdate])

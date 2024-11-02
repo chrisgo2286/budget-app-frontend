@@ -14,6 +14,7 @@ import './App.css';
 import { UserTypes } from './misc/miscTypes';
 import FileImport from './components/fileImport/fileImport';
 import { useGetCategories } from './misc/hooks';
+import UpdateLedgerItem from './components/ledger/updateLedgerItem/updateLedgerItem';
 
 export default function App (): JSX.Element {
     
@@ -46,6 +47,7 @@ export default function App (): JSX.Element {
                     <Route path='/registration' element={ <Registration /> } />
                     <Route path='/login' element={ <Login /> } />
                     <Route path='/confirmDeleteCategory' element={ <ConfirmDeleteCategory /> } />
+                    <Route path="/updateLedgerItem" element={ <UpdateLedgerItem /> } />
                 </Routes>
             </Router>
             </CategoriesContext.Provider>

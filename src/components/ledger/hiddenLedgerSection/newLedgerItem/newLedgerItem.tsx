@@ -1,12 +1,12 @@
 import { useContext, useState } from "react";
-import { createLedgerItem } from "../../misc/apiCalls";
-import Input from "../miscComponents/input/input";
-import Select from "../miscComponents/select/select";
-import { findCategoryID, compileCategoryNames } from "../../misc/miscFunctions";
-import { NewLedgerItemTypes } from "./ledgerTypes";
-import { CategoriesContext, LedgerContext } from "../../misc/context";
-import { LedgerErrorsContext } from "../../misc/context";
-import { validateLedgerItemFields } from "./newLedgerItemValidation";
+import { createLedgerItem } from "../../../../misc/apiCalls";
+import Input from "../../../miscComponents/input/input";
+import Select from "../../../miscComponents/select/select";
+import { findCategoryID, compileCategoryNames } from "../../../../misc/miscFunctions";
+import { NewLedgerItemTypes } from "../../ledgerTypes";
+import { CategoriesContext, LedgerContext } from "../../../../misc/context";
+import { LedgerErrorsContext } from "../../../../misc/context";
+import { validateLedgerItemFields } from "./ledgerItemValidation";
 
 export default function NewLedgerItem (): JSX.Element {
     const { categories } = useContext(CategoriesContext)

@@ -7,19 +7,15 @@ import { BudgetErrorsContext, CategoriesContext } from "../../../misc/context";
 import Button from "../../miscComponents/button/button";
 import { refreshPage } from "../../../misc/miscFunctions";
 import ReclassLedgerItem from "./reclassLedgerItem";
+import { UpdateLedgerItemTypes } from "../../ledger/updateLedgerItem/updateLedgerItem";
 
-export type EditLedgerTypes = {
-    owner?: number,
-    id: string,
-    category: string
-}
 export default function ConfirmDeleteCategory (): JSX.Element {
 
     const navigate = useNavigate()
     const { categoryId } = useLocation().state
     const { categories } = useContext(CategoriesContext)
     const { setErrors } = useContext(BudgetErrorsContext)    
-    const [ updates, setUpdates ] = useState<EditLedgerTypes[]>([])
+    const [ updates, setUpdates ] = useState<UpdateLedgerItemTypes[]>([])
     const filters = {
         month: "",
         year: "",
@@ -43,7 +39,7 @@ export default function ConfirmDeleteCategory (): JSX.Element {
 
     async function handleUpdateLedger (): Promise<void> {
         for (let i=0; i < updates.length; i++) {
-            const result = patchLedgerItem(updates[i].id, updates[i].category)
+            const result = patchLedgerItem(updates[i])
         }
         refreshPage()
     }
@@ -55,7 +51,8 @@ export default function ConfirmDeleteCategory (): JSX.Element {
     return (
         <div className="mt-10 w-full">
             <div className="text-lg w-1/2 mx-auto text-center">Are you sure you wish to delete this category?</div> 
-            <div className="text-lg w-1/2 mx-auto text-center mt-2">The following ledger items will be deleted...</div>
+            <div className="text-lg w-1/2 mx-auto text-center mt-2">The following ledger items will be deleted.</div>
+            <div className="text-lg w-1/2 mx-auto text-center mt-2">If you'd like to save these items, please update the category.</div>
             <div className="w-1/2 mx-auto mt-5">
                 <LedgerHeader />
                 { ledger.map((item) => (

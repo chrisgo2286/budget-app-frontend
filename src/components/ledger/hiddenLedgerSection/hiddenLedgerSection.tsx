@@ -1,7 +1,7 @@
 import React, { useState } from "react"
 import ExpandIcon from "../../miscComponents/expandIcon/expandIcon"
-import LedgerFilter from "../ledgerFilter"
-import NewLedgerItem from "../newLedgerItem"
+import LedgerFilter from "./ledgerFilter"
+import NewLedgerItem from "./newLedgerItem/newLedgerItem"
 
 export default function HiddenLedgerSection () {
 

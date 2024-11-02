@@ -4,7 +4,7 @@ import './select.css';
 type SelectProps = {
     className: string,
     name: string,
-    initial: string,
+    initial: string | undefined,
     options: string[],
     fields: object,
     setFields: React.Dispatch<React.SetStateAction<any>>,
@@ -22,7 +22,7 @@ export default function Select ({
     ...other 
 }: SelectProps): JSX.Element {
     
-    const [ choice, setChoice ] = useState<string>(initial);
+    const [ choice, setChoice ] = useState<string | undefined>(initial);
 
     function handleChange (event: React.ChangeEvent<HTMLSelectElement>): void {
         const { name, value } = event.target;

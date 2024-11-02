@@ -5,6 +5,7 @@ import { CategoriesContext, BudgetErrorsContext } from "../../../misc/context";
 import { compileCategoryNames, findCategoryID } from "../../../misc/miscFunctions";
 
 import { navToConfirmDeleteCategory } from "../../../misc/navFunctions";
+import { validateDeleteCategory } from "./deleteCategoryValidation";
 
 export default function DeleteCategory (): JSX.Element {
     
@@ -15,11 +16,16 @@ export default function DeleteCategory (): JSX.Element {
     const { setErrors } = useContext(BudgetErrorsContext)
 
     async function handleNavToConfirmDeleteCategory () {
-        const categoryId = findCategoryID(choice, categories)
-        if (categoryId) {
-            navToConfirmDeleteCategory(navigate, categoryId)    
+        const result = validateDeleteCategory(choice)
+        if (result === "Valid") {
+            const categoryId = findCategoryID(choice, categories)
+            if (categoryId) {
+                navToConfirmDeleteCategory(navigate, categoryId)    
+            } else {
+                setErrors(["There was a problem deleting this category!"])
+            }
         } else {
-            setErrors(["There was a problem deleting this category!"])
+            setErrors(result)
         }
     }
 

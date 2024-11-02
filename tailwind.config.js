@@ -16,7 +16,8 @@ module.exports = {
         "first-color": "var(--firstColor)",
         "second-color": "var(--secondColor)",
         "third-color": "var(--thirdColor)",
-        "fourth-color": "var(--fourthColor)"
+        "fourth-color": "var(--fourthColor)",
+        "site-bg-color": "var(--siteBGColor)"
       },
       boxShadow: {
         "custom": "3px 3px rgb(0, 0, 0, .2)"

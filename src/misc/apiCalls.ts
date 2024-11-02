@@ -14,6 +14,7 @@ import { MonthlyExpenseChartTypes } from '../components/reports/monthlyExpenseCh
 import { MonthlySavingsChartTypes } from '../components/reports/monthlySavingsChart/monthlySavingsChartTypes';
 import { createHeaders } from './userFunctions';
 import { FilterTypes } from '../components/ledger/ledger';
+import { UpdateLedgerItemTypes } from '../components/ledger/updateLedgerItem/updateLedgerItem';
 
 const url = 'http://127.0.0.1:8000/api/'
 
@@ -43,9 +44,9 @@ export async function createLedgerItem (fields: NewLedgerItemTypes): Promise<Led
     return result.data;
 }
 
-export async function patchLedgerItem (id: string, category: string): Promise<StatusType> {
-    const newUrl = url + "ledger_items/" + id + "/"
-    const result = await axios.patch(newUrl, { "category": category }, createHeaders())
+export async function patchLedgerItem (fields: UpdateLedgerItemTypes): Promise<StatusType> {
+    const newUrl = url + "ledger_items/" + fields.id + "/"
+    const result = await axios.patch(newUrl, fields, createHeaders())
     return { status: result.status }
 }
 
