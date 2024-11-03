@@ -1,12 +1,14 @@
 type ButtonTypes =  {
     children: string,
-    className?: string
+    className?: string,
+    dataCy?: string,
     onClick: () => void
 }
 
 export default function Button ({
     children,
     className,
+    dataCy,
     onClick
 }: ButtonTypes): JSX.Element {
     
@@ -31,6 +33,7 @@ export default function Button ({
     return (
         <div 
             className={ handleClassNames() }
+            data-cy={ dataCy }
             onClick={ onClick } >
             { children }
         </div>

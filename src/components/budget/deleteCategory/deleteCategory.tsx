@@ -49,6 +49,7 @@ export default function DeleteCategory (): JSX.Element {
                 </select>
                 <Button 
                     className="add-btn border border-gray-900 my-5"
+                    dataCy="delete-btn"
                     onClick={ handleNavToConfirmDeleteCategory }>
                     Delete
                 </Button>

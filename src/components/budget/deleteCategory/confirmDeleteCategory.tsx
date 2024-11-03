@@ -66,6 +66,7 @@ export default function ConfirmDeleteCategory (): JSX.Element {
             <div className="flex flex-row my-5 justify-center">
                 <Button 
                     className="add-btn border border-gray-900 mr-5"
+                    dataCy="confirm-delete-btn"
                     onClick={ handleDeleteCategory }>
                     Delete
                 </Button>
