@@ -14,7 +14,9 @@ export default function LedgerHeader ({ handlePeriodChange }: LedgerHeaderProps)
     return (
         <div className="mt-4 flex justify-between">
             <PrevArrow handleClick={ () => handlePeriodChange("prev")} />
-            <ReportHeader label={ `${monthNumToName(parseInt(filters.month))} ${filters.year} Ledger` } />
+            <span className="text-3xl font-bold" data-cy="ledger-title">
+                { `${monthNumToName(parseInt(filters.month))} ${filters.year} Ledger` }
+            </span>
             <NextArrow handleClick={ () => handlePeriodChange("next")} />
         </div>
     )

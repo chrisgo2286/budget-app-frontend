@@ -1,7 +1,7 @@
 import { useContext } from "react"
 import FileImportRow from "./fileImportRow"
 import { FileImportDataContext } from "../../misc/context"
-import { NewLedgerItemTypes } from "../ledger/ledgerTypes"
+import { NewLedgerItemTypes } from "../ledger/hiddenLedgerSection/newLedgerItem/newLedgerItem"
 import Button from "../miscComponents/button/button"
 
 type FileImportTableTypes = {

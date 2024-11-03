@@ -3,10 +3,16 @@ import { createLedgerItem } from "../../../../misc/apiCalls";
 import Input from "../../../miscComponents/input/input";
 import Select from "../../../miscComponents/select/select";
 import { findCategoryID, compileCategoryNames } from "../../../../misc/miscFunctions";
-import { NewLedgerItemTypes } from "../../ledgerTypes";
 import { CategoriesContext, LedgerContext } from "../../../../misc/context";
 import { LedgerErrorsContext } from "../../../../misc/context";
 import { validateLedgerItemFields } from "./ledgerItemValidation";
+
+export type NewLedgerItemTypes = {
+    owner?: number,
+    date: string,
+    category: string,
+    amount: number | string
+}
 
 export default function NewLedgerItem (): JSX.Element {
     const { categories } = useContext(CategoriesContext)
@@ -14,28 +20,40 @@ export default function NewLedgerItem (): JSX.Element {
     const [ fields, setFields ] = useState<NewLedgerItemTypes>({
         date: '',
         category: '',
-        amount: ''
+        amount: 0
     })
     const [ inputType, setInputType ] = useState<string>('text');
     const { setErrors } = useContext(LedgerErrorsContext)
 
     async function handleSubmit (): Promise<void> {
-        const result = validateLedgerItemFields(fields)
-        if(result === 'Valid') {
-            const category_id = findCategoryID(fields.category, categories);
-            if (category_id) {
-                const newFields = { ...fields, 'category': category_id }
-                await createLedgerItem(newFields);
-                setLedgerUpdate(true)
-                resetFields();
+        const category_id = findCategoryID(fields.category, categories);
+        if (category_id) {
+            const newAmount = (typeof fields.amount === "string") ? parseFloat(fields.amount) : fields.amount;
+            const newFields = { 
+                ...fields, 
+                category: category_id.toString(),
+                amount: newAmount
             }
-        } else if (typeof result !== "string") {
-            setErrors(result);
+            console.log(newFields)
+            const result = validateLedgerItemFields(newFields)
+            if (result === "Valid") {
+                const response = await createLedgerItem(newFields);
+                if (response.status === 201) {
+                    setLedgerUpdate(true)
+                    resetFields();
+                } else {
+                    setErrors(["There was an error adding this item!"])
+                }
+            } else {
+                setErrors(result)
+            }
+        } else {
+            setErrors(["There was an error adding this item!"])
         }
     }
 
     function resetFields (): void {
-        const newFields = { ...fields, date: "", amount: "" }
+        const newFields = { ...fields, date: "", amount: 0 }
         setFields(newFields);
     }
 

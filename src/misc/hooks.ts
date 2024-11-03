@@ -7,14 +7,17 @@ import { LedgerTypes } from "../components/ledger/ledgerTypes";
 import { PeriodTypes } from "../components/reports/reportTypes";
 import { getCurrentYear, getCurrentMonth, getLastDay } from "./miscFunctions";
 import { FilterTypes } from "../components/ledger/ledger";
+import { UserTypes } from "./miscTypes";
 
-export function useGetCategories (): UseGetCategoryTypes {
+export function useGetCategories (user: UserTypes): UseGetCategoryTypes {
     const [ categories, setCategories ] = useState<NewCategoryTypes[]>([])  
     const [ categoryUpdate, setCategoryUpdate ] = useState<boolean>(false)
 
     useEffect(() => {
-        getCategories().then((data) => setCategories(data))
-    },[categoryUpdate])
+        if (user.isLoggedIn) {
+            getCategories().then((data) => setCategories(data))
+        }
+    },[categoryUpdate, user])
 
     return { categories, setCategoryUpdate }
 }

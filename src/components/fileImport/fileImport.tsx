@@ -4,7 +4,7 @@ import FileInput from "./fileInput";
 import FileImportTable from "./fileImportTable";
 import RawDataQueries from "./rawDataQueries";
 import { CategoriesContext, FileImportDataContext } from "../../misc/context";
-import { NewLedgerItemTypes } from "../ledger/ledgerTypes";
+import { NewLedgerItemTypes } from "../ledger/hiddenLedgerSection/newLedgerItem/newLedgerItem";
 import { createLedgerItem } from "../../misc/apiCalls";
 import { findCategoryID } from "../../misc/miscFunctions";
 

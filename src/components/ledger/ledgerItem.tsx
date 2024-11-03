@@ -13,7 +13,8 @@ export default function LedgerItem ({
     const { date, id, category__name, category__type, amount } = item;
     const { setLedgerUpdate } = useContext(LedgerContext)
 
-    function handleDelete (): void {
+    function handleDelete (event: React.MouseEvent<HTMLDivElement>): void {
+        event.stopPropagation();
         deleteLedgerItem(id);
         setLedgerUpdate(true);
     }
@@ -38,7 +39,7 @@ export default function LedgerItem ({
             <div 
                 className='hover:text-2xl hover:text-gray-600'
                 data-cy={`ledger-item-delete-${category__name.toLowerCase()}`}
-                onClick={ handleDelete }>x</div>
+                onClick={ (event) => handleDelete(event) }>x</div>
         </div>
     )
 }

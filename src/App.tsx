@@ -30,7 +30,7 @@ export default function App (): JSX.Element {
         isLoggedIn: (token) ? true: false,
         token: (token) ? token: '',
     })
-    const { categories, setCategoryUpdate } = useGetCategories()
+    const { categories, setCategoryUpdate } = useGetCategories(user)
 
     return (
         <React.Fragment>

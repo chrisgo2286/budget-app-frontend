@@ -1,6 +1,7 @@
 import axios from 'axios';
 import { findCategoryID } from './miscFunctions';
-import { LedgerTypes, NewLedgerItemTypes } from "../components/ledger/ledgerTypes";
+import { LedgerTypes } from '../components/ledger/ledgerTypes';
+import { NewLedgerItemTypes } from "../components/ledger/hiddenLedgerSection/newLedgerItem/newLedgerItem";
 import { NewCategoryTypes } from '../components/budget/newCategory/newCategory';
 import { ResponseType, StatusType } from './miscTypes';
 import { BudgetDataTypes } from '../components/budget/budgetTypes';
@@ -38,10 +39,10 @@ export async function getLedgerItems (
     return result.data;
 }
 
-export async function createLedgerItem (fields: NewLedgerItemTypes): Promise<LedgerTypes> {
+export async function createLedgerItem (fields: NewLedgerItemTypes): Promise<StatusType> {
     fields.owner = 1;
-    const result = await axios.post(url + 'ledger_items/', fields, createHeaders())
-    return result.data;
+    const response = await axios.post(url + 'ledger_items/', fields, createHeaders())
+    return { status: response.status }
 }
 
 export async function patchLedgerItem (fields: UpdateLedgerItemTypes): Promise<StatusType> {

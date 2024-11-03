@@ -6,13 +6,6 @@ export type LedgerTypes = {
     amount: string
 }
 
-export type NewLedgerItemTypes = {
-    owner?: number,
-    date: string,
-    category: string,
-    amount: string
-}
-
 export type LedgerItemProps = {
     item: LedgerTypes
 }
