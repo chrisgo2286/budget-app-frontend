@@ -94,3 +94,15 @@ export function getNextPeriod (period: PeriodTypes): PeriodTypes {
         return {month: period.month + 1, year: period.year}
     }
 }
+
+export function getDateValue () {
+    const curDate = new Date()
+    const year = curDate.getFullYear()
+    const month = getZeroPaddedValue(curDate.getMonth() + 1)
+    const day = getZeroPaddedValue(curDate.getDate())
+    return `${year}-${month}-${day}`
+}
+
+export function getZeroPaddedValue (value: number) {
+    return (value.toString().length == 2) ? value : `0${value}`;
+}
