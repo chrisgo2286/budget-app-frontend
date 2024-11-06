@@ -27,7 +27,7 @@ export default function BudgetItem ({
             <div className="relative h-5 rounded border border-solid border-gray-100 bg-gray-100">
                 <div 
                     className={ handleClassName() } 
-                    data-cy='inner-bar' 
+                    data-cy={`inner-bar-${budgetItem.category.toLowerCase()}`} 
                     style={{ width: budgetItem.percent }}>
                 </div>
             </div>

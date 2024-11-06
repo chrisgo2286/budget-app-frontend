@@ -17,7 +17,11 @@ export default function ExpenseBudgetSection (): JSX.Element {
     return (
         <section className="expense-section" data-cy="expense-section">
             <div className="relative bg-blue-100 font-bold indent-10 border-t border-b border-solid h-10 flex flex-col justify-center my-6">
-                <div className="text-center z-10">{ handleHeader() }</div>
+                <div 
+                    className="text-center z-10"
+                    data-cy="expense-section-header">
+                    { handleHeader() }
+                </div>
                 <div 
                     className="absolute h-full bg-blue-200"
                     style={{ width: budget.expense.percent }} />
@@ -49,7 +53,9 @@ function ExpenseSubSection ({ expenseType }: { expenseType: string}): JSX.Elemen
     }
     return ( 
         <React.Fragment>
-            <div className="indent-10 font-bold">{ handleHeader() }</div>
+            <div 
+                className="indent-10 font-bold"
+                data-cy={`${expenseType.toLowerCase().replace("_", "-")}-header`}>{ handleHeader() }</div>
             <div className="flex flex-col justify-center items-center">
                 { budgetItems.map((budgetItem) => (
                     <BudgetItem key={ budgetItem.id } budgetItem={ budgetItem } />
