@@ -18,12 +18,24 @@ export default function HiddenBudgetSection (): JSX.Element {
                 { filtersVisible ? "expand_less" : "expand_more" }
             </ExpandIcon>
             <div className={ (!filtersVisible) ? "filter-container collapsed":"filter-container" }>
-                <div className="filters-header">Filters</div>
+                <div 
+                    className="filters-header"
+                    data-cy="filters-header">
+                    Filters
+                </div>
                 <BudgetFilter />
                 <DeleteCategory />
-                <div className="new-category-header">New Category</div>
+                <div 
+                    className="new-category-header"
+                    data-cy="new-category-header">
+                    New Category
+                </div>
                 <NewCategory />
-                <div className="new-budget-item-header">New Budget Item</div>
+                <div 
+                    className="new-budget-item-header"
+                    data-cy="new-budget-item-header">
+                    New Budget Item
+                </div>
                 <NewBudgetItem />
             </div>
         </React.Fragment>

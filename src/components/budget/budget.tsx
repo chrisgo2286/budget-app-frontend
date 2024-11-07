@@ -20,6 +20,7 @@ export default function Budget (): JSX.Element {
     const [ period, setPeriod ] = useState<PeriodTypes>(getCurrentPeriod())
     const [ errors, setErrors ] = useState<string[]>([])
     const { budget, setBudgetUpdate } = useGetBudget(period)
+    
     function handlePeriodChange (direction: "prev" | "next"): void {
         setPeriod(getNewPeriod(period, direction))
     }
