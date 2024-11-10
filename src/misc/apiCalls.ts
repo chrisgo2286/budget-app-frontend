@@ -83,6 +83,7 @@ export async function createBudgetItem (fields: {
     owner?: number, month: number, year: number, category: string, amount: string
 }): Promise<StatusType> {
     fields.owner = 1;
+    console.log(createHeaders())
     const result = await axios.post(url + 'budget_items/', fields, createHeaders())
     return result.data;
 }

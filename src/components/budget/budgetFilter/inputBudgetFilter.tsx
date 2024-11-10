@@ -1,25 +1,25 @@
 import { useContext, useState } from 'react';
 import { validateBudgetFilter } from '../../../misc/validation/validateBudgetFilter';
-import { BudgetFiltersContext, BudgetErrorsContext } from '../../../misc/context';
+import { BudgetErrorsContext, BudgetPeriodContext } from '../../../misc/context';
 
 export default function InputBudgetFilter (): JSX.Element {
-    const { filters, setFilters } = useContext(BudgetFiltersContext)
-    const [ year, setYear ] = useState<number | string>(filters?.year);
+    const { period, setPeriod } = useContext(BudgetPeriodContext)
+    const [ year, setYear ] = useState<number>(period.year);
     const { setErrors } = useContext(BudgetErrorsContext)
 
     function handleChange(event: React.ChangeEvent<HTMLInputElement>): void {
         const { value } = event.target;
-        setYear(value);
+        setYear(parseInt(value));
     }
 
     function handleBlur (): void {
-        const newFilters = { ...filters, 'year': year }
-        const result = validateBudgetFilter(newFilters);
+        const newPeriod = { ...period, year: year }
+        const result = validateBudgetFilter(newPeriod);
         if(result === 'Valid') {
             setErrors([]);
-            setFilters(newFilters);
+            setPeriod(newPeriod);
         } else if (typeof result !== "string") {
-            setYear(filters.year);
+            setYear(period.year);
             setErrors(result);
         }
     }

@@ -2,11 +2,9 @@ import { useState } from 'react';
 import Validation from '../validation/validation';
 import { getCurrentPeriod, getNewPeriod } from '../../misc/miscFunctions';
 import './budget.css';
-import { BudgetFilterTypes } from './budgetTypes';
 import { useGetBudget } from '../../misc/hooks';
 import { 
     BudgetContext, 
-    BudgetFiltersContext, 
     BudgetPeriodContext,
     BudgetErrorsContext,
 } from '../../misc/context';
@@ -16,7 +14,6 @@ import BudgetHeader from './budgetHeader';
 import BudgetBody from './budgetBody/budgetBody';
 
 export default function Budget (): JSX.Element {
-    const [ filters, setFilters ] = useState<BudgetFilterTypes>(getCurrentPeriod())
     const [ period, setPeriod ] = useState<PeriodTypes>(getCurrentPeriod())
     const [ errors, setErrors ] = useState<string[]>([])
     const { budget, setBudgetUpdate } = useGetBudget(period)
@@ -26,7 +23,6 @@ export default function Budget (): JSX.Element {
     }
     return (
         <BudgetContext.Provider value={{ budget, setBudgetUpdate }}>
-        <BudgetFiltersContext.Provider value={{ filters, setFilters }}>
         <BudgetPeriodContext.Provider value={{ period, setPeriod }}>
         <BudgetErrorsContext.Provider value={{ errors, setErrors }}>
             <main className="budget-page">
@@ -39,7 +35,6 @@ export default function Budget (): JSX.Element {
             </main>
         </BudgetErrorsContext.Provider>
         </BudgetPeriodContext.Provider>    
-        </BudgetFiltersContext.Provider>
         </BudgetContext.Provider>
     )
 }

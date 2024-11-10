@@ -37,7 +37,7 @@ export default function DeleteCategory (): JSX.Element {
         <div>
             <div>Delete Category</div>
             <div className="delete-category">
-                <select 
+                <select
                     value={ choice }
                     name="category"
                     onChange={ handleChange }

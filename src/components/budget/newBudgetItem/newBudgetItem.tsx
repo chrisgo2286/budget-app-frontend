@@ -36,7 +36,8 @@ export default function NewBudgetItem (): JSX.Element {
                     month: period.month,
                     year: period.year   
                 }
-                await createBudgetItem(newFields);
+                const response = await createBudgetItem(newFields);
+                console.log(response)
                 setFields({
                     category: '',
                     amount: '',

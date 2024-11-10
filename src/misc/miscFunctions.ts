@@ -72,6 +72,10 @@ export function monthNumToName (monthNum: number): string {
     return MONTH_OPTIONS[monthNum - 1];
 }
 
+export function monthNameToNum (monthName: string): number {
+    return MONTH_OPTIONS.indexOf(monthName) + 1
+}
+
 export function getNewPeriod (period: PeriodTypes, direction: "next" | "prev"): PeriodTypes {
     if (direction === "next") {
         return getNextPeriod(period)
