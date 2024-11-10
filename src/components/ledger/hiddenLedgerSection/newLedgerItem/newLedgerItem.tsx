@@ -65,7 +65,6 @@ export default function NewLedgerItem (): JSX.Element {
         setInputType('text');
     }
 
-    console.log(categories)
     return (
         <section className='new-ledger-item'>
             <Input

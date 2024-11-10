@@ -31,7 +31,7 @@ export default function Ledger (): JSX.Element {
     })
     const { ledger, setLedgerUpdate } = useGetLedger(filters, categories)
     const [ errors, setErrors ] = useState<string[]>([])
-
+    console.log(ledger)
     function handlePeriodChange (direction: "prev" | "next"): void {
         const period = {
             month: parseInt(filters.month), 
