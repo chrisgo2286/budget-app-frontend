@@ -1,4 +1,4 @@
-import { PrevArrow, NextArrow, ReportHeader } from "../reports/miscReportComponents"
+import { PrevArrow, NextArrow } from "../reports/miscReportComponents"
 import { monthNumToName } from "../../misc/miscFunctions"
 import { useContext } from "react"
 import { LedgerFiltersContext } from "../../misc/context"

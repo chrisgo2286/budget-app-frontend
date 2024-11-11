@@ -28,13 +28,13 @@ export default function LedgerItem ({
     }
 
     function createDataCy (name: string): string {
-        return `ledger-item-${name}-${category__name.toLowerCase()}`
+        return `ledger-item-${name}-${item.id}`
     }
 
     return (
         <div 
             className='ledger-item' 
-            data-cy={ `ledger-item-${category__name.toLowerCase()}` } 
+            data-cy={ `ledger-item-${item.id}` } 
             onClick={ handleClick }>
             <div data-cy={ createDataCy("date") }>{ date }</div>
             <div data-cy={ createDataCy("category") }>{ category__name }</div>

@@ -27,28 +27,24 @@ export default function NewLedgerItem (): JSX.Element {
 
     async function handleSubmit (): Promise<void> {
         const category_id = findCategoryID(fields.category, categories);
-        if (category_id) {
-            const newAmount = (typeof fields.amount === "string") ? parseFloat(fields.amount) : fields.amount;
-            const newFields = { 
-                ...fields, 
-                category: category_id.toString(),
-                amount: newAmount
-            }
-            console.log(newFields)
-            const result = validateLedgerItemFields(newFields)
-            if (result === "Valid") {
-                const response = await createLedgerItem(newFields);
-                if (response.status === 201) {
-                    setLedgerUpdate(true)
-                    resetFields();
-                } else {
-                    setErrors(["There was an error adding this item!"])
-                }
+        const newAmount = (typeof fields.amount === "string") ? parseFloat(fields.amount) : fields.amount;
+        const newFields = { 
+            ...fields, 
+            category: (category_id) ? category_id.toString() : "",
+            amount: newAmount
+        }
+        console.log(newFields)
+        const result = validateLedgerItemFields(newFields)
+        if (result === "Valid") {
+            const response = await createLedgerItem(newFields);
+            if (response.status === 201) {
+                setLedgerUpdate(true)
+                resetFields();
             } else {
-                setErrors(result)
+                setErrors(["There was an error adding this item!"])
             }
         } else {
-            setErrors(["There was an error adding this item!"])
+            setErrors(result)
         }
     }
 
