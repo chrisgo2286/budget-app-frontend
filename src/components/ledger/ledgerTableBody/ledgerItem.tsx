@@ -1,9 +1,9 @@
 import { useContext } from "react";
-import { deleteLedgerItem } from "../../misc/apiCalls";
-import { LedgerItemProps } from "./ledgerTypes";
-import { LedgerContext } from "../../misc/context";
+import { deleteLedgerItem } from "../../../misc/apiCalls";
+import { LedgerItemProps } from "../ledgerTypes";
+import { LedgerContext } from "../../../misc/context";
 import { useNavigate } from "react-router-dom";
-import { navToUpdateLedgerItem } from "../../misc/navFunctions";
+import { navToUpdateLedgerItem } from "../../../misc/navFunctions";
 
 export default function LedgerItem ({ 
     item, 
@@ -27,18 +27,22 @@ export default function LedgerItem ({
         navToUpdateLedgerItem(navigate, item)
     }
 
+    function createDataCy (name: string): string {
+        return `ledger-item-${name}-${category__name.toLowerCase()}`
+    }
+
     return (
         <div 
             className='ledger-item' 
-            data-cy="ledger-item"
+            data-cy={ `ledger-item-${category__name.toLowerCase()}` } 
             onClick={ handleClick }>
-            <div data-cy="ledger-item-date">{ date }</div>
-            <div data-cy="ledger-item-category">{ category__name }</div>
-            <div data-cy="ledger-item-type">{ formatType() }</div>
-            <div data-cy="ledger-item-amount">{ amount }</div>
+            <div data-cy={ createDataCy("date") }>{ date }</div>
+            <div data-cy={ createDataCy("category") }>{ category__name }</div>
+            <div data-cy={ createDataCy("type") }>{ formatType() }</div>
+            <div data-cy={ createDataCy("amount") }>{ amount }</div>
             <div 
                 className='hover:text-2xl hover:text-gray-600'
-                data-cy={`ledger-item-delete-${category__name.toLowerCase()}`}
+                data-cy={ createDataCy("delete") }
                 onClick={ (event) => handleDelete(event) }>x</div>
         </div>
     )

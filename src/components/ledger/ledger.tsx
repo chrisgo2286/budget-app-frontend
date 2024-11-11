@@ -1,13 +1,12 @@
 import { useContext, useState } from "react";
-import LedgerTableHeader from "./ledgerTableHeader";
 import LedgerHeader from "./ledgerHeader";
-import LedgerItem from "./ledgerItem";
 import Validation from "../validation/validation";
 import './ledger.css';
 import { useGetLedger } from "../../misc/hooks";
 import { CategoriesContext, LedgerContext, LedgerErrorsContext, LedgerFiltersContext } from "../../misc/context";
 import HiddenLedgerSection from "./hiddenLedgerSection/hiddenLedgerSection";
 import { getCurrentMonth, getCurrentYear, getNewPeriod } from "../../misc/miscFunctions";
+import LedgerTableBody from "./ledgerTableBody/ledgerTableBody";
 
 export type FilterTypes = {
     month: string,
@@ -31,7 +30,7 @@ export default function Ledger (): JSX.Element {
     })
     const { ledger, setLedgerUpdate } = useGetLedger(filters, categories)
     const [ errors, setErrors ] = useState<string[]>([])
-    console.log(ledger)
+    
     function handlePeriodChange (direction: "prev" | "next"): void {
         const period = {
             month: parseInt(filters.month), 
@@ -59,12 +58,7 @@ export default function Ledger (): JSX.Element {
                     <Validation errors={ errors }/>
                     <HiddenLedgerSection />
                     <LedgerHeader handlePeriodChange={ handlePeriodChange } />
-                    <LedgerTableHeader />
-                    <section className="ledger-items" data-cy="ledger-items">
-                        { ledger.map((item) => (
-                            <LedgerItem key={ item.id } item={ item } />
-                        ))}
-                    </section>
+                    <LedgerTableBody />
                 </div>
             </main>
         </LedgerErrorsContext.Provider>
