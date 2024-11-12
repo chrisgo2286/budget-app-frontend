@@ -3,7 +3,6 @@ import { useNavigate } from 'react-router-dom';
 import Button from "../../miscComponents/button/button";
 import { CategoriesContext, BudgetErrorsContext } from "../../../misc/context";
 import { compileCategoryNames, findCategoryID } from "../../../misc/miscFunctions";
-
 import { navToConfirmDeleteCategory } from "../../../misc/navFunctions";
 import { validateDeleteCategory } from "./deleteCategoryValidation";
 

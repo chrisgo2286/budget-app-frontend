@@ -25,7 +25,6 @@ export default function ConfirmDeleteCategory (): JSX.Element {
         type: ""
     }
     const { ledger } = useGetCategoryLedger(filters, categories)
-    
     async function handleDeleteCategory () {
         const result = await deleteCategory(parseInt(categoryId))
         if (result.status === 204) {
@@ -39,7 +38,7 @@ export default function ConfirmDeleteCategory (): JSX.Element {
 
     async function handleUpdateLedger (): Promise<void> {
         for (let i=0; i < updates.length; i++) {
-            const result = patchLedgerItem(updates[i])
+            const result = await patchLedgerItem(updates[i])
         }
         refreshPage()
     }
@@ -49,7 +48,7 @@ export default function ConfirmDeleteCategory (): JSX.Element {
     }
 
     return (
-        <div className="mt-10 w-full">
+        <div className="mt-10 w-full" data-cy="confirm-delete">
             <div className="text-lg w-1/2 mx-auto text-center">Are you sure you wish to delete this category?</div> 
             <div className="text-lg w-1/2 mx-auto text-center mt-2">The following ledger items will be deleted.</div>
             <div className="text-lg w-1/2 mx-auto text-center mt-2">If you'd like to save these items, please update the category.</div>
@@ -66,12 +65,13 @@ export default function ConfirmDeleteCategory (): JSX.Element {
             <div className="flex flex-row my-5 justify-center">
                 <Button 
                     className="add-btn border border-gray-900 mr-5"
-                    dataCy="confirm-delete-btn"
+                    dataCy="delete-btn"
                     onClick={ handleDeleteCategory }>
                     Delete
                 </Button>
                 <Button 
                     className="add-btn border border-gray-900 ml-5"
+                    dataCy="update-btn"
                     onClick={ handleUpdateLedger }>
                     Update
                 </Button>
@@ -82,7 +82,9 @@ export default function ConfirmDeleteCategory (): JSX.Element {
 
 function LedgerHeader () {
     return (
-        <div className="grid grid-cols-5 bg-gray-200 border border-gray-300 rounded-lg h-8">
+        <div 
+            className="grid grid-cols-5 bg-gray-200 border border-gray-300 rounded-lg h-8"
+            data-cy="ledger-header">
             <div className="ml-2">Date</div>
             <div>Category</div>
             <div>Type</div>

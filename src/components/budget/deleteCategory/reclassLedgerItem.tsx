@@ -30,17 +30,23 @@ export default function ReclassLedgerItem ({
         return item.category__type.split("_")[0]
     }
 
+    function createDataCy (name: string): string {
+        return `ledger-item-${name}-${item.id}`
+    }
+
     return (
-        <div className="grid grid-cols-5 border border-gray-300 rounded-lg h-8">
-            <div className="ml-2">{ item.date }</div>
-            <div className="ml-2">{ item.category__name }</div>
-            <div>{ formatType() }</div>
-            <div className="ml-2">{ item.amount }</div>
+        <div 
+            className="grid grid-cols-5 border border-gray-300 rounded-lg h-8"
+            data-cy={ `ledger-item-${item.id}` }>
+            <div className="ml-2" data-cy={ createDataCy("date") }>{ item.date }</div>
+            <div className="ml-2" data-cy={ createDataCy("category") }>{ item.category__name }</div>
+            <div data-cy={ createDataCy("type") }>{ formatType() }</div>
+            <div className="ml-2" data-cy={ createDataCy("amount") }>{ item.amount }</div>
             <select 
                 value={ choice }
                 name="category"
                 onChange={ handleChange }
-                data-cy="delete-category" >
+                data-cy={ createDataCy("update")}>
                 <option key="default" value="Category">Category</option>    
                 { categoryNames.map((category, ndx) => (
                     <option key={ ndx } value={ category }>{ category }</option>
