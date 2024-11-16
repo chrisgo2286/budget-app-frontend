@@ -14,7 +14,7 @@ export default function MonthlySavingsChart (): JSX.Element {
     }
 
     return (
-        <div className="report">
+        <div className="report" data-cy="monthly-savings-report">
             <MonthlySavingsChartHeader handlePeriodChange={ handlePeriodChange } />
             <MonthlySavingsChartBody data={ data }/>
         </div>
