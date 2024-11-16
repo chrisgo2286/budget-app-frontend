@@ -9,7 +9,7 @@ import {
     BudgetErrorsContext,
 } from '../../misc/context';
 import HiddenBudgetSection from './hiddenBudgetSection/hiddenBudgetSection';
-import { PeriodTypes } from '../reports/reportTypes';
+import { PeriodTypes } from "../../components/reports/reports"
 import BudgetHeader from './budgetHeader';
 import BudgetBody from './budgetBody/budgetBody';
 

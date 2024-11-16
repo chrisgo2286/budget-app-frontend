@@ -7,12 +7,14 @@ import { ResponseType, StatusType } from './miscTypes';
 import { BudgetDataTypes } from '../components/budget/budgetTypes';
 import { RegistrationTypes } from '../components/registration/registration';
 import { LoginFieldsTypes } from '../components/login/login';
-import { PeriodTypes } from '../components/reports/reportTypes';
-import { MonthlyStatsTypes } from '../components/reports/monthlyStats/monthStatsTypes';
-import { YearlyStatsTypes } from '../components/reports/yearlyStats/yearlyStatsTypes';
-import { CurrentExpenseChartTypes } from '../components/reports/currentExpenseChart/currentExpenseChartTypes';
-import { MonthlyExpenseChartTypes } from '../components/reports/monthlyExpenseChart/monthlyExpenseChartTypes';
-import { MonthlySavingsChartTypes } from '../components/reports/monthlySavingsChart/monthlySavingsChartTypes';
+import { PeriodTypes } from '../components/reports/reports';
+import { 
+    MonthlyStatsTypes,
+    YearlyStatsTypes,
+    CurrentExpenseItemTypes,
+    MonthlyExpenseItemTypes,
+    MonthlySavingsItemTypes
+} from "../misc/hooks"
 import { createHeaders } from './userFunctions';
 import { FilterTypes } from '../components/ledger/ledger';
 import { UpdateLedgerItemTypes } from '../components/ledger/updateLedgerItem/updateLedgerItem';
@@ -137,19 +139,19 @@ export async function getYearlyStats (year: number): Promise<YearlyStatsTypes> {
     return result.data;
 }
 
-export async function getCurrentExpenseChart (period: PeriodTypes): Promise<CurrentExpenseChartTypes> {
+export async function getCurrentExpenseChart (period: PeriodTypes): Promise<CurrentExpenseItemTypes[]> {
     const newUrl = url + 'reports/current_expense_chart/?month=' + period.month + '&year=' + period.year;
     const result = await axios.get(newUrl, createHeaders())
     return result.data;
 }
 
-export async function getMonthlyExpenseChart (period: PeriodTypes): Promise<MonthlyExpenseChartTypes> {
+export async function getMonthlyExpenseChart (period: PeriodTypes): Promise<MonthlyExpenseItemTypes[]> {
     const newUrl = url + 'reports/monthly_expense_chart/?month=' + period.month + '&year=' + period.year;
     const result = await axios.get(newUrl, createHeaders())
     return result.data;
 }
 
-export async function getMonthlySavingsChart (period: PeriodTypes): Promise<MonthlySavingsChartTypes> {
+export async function getMonthlySavingsChart (period: PeriodTypes): Promise<MonthlySavingsItemTypes[]> {
     const newUrl = url + 'reports/monthly_savings_chart/?month=' + period.month + '&year=' + period.year;
     const result = await axios.get(newUrl, createHeaders())
     return result.data;

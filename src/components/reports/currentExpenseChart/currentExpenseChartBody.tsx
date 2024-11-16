@@ -1,9 +1,9 @@
 import { PieChart, Pie, ResponsiveContainer, Cell } from "recharts";
-import { CurrentExpenseChartTypes } from "./currentExpenseChartTypes";
+import { CurrentExpenseItemTypes } from "../../../misc/hooks";
 
-export default function CurrentExpenseChartBody (
-    { data 
-}: { data: CurrentExpenseChartTypes}) {
+export default function CurrentExpenseChartBody ({ 
+    data 
+}: { data: CurrentExpenseItemTypes[]}) {
 
     const COLORS = ['#0088FE', '#00C49F', '#FFBB28', '#FF8042', '#0088FE', '#00C49F', '#FFBB28', '#FF8042']
 

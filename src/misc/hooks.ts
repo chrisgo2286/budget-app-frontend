@@ -1,10 +1,19 @@
 import { useEffect, useState } from "react";
-import { getCategories, getBudgetItems, getLedgerItems } from "./apiCalls";
+import { 
+    getCategories, 
+    getBudgetItems, 
+    getLedgerItems,
+    getCurrentExpenseChart, 
+    getMonthlyExpenseChart,
+    getMonthlySavingsChart,
+    getMonthlyStats,
+    getYearlyStats 
+} from "./apiCalls";
 import { NewCategoryTypes } from "../components/budget/newCategory/newCategory";
 import { BudgetDataTypes, DefaultBudget } from "../components/budget/budgetTypes";
 import { UseGetCategoryTypes, UseGetBudgetTypes, UseGetLedgerTypes } from "./miscTypes";
 import { LedgerTypes } from "../components/ledger/ledgerTypes";
-import { PeriodTypes } from "../components/reports/reportTypes";
+import { PeriodTypes } from "../components/reports/reports";
 import { getCurrentYear, getCurrentMonth, getLastDay } from "./miscFunctions";
 import { FilterTypes } from "../components/ledger/ledger";
 import { UserTypes } from "./miscTypes";
@@ -72,3 +81,99 @@ export function useGetCategoryLedger (
     return { ledger }
 }
 
+//REPORT HOOKS AND TYPES
+
+export type CurrentExpenseItemTypes = {
+    name: string,
+    amount: number
+}
+
+export function useGetCurrentExpenseChart (
+    period: PeriodTypes
+): { data: CurrentExpenseItemTypes[] } {
+    const [ data, setData ] = useState<CurrentExpenseItemTypes[]>([])
+
+    useEffect(() => {
+        getCurrentExpenseChart(period).then((data) => setData(data))
+    }, [period])
+
+    return { data }
+}
+
+export type MonthlyExpenseItemTypes = {
+    name: string,
+    amount: number
+}
+
+export function useGetMonthlyExpenseChart (
+    period: PeriodTypes
+): { data: MonthlyExpenseItemTypes[] } {
+    const [ data, setData ] = useState<MonthlyExpenseItemTypes[]>([])
+
+    useEffect(() => {
+        getMonthlyExpenseChart(period).then((data) => setData(data))
+    }, [period])
+
+    return { data }
+}
+
+export type MonthlySavingsItemTypes = {
+    name: string,
+    amount: number
+}
+
+export function useGetMonthlySavingsChart (
+    period: PeriodTypes
+): { data: MonthlySavingsItemTypes[] } {
+    const [ data, setData ] = useState<MonthlySavingsItemTypes[]>([])
+
+    useEffect(() => {
+        getMonthlySavingsChart(period).then((data) => setData(data))
+    }, [period])
+
+    return { data }
+}
+
+export type MonthlyStatsTypes = {
+    expenses: string,
+    income: string,
+    savings: string,
+    budgetPercent: string
+}
+
+export function useGetMonthlyStats (
+    period: PeriodTypes
+): { data: MonthlyStatsTypes } {
+    const [ data, setData ] = useState<MonthlyStatsTypes>({
+        expenses: "",
+        income: "",
+        savings: "",
+        budgetPercent: ""
+    })
+    useEffect(() => {
+        getMonthlyStats(period).then((data) => setData(data))
+    }, [period])
+    return { data }
+}
+
+export type YearlyStatsTypes = {
+    expenses: string,
+    income: string,
+    savings: string,
+    budgetPercent: string
+}
+
+export function useGetYearlyStats (
+    year: number
+): { data: YearlyStatsTypes } {
+    const [ data, setData ] = useState<YearlyStatsTypes>({
+        expenses: "",
+        income: "",
+        savings: "",
+        budgetPercent: ""
+    })
+    useEffect(() => {
+        getYearlyStats(year).then((data) => setData(data))
+    }, [year])
+    return { data }
+}

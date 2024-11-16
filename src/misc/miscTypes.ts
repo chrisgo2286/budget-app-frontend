@@ -2,7 +2,7 @@ import { NewCategoryTypes } from "../components/budget/newCategory/newCategory";
 import { BudgetDataTypes } from "../components/budget/budgetTypes";
 import { LedgerTypes } from "../components/ledger/ledgerTypes";
 import { BudgetFilterTypes } from "../components/budget/budgetTypes";
-import { PeriodTypes } from "../components/reports/reportTypes";
+import { PeriodTypes } from "../components/reports/reports";
 import { ParsedDataItemType } from "../components/fileImport/fileImport";
 import { FilterTypes } from "../components/ledger/ledger";
 

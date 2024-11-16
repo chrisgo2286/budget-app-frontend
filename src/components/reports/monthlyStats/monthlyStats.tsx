@@ -1,30 +1,20 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import MonthlyStatsHeader from "./monthlyStatsHeader";
 import MonthlyStatsBody from "./monthlyStatsBody";
 import { getNewPeriod, monthNumToName, getCurrentPeriod } from "../../../misc/miscFunctions";
-import { getMonthlyStats } from "../../../misc/apiCalls";
-import { MonthlyStatsTypes } from "./monthStatsTypes";
-import { PeriodTypes } from "../reportTypes";
+import { PeriodTypes } from "../reports";
+import { useGetMonthlyStats } from "../../../misc/hooks";
 
 export default function MonthlyStats (): JSX.Element {
-    const [ data, setData ] = useState<MonthlyStatsTypes>({
-        expenses: "",
-        income: "",
-        savings: "",
-        budgetPercent: ""
-    })
     const [ period, setPeriod ] = useState<PeriodTypes>(getCurrentPeriod())
-
-    useEffect(() => {
-        getMonthlyStats(period).then((data) => setData(data))
-    }, [period])
+    const { data } = useGetMonthlyStats(period)
 
     function handlePeriodChange (direction: "next" | "prev"): void {
         setPeriod(getNewPeriod(period, direction))
     }
     
     return (
-        <div className="report">
+        <div className="report" data-cy="monthly-stats-report">
             <MonthlyStatsHeader 
                 monthName={ monthNumToName(period.month) }
                 handlePeriodChange={ handlePeriodChange } />

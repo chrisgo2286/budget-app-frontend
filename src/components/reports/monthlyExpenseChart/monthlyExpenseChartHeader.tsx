@@ -1,5 +1,8 @@
 import { PrevArrow, NextArrow, ReportHeader } from "../miscReportComponents";
-import { MonthlyExpenseChartHeaderProp } from "./monthlyExpenseChartTypes";
+
+type MonthlyExpenseChartHeaderProp = {
+    handlePeriodChange: (direction: "next" | "prev") => void
+}
 
 export default function MonthlyExpenseChartHeader ({ 
     handlePeriodChange 

@@ -1,5 +1,9 @@
 import { PrevArrow, NextArrow, ReportHeader } from "../miscReportComponents"
-import { YearlyStatsHeaderProps } from "./yearlyStatsTypes"
+
+type YearlyStatsHeaderProps = {
+    year: number, 
+    handleYearChange: (direction: "next" | "prev") => void
+}
 
 export default function YearlyStatsHeader ({ 
     year, 

@@ -1,6 +1,6 @@
 import { BudgetFilterTypes, BudgetItemTypes } from "../components/budget/budgetTypes";
 import { NewCategoryTypes } from "../components/budget/newCategory/newCategory";
-import { PeriodTypes } from "../components/reports/reportTypes";
+import { PeriodTypes } from "../components/reports/reports";
 
 export const MONTH_OPTIONS = [
     'January', 'February', 'March', 'April', 'May', 'June', 'July', 

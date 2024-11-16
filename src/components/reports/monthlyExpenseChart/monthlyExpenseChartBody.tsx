@@ -1,9 +1,9 @@
 import { BarChart, Bar, ResponsiveContainer, XAxis, YAxis } from 'recharts';
-import { MonthlyExpenseChartTypes } from './monthlyExpenseChartTypes';
+import { MonthlyExpenseItemTypes } from '../../../misc/hooks';
 
 export default function MonthlyExpenseChartBody ({ 
     data 
-}: {data: MonthlyExpenseChartTypes}): JSX.Element {
+}: {data: MonthlyExpenseItemTypes[]}): JSX.Element {
     return (
         <ResponsiveContainer width="90%" height="70%">
             <BarChart data={data}>

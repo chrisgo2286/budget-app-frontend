@@ -22,10 +22,11 @@ export function NextArrow ({ handleClick }: {handleClick: () => void}) {
 
 export function Stat ({ 
     label, 
-    data 
-}: {label: string, data: string}): JSX.Element {
+    data,
+    dataCy 
+}: {label: string, data: string, dataCy: string}): JSX.Element {
     return (
-        <div className="text-2xl my-2">
+        <div className="text-2xl my-2" data-cy={dataCy}>
             <i className="text-xl">{ label } </i>
             { (label === "Percent of Budget") ? `${data}%` : `$${data}` }
         </div>

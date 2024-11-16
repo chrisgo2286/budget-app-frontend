@@ -1,5 +1,9 @@
 import { PrevArrow, NextArrow, ReportHeader } from "../miscReportComponents"
-import { MonthlyStatsHeaderProps } from "./monthStatsTypes"
+
+export type MonthlyStatsHeaderProps = {
+    monthName: string, 
+    handlePeriodChange: (direction: "next" | "prev") => void
+}
 
 export default function MonthlyStatsHeader ({ 
     monthName, 
