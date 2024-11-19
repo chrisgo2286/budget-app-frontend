@@ -7,6 +7,8 @@ import { CategoriesContext, FileImportDataContext } from "../../misc/context";
 import { NewLedgerItemTypes } from "../ledger/hiddenLedgerSection/newLedgerItem/newLedgerItem";
 import { createLedgerItem } from "../../misc/apiCalls";
 import { findCategoryID } from "../../misc/miscFunctions";
+import { validateQueryFields } from "./fileImportValidation";
+import Validation from "../validation/validation";
 
 export type QueryFieldsTypes = {
     date: number | null,
@@ -22,12 +24,18 @@ export type ParsedDataItemType = {
     category: string
 }
 
+// Should convert other file types to CSV with openpyxl
+// Need Testing
+// Need to be able to create new categories
+// Validations
+
 export default function FileImport () {
     
     const { categories } = useContext(CategoriesContext)
     const [ rawData, setRawData ] = useState<string[][]>([])
     const [ parsedData, setParsedData ] = useState<ParsedDataItemType[]>([])
     const [ queriesVisible, setQueriesVisible ] = useState<boolean>(false)
+    const [ errors, setErrors ] = useState<string[]>([])
 
     function handleFile (event: React.ChangeEvent<HTMLInputElement>): void {
         
@@ -43,22 +51,28 @@ export default function FileImport () {
     }
 
     function parseData (queryFields: QueryFieldsTypes): void {
-        let newData = rawData.map((row) => (
-            { 
-                date: row[(queryFields.date) ? queryFields.date - 1: 0], 
-                description: row[(queryFields.description) ? queryFields.description - 1: 1], 
-                amount: row[(queryFields.amount) ? queryFields.amount - 1: 2],
-                category: "Category",
+        const result = validateQueryFields(cleanQueryFields(queryFields))
+        if (result === "Valid") {
+            let newData = rawData.map((row) => (
+                { 
+                    date: row[(queryFields.date) ? queryFields.date - 1: 0], 
+                    description: row[(queryFields.description) ? queryFields.description - 1: 1], 
+                    amount: row[(queryFields.amount) ? queryFields.amount - 1: 2],
+                    category: "Category",
+                }
+            ))
+            
+            if (queryFields.isHeader === "Yes") {
+                newData = newData.slice(1, newData.length + 1)
             }
-        ))
-        
-        if (queryFields.isHeader === "Yes") {
-            newData = newData.slice(1, newData.length + 1)
+    
+            setParsedData(newData);
+            setQueriesVisible(false);
+        } else if (Array.isArray(result)) {
+            setErrors(result)
         }
-
-        setParsedData(newData);
-        setQueriesVisible(false);
     }
+        
 
     function handleDeleteRow (ndx: number) {
         const firstArray = parsedData.slice(0, ndx)
@@ -79,15 +93,23 @@ export default function FileImport () {
     }
 
     function cleanItem (item: ParsedDataItemType): NewLedgerItemTypes {
-        const dateObj = new Date(item.date)
-        const newDate = `${ dateObj.getFullYear() }-${ dateObj.getMonth()+1 }-${ dateObj.getDate() }`
+        const dateArray = item.date.split("-")
         const categoryId = findCategoryID(item.category, categories)
         const newItem = {
-            date: newDate,
+            date: `${dateArray[0]}-${dateArray[1]}-${dateArray[2]}`,
             category: (categoryId) ? categoryId: item.category,
             amount: item.amount
         }
         return newItem;
+    }
+
+    function cleanQueryFields(fields: QueryFieldsTypes): QueryFieldsTypes {
+        return {
+            date: (typeof fields.date === "string") ? parseFloat(fields.date) : fields.date,
+            description: (typeof fields.description === "string") ? parseFloat(fields.description) : fields.description,
+            amount: (typeof fields.amount === "string") ? parseFloat(fields.amount) : fields.amount,
+            isHeader: fields.isHeader
+        }
     }
 
     function handleChange (ndx: number, event: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>): void {
@@ -103,6 +125,7 @@ export default function FileImport () {
     return (
         <main className="flex flex-col justify-center items-center mt-10 border border-gray-100">
             <FileInput onChange={ handleFile }/>
+            <Validation errors={ errors } />
             <FileImportDataContext.Provider value={{ parsedData }}>
                 <FileImportTable 
                     handleChange={ handleChange }

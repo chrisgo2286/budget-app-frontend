@@ -22,7 +22,7 @@ export default function FileImportTable ({
         <>
             { (parsedData.length < 1) ? <div></div> : (
                 <section>
-                    <table className="table-auto w-full mt-10">
+                    <table className="table-auto w-full mt-10" data-cy="parsed-data-table">
                         <FileImportTableHeader />
                         <FileImportTableBody 
                             data={ parsedData }
@@ -31,6 +31,7 @@ export default function FileImportTable ({
                     </table>
                     <Button 
                         className="mx-auto mt-10"
+                        dataCy="submit-btn"
                         onClick={ submitForm }>
                         Submit
                     </Button>
@@ -43,12 +44,14 @@ export default function FileImportTable ({
 
 function FileImportTableHeader () {
     return (
-        <thead className="flex flex-row justify-around border-b border-gray-200">
-            <th className="w-1/5 text-left">Date</th>
-            <th className="w-1/5 text-left">Description</th>
-            <th className="w-1/5 text-left">Amount</th>
-            <th className="w-1/5 text-left">Category</th>
-            <th className="w-1/5 text-center">Delete</th>
+        <thead data-cy="parsed-data-table-header">
+            <tr className="flex flex-row justify-around border-b border-gray-200">
+                <th className="w-1/5 text-left">Date</th>
+                <th className="w-1/5 text-left">Description</th>
+                <th className="w-1/5 text-left">Amount</th>
+                <th className="w-1/5 text-left">Category</th>
+                <th className="w-1/5 text-center">Delete</th>
+            </tr>
         </thead>
     )
 }

@@ -27,6 +27,7 @@ export default function RawDataQueries ({
     }
 
     function handleChange (event: React.ChangeEvent<HTMLInputElement | HTMLSelectElement> ) {
+        console.log(event.target.name, event.target.value)
         setQueryFields({ ...queryFields, [event.target.name]: event.target.value })
     }
 
@@ -37,7 +38,8 @@ export default function RawDataQueries ({
                 handleChange={ (event) => handleChange(event) } />
             <RawData rawData={ rawData }/>
             <Button
-                className="mx-auto mt-10" 
+                className="mx-auto mt-10"
+                dataCy="next-btn" 
                 onClick={ () => parseData(queryFields) }>
                 Next
             </Button>

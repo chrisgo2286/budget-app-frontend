@@ -18,13 +18,19 @@ export default function FileInput ({
     }
     return (
         <div className="flex flex-col">
-            <Button 
+            <Button
+                dataCy="upload-btn"
                 onClick={ () => hiddenFileInput.current?.click() } >
                 Upload
             </Button>
-            <div className="text-center mt-2 font-bold">{ filename }</div>
+            <div 
+                className="text-center mt-2 font-bold"
+                data-cy="filename">
+                { filename }
+            </div>
             <input
                 className="hidden"
+                data-cy="file-input"
                 type="file"
                 name="file"
                 accept=".csv"

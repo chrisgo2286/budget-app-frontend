@@ -37,7 +37,7 @@ function RawDataHeader ({columns}: {columns: number}): JSX.Element {
     }
 
     return (
-        <thead>
+        <thead data-cy="raw-data-headers">
             <tr className="border-b border-gray-200">
                 { createHeaders().map((header) => (
                     header
@@ -50,7 +50,7 @@ function RawDataHeader ({columns}: {columns: number}): JSX.Element {
 
 function RawDataBody ({ clippedData }: {clippedData: string[][]}): JSX.Element {
     return (
-        <tbody>
+        <tbody data-cy="raw-data-body">
             { clippedData.map((line, row) => (
                 <tr className="border-b border-gray-200" key={ row }>
                     { line.map((item, col) => (

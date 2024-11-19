@@ -33,10 +33,11 @@ export default function Queries({
                     name="amount"
                     value={ queryFields.amount }
                     onChange={ (event) => handleChange(event)} />
-                <div className="grid grid-cols-2 mt-5">
+                <div className="grid grid-cols-2 mt-5" data-cy="query-headers">
                     <span className="text-right">Does your data have headers?</span>
                     <select 
                         className="ml-8 w-16 rounded-md text-center border border-gray-300"
+                        data-cy="query-select-headers"
                         name="isHeader"
                         value={ choice }
                         onChange={ handleIsHeaderChoice }>
@@ -60,10 +61,11 @@ function QueryInputPair ({
     name, value, onChange 
 }: QueryInputPairTypes): JSX.Element {
     return (
-        <div className="grid grid-cols-2 mt-5">
+        <div className="grid grid-cols-2 mt-5" data-cy={`query-${name}`}>
             <span className="text-right">What is the column for { name }? </span>
             <input
                 className="ml-8 w-16 rounded-md text-center border border-gray-300" 
+                data-cy={ `query-input-${name}` }
                 type="number" 
                 name={ name }
                 value={ (value) ? value: 0 }
