@@ -21,7 +21,8 @@ export default function FileImportRow ({
         <>
             <td className="w-1/5 text-left">
                 <input
-                    type="text" 
+                    required
+                    type="date" 
                     name={ `date-${ndx}` } 
                     value={ parsedData[ndx].date }
                     data-cy={ `parsed-data-date-${ndx}` } 

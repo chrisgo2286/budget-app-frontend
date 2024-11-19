@@ -27,7 +27,6 @@ export default function RawDataQueries ({
     }
 
     function handleChange (event: React.ChangeEvent<HTMLInputElement | HTMLSelectElement> ) {
-        console.log(event.target.name, event.target.value)
         setQueryFields({ ...queryFields, [event.target.name]: event.target.value })
     }
 

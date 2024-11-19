@@ -21,8 +21,8 @@ export default function FileImportTable ({
     return (
         <>
             { (parsedData.length < 1) ? <div></div> : (
-                <section>
-                    <table className="table-auto w-full mt-10" data-cy="parsed-data-table">
+                <section className="flex flex-col items-center">
+                    <table className="min-w-140 mt-10 border-b border-gray-200" data-cy="parsed-data-table">
                         <FileImportTableHeader />
                         <FileImportTableBody 
                             data={ parsedData }

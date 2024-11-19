@@ -1,8 +1,9 @@
 import { useContext, useState } from 'react';
-import Input from "../../miscComponents/input/input";
-import Select from "../../miscComponents/select/select";
-import { compileBudgetCategoryNames, getCurrentMonth, getCurrentYear } from "../../../misc/miscFunctions";
-import { CategoriesContext, LedgerContext, LedgerFiltersContext } from '../../../misc/context';
+import Input from "../../../miscComponents/input/input";
+import Select from "../../../miscComponents/select/select";
+import { compileBudgetCategoryNames, getCurrentMonth, getCurrentYear } from "../../../../misc/miscFunctions";
+import { CategoriesContext, LedgerContext, LedgerErrorsContext, LedgerFiltersContext } from '../../../../misc/context';
+import { validateLedgerFilter } from './ledgerFilterValidation';
 
 export default function LedgerFilter (): JSX.Element {
     
@@ -11,6 +12,7 @@ export default function LedgerFilter (): JSX.Element {
     const { filters, setFilters } = useContext(LedgerFiltersContext)
     const [ startDateType, setStartDateType ] = useState<string>('text');
     const [ endDateType, setEndDateType ] = useState<string>('text');
+    const { setErrors } = useContext(LedgerErrorsContext)
 
     function handleSubmit (): void {
         if(filters.category === "Category") {
@@ -25,7 +27,15 @@ export default function LedgerFilter (): JSX.Element {
         if(filters.type === "Variable Expense") {
             setFilters({ ...filters, type: "Variable_Expense"})
         }
-        setLedgerUpdate(true);
+        const result = validateLedgerFilter(filters)
+
+        if (result === "Valid") {
+            setLedgerUpdate(true);
+            setErrors([])
+        } else if (Array.isArray(result)) {
+            setErrors(result)
+        }
+            
     }
 
     function handleStartDateFocus (): void {

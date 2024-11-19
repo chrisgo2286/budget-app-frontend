@@ -5,7 +5,10 @@ import { UpdateLedgerItemTypes } from "../../updateLedgerItem/updateLedgerItem";
 const LedgerItemSchema = z.object({
     date: z
         .string()
-        .min(1, { message: "Please enter a date!"}),
+        .min(1, { message: "Please enter a date!"})
+        .regex(/^\d{4}-\d{2}-\d{2}$/, {
+            message: "Please enter a valid date!"
+        }),
     category: z
         .string()
         .min(1, { message: "Please choose a valid category!"})

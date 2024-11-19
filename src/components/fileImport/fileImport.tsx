@@ -9,6 +9,7 @@ import { createLedgerItem } from "../../misc/apiCalls";
 import { findCategoryID } from "../../misc/miscFunctions";
 import { validateQueryFields } from "./fileImportValidation";
 import Validation from "../validation/validation";
+import { useNavigate } from "react-router-dom";
 
 export type QueryFieldsTypes = {
     date: number | null,
@@ -31,6 +32,7 @@ export type ParsedDataItemType = {
 
 export default function FileImport () {
     
+    const navigate = useNavigate()
     const { categories } = useContext(CategoriesContext)
     const [ rawData, setRawData ] = useState<string[][]>([])
     const [ parsedData, setParsedData ] = useState<ParsedDataItemType[]>([])
@@ -65,7 +67,7 @@ export default function FileImport () {
             if (queryFields.isHeader === "Yes") {
                 newData = newData.slice(1, newData.length + 1)
             }
-    
+            setErrors([])
             setParsedData(newData);
             setQueriesVisible(false);
         } else if (Array.isArray(result)) {
@@ -85,7 +87,7 @@ export default function FileImport () {
         parsedData.map((item) => (
             addLedgerItem(item)
         ))
-        setParsedData([])
+        navigate("/ledger")
     }
 
     async function addLedgerItem (item: ParsedDataItemType): Promise<void> {
@@ -123,7 +125,7 @@ export default function FileImport () {
     }
 
     return (
-        <main className="flex flex-col justify-center items-center mt-10 border border-gray-100">
+        <main className="flex flex-col justify-center items-center mt-10">
             <FileInput onChange={ handleFile }/>
             <Validation errors={ errors } />
             <FileImportDataContext.Provider value={{ parsedData }}>
